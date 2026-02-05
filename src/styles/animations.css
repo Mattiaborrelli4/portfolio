@@ -1,0 +1,153 @@
+/**
+ * GSAP Animations Stylesheet
+ * Optimized for 60fps performance using transform and opacity
+ * Accessibility-first with prefers-reduced-motion support
+ */
+
+/* ============================================
+   INITIAL STATES FOR GSAP ANIMATIONS
+   ============================================ */
+
+/* Fade up animation initial state */
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+/* Elements that will be animated by GSAP */
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* Elements that animate on scroll */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: none;
+}
+
+/* Elements that are currently animating */
+.is-animating {
+  will-change: transform, opacity;
+}
+
+/* Elements that have completed animation */
+.is-animated {
+  will-change: auto;
+}
+
+/* ============================================
+   SECTION VISIBILITY STATES
+   ============================================ */
+
+/* Section in view */
+.section-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Section out of view */
+.section-out-of-view {
+  opacity: 0;
+  transform: translateY(50px);
+  pointer-events: none;
+}
+
+/* ============================================
+   HOVER EFFECT STATES
+   ============================================ */
+
+/* Lift effect on hover */
+.hover-lift {
+  transform: translateY(0);
+  transition: none; /* GSAP handles transitions */
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+/* Shrink slightly on hover */
+.hover-shrink {
+  transition: none;
+}
+
+.hover-shrink:hover {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   ACCESSIBILITY - PREFERS REDUCED MOTION
+   ============================================ */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Show all elements immediately without animation */
+  .animate-fade-up,
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Remove will-change for performance */
+  .will-animate,
+  .is-animating {
+    will-change: auto !important;
+  }
+
+  /* Show all sections */
+  .section-out-of-view {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  /* Disable hover transitions */
+  .hover-lift:hover {
+    transform: none !important;
+  }
+
+  .hover-shrink:hover {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+   ============================================ */
+
+/* GPU acceleration for animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Contain paint for complex animations */
+.contain-paint {
+  contain: paint;
+}
+
+/* Optimize images */
+.optimized-image {
+  content-visibility: auto;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+/* Preserve 3D for transforms */
+.preserve-3d {
+  transform-style: preserve-3d;
+}

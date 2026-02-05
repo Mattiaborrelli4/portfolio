@@ -1,0 +1,113 @@
+/**
+ * Layout Fixes - Perfect Centering
+ * Ensures all content is properly centered on all screen sizes
+ */
+
+/* Force perfect centering for main container */
+.main-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Ensure all sections take full width and center their content */
+.section {
+  width: 100% !important;
+  max-width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Container centering with explicit properties */
+.container {
+  width: 100% !important;
+  max-width: var(--container-max-width) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--container-padding) !important;
+  padding-right: var(--container-padding) !important;
+  box-sizing: border-box !important;
+}
+
+/* Hero section specific centering */
+.section--hero {
+  justify-content: center !important;
+}
+
+.section--hero .container {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* About section */
+.section--about .container,
+.section--projects .container,
+.section--experiments .container,
+.section--contact .container,
+.section--footer .container {
+  width: 100% !important;
+}
+
+/* Grid centering */
+.about-grid,
+.projects-grid,
+.experiments-grid,
+.contact__grid,
+.stats-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* Project cards grid specific */
+.projects-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+  gap: var(--spacing-xl) !important;
+  justify-content: center !important;
+}
+
+/* Experiments grid specific */
+.experiments-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: var(--spacing-lg) !important;
+  justify-content: center !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 1024px) {
+  .experiments-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .experiments-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: var(--spacing-sm) !important;
+    padding-right: var(--spacing-sm) !important;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    padding-left: var(--spacing-xl) !important;
+    padding-right: var(--spacing-xl) !important;
+  }
+}

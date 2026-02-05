@@ -1,13 +1,736 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="scroll-behavior: smooth;">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+    <meta name="description" content="Portfolio - Frontend Developer specializing in modern web technologies" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <title>Mattia | Frontend Developer Portfolio</title>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="/src/styles/variables.css">
+    <link rel="stylesheet" href="/src/styles/reset.css">
+    <link rel="stylesheet" href="/src/styles/typography.css">
+    <link rel="stylesheet" href="/src/styles/layout.css">
+    <link rel="stylesheet" href="/src/styles/components.css">
+    <link rel="stylesheet" href="/src/styles/featured-projects.css">
+    <link rel="stylesheet" href="/src/styles/layout-fixes.css">
+    <link rel="stylesheet" href="/src/styles/animations.css">
   </head>
+
   <body>
-    <div id="app"></div>
+    <!-- Main Container for GSAP/Lenis smooth scrolling -->
+    <div class="main-container">
+
+      <!-- Hero Section -->
+      <header class="section section--hero hero-section" data-hero>
+        <div class="container hero-content">
+          <h1 class="hero-name" data-name>Mattia [Last Name]</h1>
+
+          <div class="hero-subtitle-wrapper" data-title>
+            <span class="hero-slashes">//</span>
+            <p class="hero-subtitle">Creative Front-End Developer & Technologist</p>
+          </div>
+
+          <p class="hero-description" data-description>
+            I transform complex ideas into elegant, user-centered digital experiences.
+            Passionate about clean code, modern technologies, and creating impactful solutions.
+          </p>
+
+          <button class="hero-cta" data-cta>
+            <span>Explore My Work</span>
+            <svg class="cta-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="scroll-indicator" data-scroll>
+          <div class="scroll-text">Scroll to Discover</div>
+          <div class="scroll-line"></div>
+        </div>
+      </header>
+
+      <!-- About Section -->
+      <section class="section section--about about-section" data-about>
+        <div class="container">
+          <div class="about-grid">
+            <!-- Left: Photo -->
+            <div class="about-photo">
+              <div class="photo-frame">
+                <div class="photo-placeholder">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Mattia - Frontend Developer" class="profile-image">
+                </div>
+                <p class="photo-caption">Frontend Developer based in Naples, Italy</p>
+              </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="about-content">
+              <!-- Section Label -->
+              <p class="section-label">SECTION 01</p>
+
+              <!-- Heading -->
+              <h2 class="about-heading">About Me</h2>
+
+              <!-- Bio Text -->
+              <div class="about-bio">
+                <p class="bio-paragraph">
+                  I'm a 20-year-old Computer Science student at Federico II University in Naples. My journey in tech started with a passion for understanding how things work, which led me to discover programming and web development. When I'm not coding, you can find me at the gym, where I discipline myself to push boundaries - a mindset that translates perfectly into my problem-solving approach.
+                </p>
+                <p class="bio-paragraph">
+                  I specialize in frontend development with expertise in modern JavaScript frameworks and clean, performant code. My academic background at one of Italy's most prestigious universities has given me a solid foundation in computer science principles, algorithms, and software engineering. I believe in writing code that's not just functional, but elegant and maintainable.
+                </p>
+                <p class="bio-paragraph">
+                  Beyond the code, I'm passionate about creating exceptional user experiences that make a difference. I'm constantly learning new technologies and best practices, from the latest frontend frameworks to cybersecurity fundamentals. My goal is to bridge the gap between beautiful design and robust technical implementation, creating web applications that users love.
+                </p>
+              </div>
+
+              <!-- Skills Section -->
+              <div class="skills-section">
+                <button class="melody-btn" id="melodyBtn" type="button">
+                  <span class="melody-btn-icon">♪</span>
+                  Play a hidden melody
+                </button>
+
+                <div class="skills-grid" id="skillsGrid">
+                  <button class="skill-note" data-skill="javascript" data-frequency="261.63">JavaScript</button>
+                  <button class="skill-note" data-skill="react" data-frequency="293.66">React</button>
+                  <button class="skill-note" data-skill="vuejs" data-frequency="329.63">Vue.js</button>
+                  <button class="skill-note" data-skill="typescript" data-frequency="349.23">TypeScript</button>
+                  <button class="skill-note" data-skill="threejs" data-frequency="392.00">Three.js</button>
+                  <button class="skill-note" data-skill="webgl" data-frequency="440.00">WebGL</button>
+                  <button class="skill-note" data-skill="gsap" data-frequency="493.88">GSAP</button>
+                  <button class="skill-note" data-skill="nodejs" data-frequency="523.25">Node.js</button>
+                  <button class="skill-note" data-skill="webaudio" data-frequency="587.33">Web Audio</button>
+                  <button class="skill-note" data-skill="canvas" data-frequency="659.25">Canvas</button>
+                  <button class="skill-note" data-skill="css" data-frequency="698.46">CSS</button>
+                  <button class="skill-note" data-skill="html" data-frequency="783.99">HTML</button>
+                  <button class="skill-note" data-skill="a11y" data-frequency="880.00">Accessibility</button>
+                  <button class="skill-note" data-skill="performance" data-frequency="987.77">Performance</button>
+                  <button class="skill-note" data-skill="git" data-frequency="1046.50">Git</button>
+                  <button class="skill-note" data-skill="figma" data-frequency="1174.66">Figma</button>
+                  <button class="skill-note" data-skill="java" data-frequency="1318.51">Java</button>
+                  <button class="skill-note" data-skill="cybersecurity" data-frequency="1396.91">Cybersecurity</button>
+                </div>
+
+                <p class="skills-hint">clicca le skill per suonare</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Projects Section -->
+      <section class="section section--projects projects-section" data-projects>
+        <div class="container">
+          <!-- Section Header -->
+          <div class="projects-header">
+            <span class="section-number font-mono-medium">02</span>
+            <h2 class="text-display-md font-display-bold section-title">Featured Projects</h2>
+            <p class="text-body-lg font-body-regular projects-subtitle">Award-Winning Digital Experiences</p>
+          </div>
+
+          <!-- Scroll Progress Indicator -->
+          <div class="scroll-indicator-projects">
+            <div class="scroll-line-projects">
+              <div class="scroll-progress-projects"></div>
+            </div>
+            <span class="scroll-text-projects font-mono-sm">Scroll to explore</span>
+          </div>
+
+          <!-- Projects Grid -->
+          <div class="projects-grid">
+
+            <!-- Project 1 -->
+            <article class="featured-project-card" data-project-card>
+              <div class="project-featured-badge">
+                <span class="font-mono-sm">Featured</span>
+              </div>
+              <div class="project-image-wrapper">
+                <img src="https://via.placeholder.com/600x400/2C5F7F/ffffff?text=FinTech+Dashboard" alt="FinTech Dashboard" class="project-image">
+                <div class="project-overlay"></div>
+                <!-- Award Badges -->
+                <div class="project-awards">
+                  <div class="award-badge award-badge--trophy">
+                    <span class="award-icon">🏆</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">Awwwards SOTD</span>
+                      <span class="award-year font-mono-xs">2024</span>
+                    </div>
+                  </div>
+                  <div class="award-badge award-badge--star">
+                    <span class="award-icon">⭐</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">Best Innovation</span>
+                      <span class="award-year font-mono-xs">2024</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">Web App</span>
+                  <span class="project-year font-mono-sm">2024</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">FinTech Analytics Dashboard</h3>
+                <div class="project-description">
+                  <p class="text-body"><strong>Challenge:</strong> Create a real-time financial data visualization platform handling millions of data points.</p>
+                  <p class="text-body"><strong>Approach:</strong> Implemented WebSocket connections, optimized data processing with Web Workers, and built custom D3.js visualizations.</p>
+                </div>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">React</span>
+                  <span class="tech-tag font-mono-sm">TypeScript</span>
+                  <span class="tech-tag font-mono-sm">D3.js</span>
+                  <span class="tech-tag font-mono-sm">Node.js</span>
+                  <span class="tech-tag font-mono-sm">PostgreSQL</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="featured-project-card" data-project-card>
+              <div class="project-image-wrapper">
+                <img src="https://via.placeholder.com/600x400/4A7C9E/ffffff?text=E-Commerce+Platform" alt="E-Commerce Platform" class="project-image">
+                <div class="project-overlay"></div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">Web App</span>
+                  <span class="project-year font-mono-sm">2024</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">E-Commerce Platform</h3>
+                <div class="project-description">
+                  <p class="text-body"><strong>Challenge:</strong> Build a scalable e-commerce solution with inventory management and payment processing.</p>
+                  <p class="text-body"><strong>Approach:</strong> Microservices architecture, Redis caching, Stripe integration, and real-time inventory tracking.</p>
+                </div>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">Next.js</span>
+                  <span class="tech-tag font-mono-sm">Stripe</span>
+                  <span class="tech-tag font-mono-sm">MongoDB</span>
+                  <span class="tech-tag font-mono-sm">Redis</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="featured-project-card" data-project-card>
+              <div class="project-featured-badge">
+                <span class="font-mono-sm">Featured</span>
+              </div>
+              <div class="project-image-wrapper">
+                <img src="https://via.placeholder.com/600x400/6B7B8C/ffffff?text=AI+Chat+Application" alt="AI Chat Application" class="project-image">
+                <div class="project-overlay"></div>
+                <!-- Award Badges -->
+                <div class="project-awards">
+                  <div class="award-badge award-badge--gold">
+                    <span class="award-icon">🥇</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">Product Hunt #1</span>
+                      <span class="award-year font-mono-xs">2023</span>
+                    </div>
+                  </div>
+                  <div class="award-badge award-badge--trophy">
+                    <span class="award-icon">🏆</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">Best AI Tool</span>
+                      <span class="award-year font-mono-xs">2023</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">AI/ML</span>
+                  <span class="project-year font-mono-sm">2023</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">AI Chat Application</h3>
+                <div class="project-description">
+                  <p class="text-body"><strong>Challenge:</strong> Develop a responsive AI chatbot interface with context awareness and streaming responses.</p>
+                  <p class="text-body"><strong>Approach:</strong> Integrated GPT API, built streaming response handling, and implemented conversation context management.</p>
+                </div>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">Vue.js</span>
+                  <span class="tech-tag font-mono-sm">OpenAI API</span>
+                  <span class="tech-tag font-mono-sm">Express</span>
+                  <span class="tech-tag font-mono-sm">Socket.io</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="featured-project-card" data-project-card>
+              <div class="project-image-wrapper">
+                <img src="https://via.placeholder.com/600x400/2D3436/ffffff?text=Portfolio+Website" alt="Portfolio Website" class="project-image">
+                <div class="project-overlay"></div>
+                <!-- Award Badges -->
+                <div class="project-awards">
+                  <div class="award-badge award-badge--star">
+                    <span class="award-icon">⭐</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">CSS Tricks Featured</span>
+                      <span class="award-year font-mono-xs">2023</span>
+                    </div>
+                  </div>
+                  <div class="award-badge award-badge--featured">
+                    <span class="award-icon">✨</span>
+                    <div class="award-content">
+                      <span class="award-text font-mono-xs">Design of the Day</span>
+                      <span class="award-year font-mono-xs">2023</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">Personal</span>
+                  <span class="project-year font-mono-sm">2023</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">Portfolio Website</h3>
+                <div class="project-description">
+                  <p class="text-body"><strong>Challenge:</strong> Create a visually striking portfolio showcasing projects with smooth animations.</p>
+                  <p class="text-body"><strong>Approach:</strong> GSAP animations, Lenis smooth scrolling, responsive design, and performance optimization.</p>
+                </div>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">GSAP</span>
+                  <span class="tech-tag font-mono-sm">Lenis</span>
+                  <span class="tech-tag font-mono-sm">Vite</span>
+                  <span class="tech-tag font-mono-sm">CSS3</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 5 -->
+            <article class="featured-project-card" data-project-card>
+              <div class="project-image-wrapper">
+                <img src="https://via.placeholder.com/600x400/2C5F7F/ffffff?text=Weather+App" alt="Weather Application" class="project-image">
+                <div class="project-overlay"></div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">API</span>
+                  <span class="project-year font-mono-sm">2023</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">Weather Forecast App</h3>
+                <div class="project-description">
+                  <p class="text-body"><strong>Challenge:</strong> Build a minimal weather app with accurate forecasts and beautiful UI.</p>
+                  <p class="text-body"><strong>Approach:</strong> OpenWeatherMap API integration, geolocation support, and dynamic weather visualizations.</p>
+                </div>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">JavaScript</span>
+                  <span class="tech-tag font-mono-sm">Weather API</span>
+                  <span class="tech-tag font-mono-sm">CSS3</span>
+                  <span class="tech-tag font-mono-sm">Geolocation</span>
+                </div>
+                <div class="project-actions">
+                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Stats Counter -->
+          <div class="projects-stats">
+            <div class="stat-item">
+              <span class="stat-number font-display-bold" data-count="5">0</span>
+              <span class="stat-label font-mono-sm">Projects Completed</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number font-display-bold" data-count="12">0</span>
+              <span class="stat-label font-mono-sm">Technologies Used</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number font-display-bold" data-count="3">0</span>
+              <span class="stat-label font-mono-sm">Featured Projects</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experimental Lab Section -->
+      <section class="section section--experiments experiments-section" data-experiments>
+        <div class="container">
+          <div class="experiments-header">
+            <span class="section-number font-mono-medium">03</span>
+            <h2 class="text-display-md font-display-bold section-title">Experimental Lab</h2>
+            <p class="text-body-lg experiments-subtitle" style="color: var(--color-secondary); margin-top: var(--spacing-sm);">Innovation Through Creative Exploration</p>
+          </div>
+
+          <div class="experiments-grid" style="margin-top: var(--spacing-2xl);">
+            <!-- Experiment 1 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=600&h=400&fit=crop" alt="WebGL Fluid Dynamics" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">WebGL Fluid Dynamics</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">WebGL</span>
+                  <span class="experiment-tag font-mono-sm">GLSL</span>
+                  <span class="experiment-tag font-mono-sm">Physics</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 2 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=600&h=400&fit=crop" alt="Quantum Particles" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Quantum Particles</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">Canvas</span>
+                  <span class="experiment-tag font-mono-sm">Physics</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 3 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" alt="Procedural Shaders" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Procedural Shaders</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">GLSL</span>
+                  <span class="experiment-tag font-mono-sm">WebGL</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 4 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&h=400&fit=crop" alt="Reactive Audio Visualizer" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Reactive Audio Visualizer</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">Web Audio</span>
+                  <span class="experiment-tag font-mono-sm">Canvas</span>
+                  <span class="experiment-tag font-mono-sm">FFT</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 5 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="Neural Network Explorer" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Neural Network Explorer</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">TensorFlow</span>
+                  <span class="experiment-tag font-mono-sm">AI/ML</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 6 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&h=400&fit=crop" alt="Algorithmic Generative Art" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Algorithmic Generative Art</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">Algorithms</span>
+                  <span class="experiment-tag font-mono-sm">Canvas</span>
+                  <span class="experiment-tag font-mono-sm">Creative Code</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 7 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop" alt="Interactive 3D Environment" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Interactive 3D Environment</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">Three.js</span>
+                  <span class="experiment-tag font-mono-sm">WebGL</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 8 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&h=400&fit=crop" alt="Advanced CSS Animations" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Advanced CSS Animations</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">CSS</span>
+                  <span class="experiment-tag font-mono-sm">Motion</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Experiment 9 -->
+            <article class="experiment-card">
+              <div class="experiment-image">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop" alt="Advanced Physics Engine" />
+                <div class="experiment-badge">EXP</div>
+              </div>
+              <div class="experiment-content">
+                <h3 class="text-h4 font-display-bold experiment-title">Advanced Physics Engine</h3>
+                <div class="experiment-tags">
+                  <span class="experiment-tag font-mono-sm">Physics</span>
+                  <span class="experiment-tag font-mono-sm">Canvas</span>
+                  <span class="experiment-tag font-mono-sm">Simulation</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="experiments-actions" style="margin-top: var(--spacing-2xl); text-align: center;">
+            <a href="#" class="btn btn--large font-mono-medium">
+              View All Experiments
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: var(--spacing-xs);">
+                <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="section section--contact contact-section" data-contact>
+        <div class="container">
+          <h2 class="text-display-md font-display-bold section-title">Contact</h2>
+
+          <div class="contact__grid">
+            <!-- Left Column: Contact Info -->
+            <div class="contact__info">
+              <h3 class="text-h2 font-display-bold contact__heading">
+                Ready to Create Something Extraordinary?
+              </h3>
+              <p class="text-body-lg contact__description">
+                I'm always excited to collaborate on innovative projects and bring creative ideas to life.
+                Whether you have a project in mind or just want to connect, feel free to reach out.
+              </p>
+
+              <!-- Email Link -->
+              <a href="mailto:your@email.com" class="contact__email-link text-h3 font-display-bold">
+                your@email.com
+              </a>
+
+              <!-- Download CV Button -->
+              <a href="/cv.pdf" class="btn btn--large contact__cv-btn">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 13.125V3.125M10 13.125L6.25 9.375M10 13.125L13.75 9.375M3.125 16.875H16.875" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Download CV
+              </a>
+
+              <!-- Social Links -->
+              <nav class="social-links contact__social-links">
+                <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link font-mono-medium" aria-label="GitHub">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0C4.477 0 0 4.477 0 10c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V19c0 .27.16.59.67.5C17.14 18.16 20 14.42 20 10c0-5.523-4.477-10-10-10z"/>
+                  </svg>
+                  GitHub
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="social-link font-mono-medium" aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.5 0h-17C.672 0 0 .672 0 1.5v17c0 .828.672 1.5 1.5 1.5h17c.828 0 1.5-.672 1.5-1.5v-17c0-.828-.672-1.5-1.5-1.5zM5.5 16H3V6h2.5v10zM4.25 4.875c-.828 0-1.5-.672-1.5-1.5s.672-1.5 1.5-1.5 1.5.672 1.5 1.5-.672 1.5-1.5 1.5zM17 16h-2.5v-5.5c0-1.5-.5-2.5-1.75-2.5s-2 1-2 2.5V16H8V6h2.5v1.5s.75-1.5 2.5-1.5c1.75 0 3.5 1 3.5 3.5V16z"/>
+                  </svg>
+                  LinkedIn
+                </a>
+                <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" class="social-link font-mono-medium" aria-label="Twitter">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.9 4.3c-.7.3-1.4.5-2.2.6.8-.5 1.4-1.2 1.7-2.1-.7.4-1.5.7-2.4.9-.7-.7-1.6-1.1-2.7-1.1-2 0-3.7 1.6-3.7 3.7 0 .3 0 .6.1.8C6.5 6.9 3.5 5.5 1.5 3.2c-.3.5-.4 1.1-.4 1.7 0 1.3.7 2.4 1.6 3.1-.6 0-1.2-.2-1.7-.5v.1c0 1.8 1.3 3.3 3 3.6-.3.1-.6.1-1 .1-.2 0-.5 0-.7-.1.5 1.5 1.8 2.6 3.4 2.6-1.3 1-2.9 1.6-4.6 1.6-.3 0-.6 0-.9-.1 1.7 1.1 3.7 1.7 5.7 1.7 6.9 0 10.7-5.7 10.7-10.7v-.5c.7-.5 1.4-1.2 1.9-1.9z"/>
+                  </svg>
+                  Twitter
+                </a>
+                <a href="https://codepen.io/yourusername" target="_blank" rel="noopener noreferrer" class="social-link font-mono-medium" aria-label="CodePen">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 0L0 5v10l10 5 10-5V5L10 0zm0 1.8l6.5 3.2L10 8.3 3.5 5 10 1.8zM1 6.4l7.5 3.8v7.5L1 13.9V6.4zm9 10.7V9.8l7.5-3.4v7.5l-7.5 3.2z"/>
+                  </svg>
+                  CodePen
+                </a>
+              </nav>
+            </div>
+
+            <!-- Right Column: Contact Form -->
+            <div class="contact__form-wrapper">
+              <form class="contact__form" id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group">
+                  <label for="name" class="form-label font-mono-medium">Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-input text-body"
+                    placeholder="Your name"
+                    required
+                    autocomplete="name"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="email" class="form-label font-mono-medium">Email *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input text-body"
+                    placeholder="your@email.com"
+                    required
+                    autocomplete="email"
+                  >
+                </div>
+
+                <div class="form-group">
+                  <label for="message" class="form-label font-mono-medium">Message *</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    class="form-textarea text-body"
+                    rows="6"
+                    placeholder="Tell me about your project..."
+                    required
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn--large form-submit">
+                  Send Message
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 10L17.5 10M17.5 10L11.25 3.75M17.5 10L11.25 16.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Statistics Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__value text-display-md font-display-black">100/100</div>
+              <div class="stat-card__label text-small font-mono-medium">Lighthouse Score</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__value text-display-md font-display-black">0.8s</div>
+              <div class="stat-card__label text-small font-mono-medium">Load Time</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 1v6m0 6v6m11-11h-6m-6 0H1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__value text-display-md font-display-black">98%</div>
+              <div class="stat-card__label text-small font-mono-medium">Accessibility</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-card__icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="stat-card__value text-display-md font-display-black">100%</div>
+              <div class="stat-card__label text-small font-mono-medium">Best Practices</div>
+            </div>
+          </div>
+
+          <!-- Tech Stack Badges -->
+          <div class="tech-stack">
+            <p class="text-small font-mono-medium tech-stack__label">TECH STACK</p>
+            <div class="tech-badges">
+              <span class="tech-badge font-mono-medium">Vite</span>
+              <span class="tech-badge font-mono-medium">React</span>
+              <span class="tech-badge font-mono-medium">Three.js</span>
+              <span class="tech-badge font-mono-medium">GSAP</span>
+              <span class="tech-badge font-mono-medium">WebGL</span>
+              <span class="tech-badge font-mono-medium">Tailwind</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="section section--footer footer" data-footer>
+        <div class="container">
+          <div class="footer__content">
+            <div class="footer__section footer__section--primary">
+              <p class="footer__copyright text-small" style="color: var(--color-secondary);">
+                &copy; <span class="current-year">2026</span> Mattia. All rights reserved.
+              </p>
+            </div>
+            <div class="footer__section footer__section--secondary">
+              <nav class="footer__links">
+                <a href="https://github.com/yourusername/portfolio" target="_blank" rel="noopener noreferrer" class="footer-link font-mono-medium">View Source Code</a>
+                <a href="#sitemap" class="footer-link font-mono-medium">Sitemap</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- End main-container -->
+
+    <!-- Hidden YouTube Player for Background Music -->
+    <div id="youtube-player" style="display: none;"></div>
+
+    <!-- JavaScript Module -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

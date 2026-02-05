@@ -1,0 +1,134 @@
+/**
+ * Modern CSS Reset
+ * Based on modern best practices with box-sizing: border-box foundation
+ */
+
+/* 1. Box sizing reset - apply to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. HTML & Body reset */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+}
+
+/* 4. Typography reset */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+p {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 5. Links reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 6. Media reset */
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}
+
+/* 7. Form elements reset */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  outline: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+button,
+input[type="submit"],
+input[type="button"] {
+  text-transform: none;
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 8. Table reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+}
+
+/* 9. Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent, #2C5F7F);
+  outline-offset: 2px;
+}
