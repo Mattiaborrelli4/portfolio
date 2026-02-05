@@ -1,0 +1,71 @@
+Total messages: 82 (Errors: 1, Warnings: 0)
+Returning 68 messages for level "info"
+
+Identifier 'initScrollAnimations' has already been declared
+[LOG] 🎴 Initializing 3D card effect for 5 cards @ http://localhost:5177/src/3d-cards.js:13
+[LOG]   ✅ Card 1 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 2 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 3 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 4 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 5 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] Starting... @ http://localhost:5177/src/main.js?t=1770330248649:378
+[LOG] ✅ Audio sequencer initialized @ http://localhost:5177/src/main.js?t=1770330248649:382
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] ✅ Callback registrato per eventi di riproduzione note @ http://localhost:5177/src/audio-sequencer.js:400
+[LOG] ✅ Skill visual sync configured @ http://localhost:5177/src/skill-visual-sync.js:270
+[LOG] ✅ Skill visual sync initialized @ http://localhost:5177/src/main.js?t=1770330248649:386
+[LOG] ✅ Smooth scroll initialized @ http://localhost:5177/src/main.js?t=1770330248649:393
+[LOG] ✅ Page load animations initialized @ http://localhost:5177/src/main.js?t=1770330248649:402
+[LOG] ✅ Scroll animations initialized @ http://localhost:5177/src/main.js?t=1770330248649:406
+[LOG] ✅ Hover interactions initialized @ http://localhost:5177/src/main.js?t=1770330248649:410
+[LOG] ✅ Melody button connected @ http://localhost:5177/src/main.js?t=1770330248649:430
+[LOG] ✅ Skill hover audio enabled @ http://localhost:5177/src/main.js?t=1770330248649:448
+[LOG] 🎉 Portfolio loaded successfully! @ http://localhost:5177/src/main.js?t=1770330248649:451
+[LOG] 🎴 Initializing 3D card effect for 5 cards @ http://localhost:5177/src/3d-cards.js:13
+[LOG]   ✅ Card 1 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 2 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 3 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 4 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 5 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] Starting... @ http://localhost:5177/src/main.js?t=1770330293464:378
+[LOG] ✅ Audio sequencer initialized @ http://localhost:5177/src/main.js?t=1770330293464:382
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] ✅ Callback registrato per eventi di riproduzione note @ http://localhost:5177/src/audio-sequencer.js:400
+[LOG] ✅ Skill visual sync configured @ http://localhost:5177/src/skill-visual-sync.js:270
+[LOG] ✅ Skill visual sync initialized @ http://localhost:5177/src/main.js?t=1770330293464:386
+[LOG] ✅ Smooth scroll initialized @ http://localhost:5177/src/main.js?t=1770330293464:390
+[LOG] ✅ Page load animations initialized @ http://localhost:5177/src/main.js?t=1770330293464:399
+[LOG] ✅ Scroll animations initialized @ http://localhost:5177/src/main.js?t=1770330293464:403
+[LOG] ✅ Hover interactions initialized @ http://localhost:5177/src/main.js?t=1770330293464:407
+[LOG] ✅ Melody button connected @ http://localhost:5177/src/main.js?t=1770330293464:427
+[LOG] ✅ Skill hover audio enabled @ http://localhost:5177/src/main.js?t=1770330293464:445
+[LOG] 🎉 Portfolio loaded successfully! @ http://localhost:5177/src/main.js?t=1770330293464:448
+[LOG] 🎴 Initializing 3D card effect for 5 cards @ http://localhost:5177/src/3d-cards.js:13
+[LOG]   ✅ Card 1 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 2 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 3 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 4 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG]   ✅ Card 5 initialized @ http://localhost:5177/src/3d-cards.js:30
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] Starting... @ http://localhost:5177/src/main.js?t=1770330304888:378
+[LOG] ✅ Audio sequencer initialized @ http://localhost:5177/src/main.js?t=1770330304888:382
+[LOG] 📦 Cached 18 skill cards @ http://localhost:5177/src/skill-visual-sync.js:69
+[LOG] ✅ Skill Visual Sync initialized @ http://localhost:5177/src/skill-visual-sync.js:53
+[LOG] ✅ Callback registrato per eventi di riproduzione note @ http://localhost:5177/src/audio-sequencer.js:400
+[LOG] ✅ Skill visual sync configured @ http://localhost:5177/src/skill-visual-sync.js:270
+[LOG] ✅ Skill visual sync initialized @ http://localhost:5177/src/main.js?t=1770330304888:386
+[LOG] ✅ Smooth scroll initialized @ http://localhost:5177/src/main.js?t=1770330304888:390
+[LOG] ✅ Page load animations initialized @ http://localhost:5177/src/main.js?t=1770330304888:399
+[LOG] ✅ Scroll animations initialized @ http://localhost:5177/src/main.js?t=1770330304888:403
+[LOG] ✅ Hover interactions initialized @ http://localhost:5177/src/main.js?t=1770330304888:407
+[LOG] ✅ Melody button connected @ http://localhost:5177/src/main.js?t=1770330304888:427
+[LOG] ✅ Skill hover audio enabled @ http://localhost:5177/src/main.js?t=1770330304888:445
+[LOG] 🎉 Portfolio loaded successfully! @ http://localhost:5177/src/main.js?t=1770330304888:448
+[LOG] [AudioSequencer 23:25:36] %cAudioContext inizializzato con successo color: #4caf50 @ http://localhost:5177/src/audio-sequencer.js:992

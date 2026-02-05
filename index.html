@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Portfolio - Frontend Developer specializing in modern web technologies" />
+    <meta name="google" content="notranslate" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
     <title>Mattia | Frontend Developer Portfolio</title>
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="/src/styles/featured-projects.css">
     <link rel="stylesheet" href="/src/styles/layout-fixes.css">
     <link rel="stylesheet" href="/src/styles/animations.css">
+    <link rel="stylesheet" href="/src/styles/performance.css">
   </head>
 
   <body>
@@ -33,8 +35,13 @@
 
       <!-- Hero Section -->
       <header class="section section--hero hero-section" data-hero>
+        <!-- Decorative Elements -->
+        <div class="decorative-dots"></div>
+        <div class="line-decoration"></div>
+        <div class="corner-accent"></div>
+
         <div class="container hero-content">
-          <h1 class="hero-name" data-name>Mattia [Last Name]</h1>
+          <h1 class="hero-name" data-name>Mattia Borrelli</h1>
 
           <div class="hero-subtitle-wrapper" data-title>
             <span class="hero-slashes">//</span>
@@ -68,9 +75,41 @@
             <div class="about-photo">
               <div class="photo-frame">
                 <div class="photo-placeholder">
+                  <div class="photo-glow"></div>
                   <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Mattia - Frontend Developer" class="profile-image">
                 </div>
                 <p class="photo-caption">Frontend Developer based in Naples, Italy</p>
+
+                <!-- BOTTONE MELODY -->
+                <button class="melody-btn" id="melodyBtn" type="button">
+                  <span class="melody-btn-icon">♪</span>
+                  Play a hidden melody
+                </button>
+
+                <!-- Skills Section -->
+                <div class="skills-section">
+                  <div class="skills-grid" id="skillsGrid">
+                    <button class="skill-note" style="--delay: 0s" data-skill="javascript" data-frequency="261.63">JavaScript</button>
+                    <button class="skill-note" style="--delay: 0.05s" data-skill="react" data-frequency="293.66">React</button>
+                    <button class="skill-note" style="--delay: 0.1s" data-skill="vuejs" data-frequency="329.63">Vue.js</button>
+                    <button class="skill-note" style="--delay: 0.15s" data-skill="typescript" data-frequency="349.23">TypeScript</button>
+                    <button class="skill-note" style="--delay: 0.2s" data-skill="threejs" data-frequency="392.00">Three.js</button>
+                    <button class="skill-note" style="--delay: 0.25s" data-skill="webgl" data-frequency="440.00">WebGL</button>
+                    <button class="skill-note" style="--delay: 0.3s" data-skill="gsap" data-frequency="493.88">GSAP</button>
+                    <button class="skill-note" style="--delay: 0.35s" data-skill="nodejs" data-frequency="523.25">Node.js</button>
+                    <button class="skill-note" style="--delay: 0.4s" data-skill="webaudio" data-frequency="587.33">Web Audio</button>
+                    <button class="skill-note" style="--delay: 0.45s" data-skill="canvas" data-frequency="659.25">Canvas</button>
+                    <button class="skill-note" style="--delay: 0.5s" data-skill="css" data-frequency="698.46">CSS</button>
+                    <button class="skill-note" style="--delay: 0.55s" data-skill="html" data-frequency="783.99">HTML</button>
+                    <button class="skill-note" style="--delay: 0.6s" data-skill="a11y" data-frequency="880.00">Accessibility</button>
+                    <button class="skill-note" style="--delay: 0.65s" data-skill="performance" data-frequency="987.77">Performance</button>
+                    <button class="skill-note" style="--delay: 0.7s" data-skill="git" data-frequency="1046.50">Git</button>
+                    <button class="skill-note" style="--delay: 0.75s" data-skill="figma" data-frequency="1174.66">Figma</button>
+                    <button class="skill-note" style="--delay: 0.8s" data-skill="java" data-frequency="1318.51">Java</button>
+                    <button class="skill-note" style="--delay: 0.85s" data-skill="cybersecurity" data-frequency="1396.91">Cybersecurity</button>
+                  </div>
+                  <p class="skills-hint">clicca le skill per suonare</p>
+                </div>
               </div>
             </div>
 
@@ -85,45 +124,23 @@
               <!-- Bio Text -->
               <div class="about-bio">
                 <p class="bio-paragraph">
-                  I'm a 20-year-old Computer Science student at Federico II University in Naples. My journey in tech started with a passion for understanding how things work, which led me to discover programming and web development. When I'm not coding, you can find me at the gym, where I discipline myself to push boundaries - a mindset that translates perfectly into my problem-solving approach.
+                  I craft digital experiences that blend precision engineering with intuitive design. Currently pursuing Computer Science at Federico II University in Naples, I've discovered my true passion lies where creativity meets code—the frontend.
                 </p>
                 <p class="bio-paragraph">
-                  I specialize in frontend development with expertise in modern JavaScript frameworks and clean, performant code. My academic background at one of Italy's most prestigious universities has given me a solid foundation in computer science principles, algorithms, and software engineering. I believe in writing code that's not just functional, but elegant and maintainable.
+                  My approach to development is rooted in obsession with details. I don't just write code; I compose it. Every animation, every interaction, every pixel matters. Whether I'm building reactive interfaces with React and Vue.js or pushing the boundaries of what's possible with Three.js and WebGL, I strive for that perfect balance between performance and visual delight.
                 </p>
                 <p class="bio-paragraph">
-                  Beyond the code, I'm passionate about creating exceptional user experiences that make a difference. I'm constantly learning new technologies and best practices, from the latest frontend frameworks to cybersecurity fundamentals. My goal is to bridge the gap between beautiful design and robust technical implementation, creating web applications that users love.
+                  Beyond the screen, I'm deeply invested in the security and ethics of technology. Understanding cybersecurity fundamentals isn't optional—it's essential. This dual perspective lets me build applications that aren't just beautiful, but resilient and trustworthy from the ground up.
                 </p>
-              </div>
-
-              <!-- Skills Section -->
-              <div class="skills-section">
-                <button class="melody-btn" id="melodyBtn" type="button">
-                  <span class="melody-btn-icon">♪</span>
-                  Play a hidden melody
-                </button>
-
-                <div class="skills-grid" id="skillsGrid">
-                  <button class="skill-note" data-skill="javascript" data-frequency="261.63">JavaScript</button>
-                  <button class="skill-note" data-skill="react" data-frequency="293.66">React</button>
-                  <button class="skill-note" data-skill="vuejs" data-frequency="329.63">Vue.js</button>
-                  <button class="skill-note" data-skill="typescript" data-frequency="349.23">TypeScript</button>
-                  <button class="skill-note" data-skill="threejs" data-frequency="392.00">Three.js</button>
-                  <button class="skill-note" data-skill="webgl" data-frequency="440.00">WebGL</button>
-                  <button class="skill-note" data-skill="gsap" data-frequency="493.88">GSAP</button>
-                  <button class="skill-note" data-skill="nodejs" data-frequency="523.25">Node.js</button>
-                  <button class="skill-note" data-skill="webaudio" data-frequency="587.33">Web Audio</button>
-                  <button class="skill-note" data-skill="canvas" data-frequency="659.25">Canvas</button>
-                  <button class="skill-note" data-skill="css" data-frequency="698.46">CSS</button>
-                  <button class="skill-note" data-skill="html" data-frequency="783.99">HTML</button>
-                  <button class="skill-note" data-skill="a11y" data-frequency="880.00">Accessibility</button>
-                  <button class="skill-note" data-skill="performance" data-frequency="987.77">Performance</button>
-                  <button class="skill-note" data-skill="git" data-frequency="1046.50">Git</button>
-                  <button class="skill-note" data-skill="figma" data-frequency="1174.66">Figma</button>
-                  <button class="skill-note" data-skill="java" data-frequency="1318.51">Java</button>
-                  <button class="skill-note" data-skill="cybersecurity" data-frequency="1396.91">Cybersecurity</button>
-                </div>
-
-                <p class="skills-hint">clicca le skill per suonare</p>
+                <p class="bio-paragraph">
+                  When I'm not immersed in code, you'll find me pushing physical limits at the gym. The discipline required to transform your body mirrors the craft of transforming ideas into elegant software—both demand consistency, patience, and an unwavering commitment to improvement.
+                </p>
+                <p class="bio-paragraph">
+                  I'm constantly exploring new territories in frontend development, from GSAP-powered micro-interactions to Web Audio experiments that turn clicks into melodies. My goal? To create digital experiences that feel less like tools and more like extensions of human intent—seamless, responsive, and unmistakably thoughtful.
+                </p>
+                <p class="bio-paragraph">
+                  My journey in tech started in my garage at age 12 with a broken laptop and dreams of making games. Today, I've evolved that passion into building sophisticated web applications used by thousands. I believe that every line of code tells a story, and I'm committed to making sure mine is one of innovation, integrity, and impact.
+                </p>
               </div>
             </div>
           </div>
@@ -140,14 +157,6 @@
             <p class="text-body-lg font-body-regular projects-subtitle">Award-Winning Digital Experiences</p>
           </div>
 
-          <!-- Scroll Progress Indicator -->
-          <div class="scroll-indicator-projects">
-            <div class="scroll-line-projects">
-              <div class="scroll-progress-projects"></div>
-            </div>
-            <span class="scroll-text-projects font-mono-sm">Scroll to explore</span>
-          </div>
-
           <!-- Projects Grid -->
           <div class="projects-grid">
 
@@ -157,25 +166,8 @@
                 <span class="font-mono-sm">Featured</span>
               </div>
               <div class="project-image-wrapper">
-                <img src="https://via.placeholder.com/600x400/2C5F7F/ffffff?text=FinTech+Dashboard" alt="FinTech Dashboard" class="project-image">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="FinTech Dashboard" class="project-image">
                 <div class="project-overlay"></div>
-                <!-- Award Badges -->
-                <div class="project-awards">
-                  <div class="award-badge award-badge--trophy">
-                    <span class="award-icon">🏆</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">Awwwards SOTD</span>
-                      <span class="award-year font-mono-xs">2024</span>
-                    </div>
-                  </div>
-                  <div class="award-badge award-badge--star">
-                    <span class="award-icon">⭐</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">Best Innovation</span>
-                      <span class="award-year font-mono-xs">2024</span>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="project-content">
                 <div class="project-meta">
@@ -183,16 +175,11 @@
                   <span class="project-year font-mono-sm">2024</span>
                 </div>
                 <h3 class="text-h3 font-display-bold project-title">FinTech Analytics Dashboard</h3>
-                <div class="project-description">
-                  <p class="text-body"><strong>Challenge:</strong> Create a real-time financial data visualization platform handling millions of data points.</p>
-                  <p class="text-body"><strong>Approach:</strong> Implemented WebSocket connections, optimized data processing with Web Workers, and built custom D3.js visualizations.</p>
-                </div>
                 <div class="project-tech-stack">
                   <span class="tech-tag font-mono-sm">React</span>
                   <span class="tech-tag font-mono-sm">TypeScript</span>
                   <span class="tech-tag font-mono-sm">D3.js</span>
                   <span class="tech-tag font-mono-sm">Node.js</span>
-                  <span class="tech-tag font-mono-sm">PostgreSQL</span>
                 </div>
                 <div class="project-actions">
                   <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
@@ -204,7 +191,7 @@
             <!-- Project 2 -->
             <article class="featured-project-card" data-project-card>
               <div class="project-image-wrapper">
-                <img src="https://via.placeholder.com/600x400/4A7C9E/ffffff?text=E-Commerce+Platform" alt="E-Commerce Platform" class="project-image">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="E-Commerce Platform" class="project-image">
                 <div class="project-overlay"></div>
               </div>
               <div class="project-content">
@@ -213,10 +200,6 @@
                   <span class="project-year font-mono-sm">2024</span>
                 </div>
                 <h3 class="text-h3 font-display-bold project-title">E-Commerce Platform</h3>
-                <div class="project-description">
-                  <p class="text-body"><strong>Challenge:</strong> Build a scalable e-commerce solution with inventory management and payment processing.</p>
-                  <p class="text-body"><strong>Approach:</strong> Microservices architecture, Redis caching, Stripe integration, and real-time inventory tracking.</p>
-                </div>
                 <div class="project-tech-stack">
                   <span class="tech-tag font-mono-sm">Next.js</span>
                   <span class="tech-tag font-mono-sm">Stripe</span>
@@ -236,25 +219,8 @@
                 <span class="font-mono-sm">Featured</span>
               </div>
               <div class="project-image-wrapper">
-                <img src="https://via.placeholder.com/600x400/6B7B8C/ffffff?text=AI+Chat+Application" alt="AI Chat Application" class="project-image">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="AI Chat Application" class="project-image">
                 <div class="project-overlay"></div>
-                <!-- Award Badges -->
-                <div class="project-awards">
-                  <div class="award-badge award-badge--gold">
-                    <span class="award-icon">🥇</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">Product Hunt #1</span>
-                      <span class="award-year font-mono-xs">2023</span>
-                    </div>
-                  </div>
-                  <div class="award-badge award-badge--trophy">
-                    <span class="award-icon">🏆</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">Best AI Tool</span>
-                      <span class="award-year font-mono-xs">2023</span>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="project-content">
                 <div class="project-meta">
@@ -262,10 +228,6 @@
                   <span class="project-year font-mono-sm">2023</span>
                 </div>
                 <h3 class="text-h3 font-display-bold project-title">AI Chat Application</h3>
-                <div class="project-description">
-                  <p class="text-body"><strong>Challenge:</strong> Develop a responsive AI chatbot interface with context awareness and streaming responses.</p>
-                  <p class="text-body"><strong>Approach:</strong> Integrated GPT API, built streaming response handling, and implemented conversation context management.</p>
-                </div>
                 <div class="project-tech-stack">
                   <span class="tech-tag font-mono-sm">Vue.js</span>
                   <span class="tech-tag font-mono-sm">OpenAI API</span>
@@ -282,25 +244,8 @@
             <!-- Project 4 -->
             <article class="featured-project-card" data-project-card>
               <div class="project-image-wrapper">
-                <img src="https://via.placeholder.com/600x400/2D3436/ffffff?text=Portfolio+Website" alt="Portfolio Website" class="project-image">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" alt="Portfolio Website" class="project-image">
                 <div class="project-overlay"></div>
-                <!-- Award Badges -->
-                <div class="project-awards">
-                  <div class="award-badge award-badge--star">
-                    <span class="award-icon">⭐</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">CSS Tricks Featured</span>
-                      <span class="award-year font-mono-xs">2023</span>
-                    </div>
-                  </div>
-                  <div class="award-badge award-badge--featured">
-                    <span class="award-icon">✨</span>
-                    <div class="award-content">
-                      <span class="award-text font-mono-xs">Design of the Day</span>
-                      <span class="award-year font-mono-xs">2023</span>
-                    </div>
-                  </div>
-                </div>
               </div>
               <div class="project-content">
                 <div class="project-meta">
@@ -308,10 +253,6 @@
                   <span class="project-year font-mono-sm">2023</span>
                 </div>
                 <h3 class="text-h3 font-display-bold project-title">Portfolio Website</h3>
-                <div class="project-description">
-                  <p class="text-body"><strong>Challenge:</strong> Create a visually striking portfolio showcasing projects with smooth animations.</p>
-                  <p class="text-body"><strong>Approach:</strong> GSAP animations, Lenis smooth scrolling, responsive design, and performance optimization.</p>
-                </div>
                 <div class="project-tech-stack">
                   <span class="tech-tag font-mono-sm">GSAP</span>
                   <span class="tech-tag font-mono-sm">Lenis</span>
@@ -328,7 +269,7 @@
             <!-- Project 5 -->
             <article class="featured-project-card" data-project-card>
               <div class="project-image-wrapper">
-                <img src="https://via.placeholder.com/600x400/2C5F7F/ffffff?text=Weather+App" alt="Weather Application" class="project-image">
+                <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop" alt="Weather Application" class="project-image">
                 <div class="project-overlay"></div>
               </div>
               <div class="project-content">
@@ -337,10 +278,6 @@
                   <span class="project-year font-mono-sm">2023</span>
                 </div>
                 <h3 class="text-h3 font-display-bold project-title">Weather Forecast App</h3>
-                <div class="project-description">
-                  <p class="text-body"><strong>Challenge:</strong> Build a minimal weather app with accurate forecasts and beautiful UI.</p>
-                  <p class="text-body"><strong>Approach:</strong> OpenWeatherMap API integration, geolocation support, and dynamic weather visualizations.</p>
-                </div>
                 <div class="project-tech-stack">
                   <span class="tech-tag font-mono-sm">JavaScript</span>
                   <span class="tech-tag font-mono-sm">Weather API</span>
@@ -554,8 +491,8 @@
               </p>
 
               <!-- Email Link -->
-              <a href="mailto:your@email.com" class="contact__email-link text-h3 font-display-bold">
-                your@email.com
+              <a href="mailto:MattiaBorrelli2005@gmail.com" class="contact__email-link text-h3 font-display-bold">
+                MattiaBorrelli2005@gmail.com
               </a>
 
               <!-- Download CV Button -->

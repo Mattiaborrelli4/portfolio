@@ -5,6 +5,102 @@
  */
 
 /* ============================================
+   AUDIO ERROR HANDLING ANIMATIONS
+   ============================================ */
+
+/* Slide in animation for error/Loading messages */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide out animation */
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Audio disabled state */
+.audio-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+/* Audio playing visual feedback */
+.audio-playing {
+  animation: pulse 0.3s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(44, 95, 127, 0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Audio active state for melody button */
+.audio-active {
+  animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(44, 95, 127, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(44, 95, 127, 0.6);
+  }
+}
+
+/* ============================================
    INITIAL STATES FOR GSAP ANIMATIONS
    ============================================ */
 

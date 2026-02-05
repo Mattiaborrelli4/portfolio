@@ -14,6 +14,14 @@ import './styles/typography.css';
 import './styles/layout.css';
 import './styles/components.css';
 import './styles/animations.css';
+import './styles/performance.css';
+
+// ============================================================================
+// 3D EFFECTS
+// ============================================================================
+
+import Card3DEffect from './3d-cards.js';
+import { initScrollAnimations } from './scroll-animations.js';
 
 // ============================================================================
 // DEPENDENCIES
@@ -22,177 +30,18 @@ import './styles/animations.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { AudioSequencer } from './audio-sequencer.js';
+import { setupSkillVisualSync } from './skill-visual-sync.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 // ============================================================================
-// AUDIO CONTROLLER - YouTube Integration
+// AUDIO SEQUENCER - Web Audio API
 // ============================================================================
 
-/**
- * Audio Controller for YouTube integration
- * Handles background music playback with visual feedback
- */
-class AudioController {
-  constructor() {
-    this.player = null;
-    this.isReady = false;
-    this.isPlaying = false;
-    this.melodyBtn = null;
-    this.skillButtons = null;
-    this.videoId = 'avsrEtGEZ5g'; // YouTube video ID
-
-    this.init();
-  }
-
-  init() {
-    // Initialize YouTube API
-    window.onYouTubeIframeAPIReady = () => {
-      this.createPlayer();
-    };
-
-    // If API is already ready
-    if (window.YT && window.YT.Player) {
-      this.createPlayer();
-    }
-
-    // Setup event listeners
-    this.setupEventListeners();
-  }
-
-  createPlayer() {
-    // Create hidden YouTube player
-    this.player = new YT.Player('youtube-player', {
-      height: '0',
-      width: '0',
-      videoId: this.videoId,
-      playerVars: {
-        'autoplay': 0,
-        'controls': 0,
-        'disablekb': 1,
-        'fs': 0,
-        'loop': 1,
-        'playlist': this.videoId,
-        'modestbranding': 1,
-        'rel': 0,
-        'enablejsapi': 1
-      },
-      events: {
-        'onReady': (event) => this.onPlayerReady(event),
-        'onStateChange': (event) => this.onPlayerStateChange(event)
-      }
-    });
-  }
-
-  onPlayerReady(event) {
-    this.isReady = true;
-    console.log('✅ YouTube Player ready');
-    // Set volume to 30% for background music
-    this.player.setVolume(30);
-  }
-
-  onPlayerStateChange(event) {
-    // Update playing state
-    this.isPlaying = event.data === YT.PlayerState.PLAYING;
-    this.updateVisualFeedback();
-  }
-
-  setupEventListeners() {
-    // Melody button click
-    this.melodyBtn = document.getElementById('melodyBtn');
-    if (this.melodyBtn) {
-      this.melodyBtn.addEventListener('click', () => this.togglePlayback());
-    }
-
-    // Skill buttons click - also play music
-    this.skillButtons = document.querySelectorAll('.skill-note');
-    this.skillButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Play music if not already playing
-        if (!this.isPlaying) {
-          this.play();
-        }
-      });
-    });
-  }
-
-  togglePlayback() {
-    if (!this.isReady) return;
-
-    if (this.isPlaying) {
-      this.pause();
-    } else {
-      this.play();
-    }
-  }
-
-  play() {
-    if (!this.isReady) return;
-
-    this.player.playVideo();
-    this.isPlaying = true;
-    this.updateVisualFeedback();
-    this.fadeIn();
-  }
-
-  pause() {
-    if (!this.isReady) return;
-
-    this.player.pauseVideo();
-    this.isPlaying = false;
-    this.updateVisualFeedback();
-  }
-
-  fadeIn() {
-    // Smooth fade-in effect
-    if (!this.isReady) return;
-
-    let volume = 0;
-    const targetVolume = 30;
-    const fadeInInterval = setInterval(() => {
-      if (volume < targetVolume) {
-        volume += 2;
-        this.player.setVolume(volume);
-      } else {
-        clearInterval(fadeInInterval);
-      }
-    }, 100);
-  }
-
-  updateVisualFeedback() {
-    // Update melody button state
-    if (this.melodyBtn) {
-      if (this.isPlaying) {
-        this.melodyBtn.classList.add('playing');
-        this.melodyBtn.innerHTML = `
-          <span class="melody-btn-icon">⏸</span>
-          Pause melody
-        `;
-      } else {
-        this.melodyBtn.classList.remove('playing');
-        this.melodyBtn.innerHTML = `
-          <span class="melody-btn-icon">♪</span>
-          Play a hidden melody
-        `;
-      }
-    }
-
-    // Update skill buttons playing state
-    if (this.skillButtons) {
-      this.skillButtons.forEach(btn => {
-        if (this.isPlaying) {
-          btn.classList.add('audio-active');
-        } else {
-          btn.classList.remove('audio-active');
-        }
-      });
-    }
-  }
-}
-
-// Global audio controller instance
-let audioController = null;
+// Global audio sequencer instance
+let audioSequencer = null;
 
 // ============================================================================
 // APPLICATION INITIALIZATION
@@ -237,71 +86,43 @@ function initPageLoadAnimations() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     // Hero name: fade-in + slide-up
-    tl.to('.hero-name', {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power4.out'
-    });
+    tl.fromTo('.hero-name',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 1, ease: 'power4.out' },
+      0
+    );
 
     // Hero subtitle wrapper: fade-in
-    tl.to('.hero-subtitle-wrapper', {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-    }, '-=0.6');
+    tl.fromTo('.hero-subtitle-wrapper',
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8 },
+      '-=0.6'
+    );
 
     // Hero description: fade-in
-    tl.to('.hero-description', {
-      opacity: 1,
-      y: 0,
-      duration: 0.7,
-    }, '-=0.5');
+    tl.fromTo('.hero-description',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7 },
+      '-=0.5'
+    );
 
     // Hero CTA: fade-in + scale
-    tl.to('.hero-cta', {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.6,
-      ease: 'back.out(1.7)'
-    }, '-=0.4');
+    tl.fromTo('.hero-cta',
+      { opacity: 0, y: 20, scale: 0.9 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.7)' },
+      '-=0.4'
+    );
 
-    // About section - NO animation, just set
-    tl.set('.about-section', {
-      opacity: 1,
-      y: 0
-    }, '-=0.1');
-
-    // Skill tags: staggered
-    tl.from('.skill', {
-      opacity: 0,
-      y: 20,
-      scale: 0.9,
-      duration: 0.4,
-      stagger: 0.08,
-    }, '-=0.3');
-
-    // Projects section - NO initial animation
-    // Let scroll-triggered handle it
-    tl.set('.projects-section', {
-      opacity: 1
-    }, '-=0.2');
-
-    // Footer - simple fade-in
-    tl.from('.footer', {
-      opacity: 0,
-      duration: 0.5,
-    }, '-=0.2');
+    console.log('🎬 Hero animations timeline created and playing');
   });
 
   return ctx;
 }
 
 /**
- * Initialize scroll-triggered animations
+ * Initialize scroll-triggered GSAP animations
  */
-function initScrollAnimations() {
+function initScrollTriggerAnimations() {
   const ctx = gsap.context(() => {
     // Section titles - fade + slide from left
     gsap.utils.toArray('.section-title').forEach((title) => {
@@ -335,28 +156,32 @@ function initScrollAnimations() {
       });
     });
 
-    // Featured project cards - fade + slide up, staggered
-    gsap.utils.toArray('.featured-project-card').forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          end: 'bottom 15%',
-          toggleActions: 'play none none reverse',
-        },
-        opacity: 0,
-        y: 60,
-        duration: 0.7,
-        ease: 'power3.out',
-        delay: i * 0.1
-      });
-    });
-
     // Stats counter animation
     const statNumbers = document.querySelectorAll('.stat-number');
     statNumbers.forEach((stat) => {
       const targetValue = parseInt(stat.getAttribute('data-count'));
 
+      // Create a proxy object to animate the value
+      const counterObj = { value: 0 };
+
+      gsap.fromTo(counterObj,
+        { value: 0 },
+        {
+          scrollTrigger: {
+            trigger: stat,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          value: targetValue,
+          duration: 2,
+          ease: 'power2.out',
+          onUpdate: function() {
+            stat.textContent = Math.round(this.targets()[0].value);
+          }
+        }
+      );
+
+      // Separate animation for fade and position
       gsap.fromTo(stat,
         { opacity: 0, y: 20 },
         {
@@ -368,15 +193,7 @@ function initScrollAnimations() {
           opacity: 1,
           y: 0,
           duration: 0.6,
-          ease: 'power2.out',
-          onUpdate: function() {
-            const progress = this.progress();
-            const currentValue = Math.floor(progress * targetValue);
-            stat.textContent = currentValue;
-          },
-          onComplete: function() {
-            stat.textContent = targetValue;
-          }
+          ease: 'power2.out'
         }
       );
     });
@@ -397,18 +214,6 @@ function initScrollAnimations() {
       });
     }
 
-    // About bio - fade in
-    gsap.from('.about-bio', {
-      scrollTrigger: {
-        trigger: '.about-bio',
-        start: 'top 80%',
-        toggleActions: 'play none none reverse',
-      },
-      opacity: 0,
-      y: 20,
-      duration: 0.6,
-      ease: 'power2.out'
-    });
   });
 
   return ctx;
@@ -459,24 +264,8 @@ function initHoverInteractions() {
       });
     });
 
-    // Featured project card hover - enhanced with GSAP
-    document.querySelectorAll('.featured-project-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        gsap.to(card, {
-          y: -8,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          y: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
+    // Featured project card hover - handled by 3D card effect in 3d-cards.js
+    // GSAP animation removed to avoid conflicts with 3D tilt effect
 
     // Tech tag hover
     document.querySelectorAll('.tech-tag').forEach(tag => {
@@ -497,7 +286,7 @@ function initHoverInteractions() {
       });
     });
 
-    // Button hover
+    // Button hover and click
     const cta = document.querySelector('.hero-cta');
     if (cta) {
       cta.addEventListener('mouseenter', () => {
@@ -518,7 +307,7 @@ function initHoverInteractions() {
     }
 
     // Skill tags hover
-    document.querySelectorAll('.skill').forEach(tag => {
+    document.querySelectorAll('.skill-note').forEach(tag => {
       tag.addEventListener('mouseenter', () => {
         gsap.to(tag, {
           scale: 1.1,
@@ -571,18 +360,26 @@ function init() {
     console.group('🚀 Portfolio Initialization');
     console.log('Starting...');
 
-    // Initialize audio controller
-    audioController = new AudioController();
-    console.log('✅ Audio controller initialized');
+    // Initialize audio sequencer
+    audioSequencer = new AudioSequencer();
+    console.log('✅ Audio sequencer initialized');
+
+    // Initialize skill visual sync system
+    const skillSync = setupSkillVisualSync(audioSequencer, 300);
+    console.log('✅ Skill visual sync initialized');
 
     // Initialize smooth scroll
     const lenis = initSmoothScroll();
     console.log('✅ Smooth scroll initialized');
 
     // Set initial states for elements that will animate on scroll
-    gsap.set(['.section-title', '.project-card', '.featured-project-card', '.about-bio', '.stat-number'], {
+    gsap.set('.section-title', {
       opacity: 0
     });
+
+    // Initialize 3D card effects
+    const card3D = new Card3DEffect();
+    console.log('✅ 3D card effects initialized');
 
     // Initialize page load animations
     const pageLoadCtx = initPageLoadAnimations();
@@ -592,9 +389,66 @@ function init() {
     const scrollCtx = initScrollAnimations();
     console.log('✅ Scroll animations initialized');
 
+    // Initialize GSAP ScrollTrigger animations
+    const scrollTriggerCtx = initScrollTriggerAnimations();
+    console.log('✅ GSAP ScrollTrigger animations initialized');
+
     // Initialize hover interactions
     const hoverCtx = initHoverInteractions();
     console.log('✅ Hover interactions initialized');
+
+    // Setup CTA button scroll functionality
+    const ctaBtn = document.querySelector('.hero-cta');
+    if (ctaBtn && lenis) {
+      ctaBtn.addEventListener('click', () => {
+        const projectsSection = document.querySelector('.projects-section') || document.querySelector('.about-section');
+        if (projectsSection) {
+          lenis.scrollTo(projectsSection, {
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+          });
+        }
+      });
+      console.log('✅ CTA button scroll enabled');
+    }
+
+    // Setup melody button
+    const melodyBtn = document.getElementById('melodyBtn');
+    if (melodyBtn && audioSequencer) {
+      melodyBtn.addEventListener('click', () => {
+        if (audioSequencer.isPlaying) {
+          audioSequencer.stop();
+          melodyBtn.classList.remove('playing');
+          melodyBtn.innerHTML = '<span class="melody-btn-icon">♪</span> Play a hidden melody';
+        } else {
+          // Resume AudioContext if suspended (required by browsers)
+          if (audioSequencer.audioContext && audioSequencer.audioContext.state === 'suspended') {
+            audioSequencer.audioContext.resume();
+          }
+          audioSequencer.start();
+          melodyBtn.classList.add('playing');
+          melodyBtn.innerHTML = '<span class="melody-btn-icon">⏸</span> Pause melody';
+        }
+      });
+      console.log('✅ Melody button connected');
+    }
+
+    // Setup skill note hover - play individual notes
+    const skillNotes = document.querySelectorAll('.skill-note');
+    skillNotes.forEach(noteBtn => {
+      const frequency = noteBtn.getAttribute('data-frequency');
+      if (frequency && audioSequencer) {
+        noteBtn.addEventListener('mouseenter', () => {
+          // Resume AudioContext if suspended
+          if (audioSequencer.audioContext && audioSequencer.audioContext.state === 'suspended') {
+            audioSequencer.audioContext.resume();
+          }
+          // Play the note for 300ms
+          audioSequencer.playNoteByFrequency(parseFloat(frequency), 0.3);
+        });
+      }
+    });
+    console.log('✅ Skill hover audio enabled');
 
     console.groupEnd();
     console.log('🎉 Portfolio loaded successfully!');
@@ -603,9 +457,12 @@ function init() {
     window.__portfolioContexts = {
       pageLoad: pageLoadCtx,
       scroll: scrollCtx,
+      scrollTrigger: scrollTriggerCtx,
       hover: hoverCtx,
       lenis,
-      audioController
+      audioSequencer,
+      skillSync,
+      card3D
     };
 
   } catch (error) {
@@ -627,6 +484,11 @@ if (document.readyState === 'loading') {
 if (import.meta.env.DEV) {
   window.__portfolio = {
     reinit: init,
-    version: '1.0.0'
+    version: '1.0.0',
+    // Skill visual sync helpers
+    testSkillCards: () => skillSync?.test(),
+    syncSkillNote: (note) => skillSync?.sync(note),
+    getSkillStats: () => skillSync?.getStats(),
+    resetSkillSync: () => skillSync?.reset()
   };
 }

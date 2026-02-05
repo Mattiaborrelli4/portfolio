@@ -1,0 +1,102 @@
+/**
+ * Performance Optimization for Smooth Animations
+ *
+ * Questi stili migliorano le performance delle animazioni con:
+ * - Hints per il browser su quali proprietà animare
+ * - GPU acceleration per transforms
+ * - Riduzione del repaint/reflow
+ * - Prevenzione del jittering con Lenis smooth scroll
+ */
+
+/* ============================================================================
+ * GPU ACCELERATION - Force layers upfront
+ * ============================================================================ */
+
+/* Force GPU layers prima di qualsiasi animazione */
+.photo-placeholder,
+.profile-image,
+.melody-btn,
+.skill-note {
+  /* Force su GPU layer - previene jittering con Lenis */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Non usare will-change statico - causa performance issues */
+/* will-change viene gestito dinamicamente da scroll-animations.js */
+
+/* ============================================================================
+ * REDUCE PAINT WITH CONTAIN MODE
+ * ============================================================================ */
+
+.about-photo,
+.photo-frame,
+.photo-placeholder,
+.melody-btn,
+.skill-note {
+  contain: layout style;
+}
+
+/* ============================================================================
+ * PREFERS-REDUCED-MOTION SUPPORT
+ * ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disabilita tutte le animazioni per utenti che preferiscono meno motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Mantieni visibilità immediata */
+  .photo-placeholder,
+  .melody-btn,
+  .skill-note {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================================================
+ * SCROLL PERFORMANCE
+ * ============================================================================ */
+
+/* Riduci il repaint durante scroll - migliora performance con Lenis */
+.about-section,
+.projects-section,
+.photo-frame,
+.skills-grid {
+  /* Isola il compositing layer */
+  isolation: isolate;
+  /* Force GPU layer */
+  transform: translate3d(0, 0, 0);
+}
+
+/* ============================================================================
+ * TEXT RENDERING OPTIMIZATION
+ * ============================================================================ */
+
+.photo-caption,
+.skills-hint {
+  /* Rendering testo più smooth */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================================
+ * LAZY LOADING PLACEHOLDERS
+ * ============================================================================ */
+
+/* Loading state images prima di caricare */
+.profile-image[src=""] {
+  opacity: 0;
+}
+
+.profile-image:not([src]) {
+  opacity: 0;
+}
