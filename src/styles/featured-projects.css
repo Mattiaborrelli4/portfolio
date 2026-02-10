@@ -8,20 +8,142 @@
    ============================================ */
 
 .projects-header {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+/* Unified section header with transitions */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.section-header .section-number {
+  margin-bottom: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.section-header .section-title {
+  margin: 0 !important;
+  transition: all 0.3s ease;
+}
+
+.section-header .about-subtitle,
+.section-header .projects-subtitle,
+.section-header .experiments-subtitle,
+.section-header .skills-subtitle {
+  margin: 0 !important;
+  margin-top: var(--spacing-xs) !important;
+  transition: all 0.3s ease;
+}
+
+/* Hover effects for section headers */
+.section-header:hover .section-number {
+  transform: translateX(5px);
+  color: var(--color-accent-light);
+}
+
+.section-header:hover .section-title {
+  letter-spacing: 0.02em;
 }
 
 .section-number {
-  display: inline-block;
+  display: block;
   font-size: var(--text-sm);
   color: var(--color-accent);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0;
   letter-spacing: var(--letter-spacing-wider);
+  transition: all 0.3s ease;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Global transition styles */
+.featured-project-card,
+.experiment-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.featured-project-card:hover,
+.experiment-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-content,
+.experiment-content {
+  transition: all 0.3s ease;
+}
+
+/* Tech tags and badges */
+.tech-tag,
+.experiment-tag {
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover,
+.experiment-tag:hover {
+  transform: scale(1.05);
+  background-color: var(--color-accent);
+  color: white;
+}
+
+/* Links */
+.link,
+.social-link {
+  transition: all 0.3s ease;
+}
+
+/* Buttons */
+.hero-cta,
+.melody-btn,
+.skill-note {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stats cards */
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .projects-subtitle {
   color: var(--color-secondary);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.about-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.about-subtitle {
+  color: var(--color-secondary);
   margin-top: var(--spacing-sm);
+  margin-bottom: 0;
+}
+
+.experiments-subtitle {
+  color: var(--color-secondary);
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -150,17 +272,19 @@
   height: 180px;
   overflow: hidden;
   background-color: var(--bg-secondary);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   transition: transform 0.5s ease;
 }
 
 .featured-project-card:hover .project-image {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .project-overlay {

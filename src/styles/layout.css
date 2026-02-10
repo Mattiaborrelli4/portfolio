@@ -49,11 +49,13 @@
 /* About Section */
 .section--about {
   padding: var(--spacing-3xl) 0;
+  margin-bottom: 0;
 }
 
 /* Projects Section */
 .section--projects {
   padding: var(--spacing-3xl) 0;
+  margin-bottom: 0;
 }
 
 .section--projects .container {
@@ -65,6 +67,7 @@
 /* Experiments Section */
 .section--experiments {
   padding: var(--spacing-3xl) 0;
+  margin-bottom: 0;
 }
 
 .section--experiments .container {

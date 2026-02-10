@@ -21,7 +21,7 @@ import './styles/performance.css';
 // ============================================================================
 
 import Card3DEffect from './3d-cards.js';
-import { initScrollAnimations } from './scroll-animations.js';
+import { initHeroBackground } from './hero-threejs-background.js';
 
 // ============================================================================
 // DEPENDENCIES
@@ -129,7 +129,7 @@ function initScrollTriggerAnimations() {
       gsap.from(title, {
         scrollTrigger: {
           trigger: title,
-          start: 'top 80%',
+          start: 'top 75%',  // More aggressive trigger
           end: 'bottom 20%',
           toggleActions: 'play none none reverse',
         },
@@ -145,7 +145,7 @@ function initScrollTriggerAnimations() {
       gsap.from(card, {
         scrollTrigger: {
           trigger: card,
-          start: 'top 85%',
+          start: 'top 80%',  // More aggressive trigger
           end: 'bottom 15%',
           toggleActions: 'play none none reverse',
         },
@@ -169,7 +169,7 @@ function initScrollTriggerAnimations() {
         {
           scrollTrigger: {
             trigger: stat,
-            start: 'top 85%',
+            start: 'top 80%',  // More aggressive trigger
             toggleActions: 'play none none reverse',
           },
           value: targetValue,
@@ -187,7 +187,7 @@ function initScrollTriggerAnimations() {
         {
           scrollTrigger: {
             trigger: stat,
-            start: 'top 85%',
+            start: 'top 80%',  // More aggressive trigger
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
@@ -197,6 +197,294 @@ function initScrollTriggerAnimations() {
         }
       );
     });
+
+    // About section - UNIFIED TIMELINE
+    // Everything appears together when section enters viewport
+    const aboutSection = document.querySelector('.about-section');
+    if (aboutSection) {
+      const aboutTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        }
+      });
+
+      // About heading appears first
+      aboutTl.fromTo('.about-heading',
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+        0
+      );
+
+      // Photo appears with header
+      aboutTl.fromTo('.photo-placeholder',
+        { opacity: 0, y: 60 },
+        { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' },
+        0  // Same time as header
+      );
+
+      // Photo caption appears after photo
+      aboutTl.fromTo('.photo-caption',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0.3  // 0.3s after header
+      );
+
+      // Bio paragraphs appear immediately after
+      const bioParagraphs = gsap.utils.toArray('.bio-paragraph');
+      if (bioParagraphs.length > 0) {
+        aboutTl.fromTo(bioParagraphs,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.05, ease: 'power2.out' },
+          0.2  // Starts 0.2s after header
+        );
+      }
+
+    }
+
+    // Skills section - UNIFIED TIMELINE
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      const skillsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: skillsSection,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // Skills section header appears
+      skillsTl.fromTo('.skills-header',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        0
+      );
+
+      // Skills description appears
+      skillsTl.fromTo('.skills-description',
+        { opacity: 0, x: -30 },
+        { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' },
+        0.2
+      );
+
+      // Category cards - cascade
+      const categoryCards = gsap.utils.toArray('.category');
+      if (categoryCards.length > 0) {
+        skillsTl.fromTo(categoryCards,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            stagger: 0.05,
+            ease: 'power2.out'
+          },
+          0.4
+        );
+      }
+
+      // Initially show all skills (web category is active by default)
+      const allSkills = gsap.utils.toArray('.skills-wrapper .skill-note');
+      allSkills.forEach(skill => {
+        const skillCategory = skill.getAttribute('data-category');
+        if (skillCategory === 'web') {
+          skill.style.opacity = '1';
+          skill.style.display = 'block';
+        } else {
+          skill.style.opacity = '0';
+          skill.style.display = 'none';
+        }
+      });
+    }
+
+    // Skills Category Filter
+    const categoryCards = document.querySelectorAll('.category');
+    const skillNotes = document.querySelectorAll('.skills-wrapper .skill-note');
+
+    categoryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Remove active class from all cards
+        categoryCards.forEach(c => c.classList.remove('active'));
+        // Add active class to clicked card
+        card.classList.add('active');
+
+        const category = card.getAttribute('data-category');
+
+        // Hide all skills first
+        skillNotes.forEach(skill => {
+          skill.classList.remove('visible');
+          skill.style.opacity = '0';
+        });
+
+        // Show skills for selected category with delay and animation
+        setTimeout(() => {
+          skillNotes.forEach(skill => {
+            const skillCategory = skill.getAttribute('data-category');
+            if (skillCategory === category) {
+              skill.style.display = 'block';
+              skill.classList.add('visible');
+            } else {
+              skill.style.display = 'none';
+            }
+          });
+        }, 100);
+      });
+    });
+
+    // Featured project cards - ALL TOGETHER
+    const featuredProjectCards = gsap.utils.toArray('.featured-project-card');
+    if (featuredProjectCards.length > 0) {
+      gsap.fromTo(featuredProjectCards,
+        { opacity: 0, y: 70 },
+        {
+          scrollTrigger: {
+            trigger: featuredProjectCards[0],
+            start: 'top 78%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 1.0,
+          stagger: 0.03,  // Subtle stagger
+          ease: 'power2.out'
+        }
+      );
+    }
+
+    // Experiment cards - ALL TOGETHER
+    const experimentCards = gsap.utils.toArray('.experiment-card');
+    if (experimentCards.length > 0) {
+      gsap.fromTo(experimentCards,
+        { opacity: 0, y: 60 },
+        {
+          scrollTrigger: {
+            trigger: experimentCards[0],
+            start: 'top 75%',  // Aggressive trigger
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0,  // ALL together
+          ease: 'power2.out'
+        }
+      );
+    }
+
+    // Contact heading
+    gsap.utils.toArray('.contact__heading').forEach((heading) => {
+      gsap.fromTo(heading,
+        { opacity: 0, y: 60 },
+        {
+          scrollTrigger: {
+            trigger: heading,
+            start: 'top 78%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease: 'power2.out'
+        }
+      );
+    });
+
+    // Contact description
+    gsap.utils.toArray('.contact__description').forEach((desc) => {
+      gsap.fromTo(desc,
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: desc,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.85,
+          ease: 'power2.out'
+        }
+      );
+    });
+
+    // Contact email link
+    gsap.utils.toArray('.contact__email-link').forEach((link) => {
+      gsap.fromTo(link,
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: link,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out'
+        }
+      );
+    });
+
+    // Stat cards - ALL TOGETHER
+    const statCards = gsap.utils.toArray('.stat-card');
+    if (statCards.length > 0) {
+      gsap.fromTo(statCards,
+        { opacity: 0, y: 60 },
+        {
+          scrollTrigger: {
+            trigger: statCards[0],
+            start: 'top 75%',  // Aggressive trigger
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0,  // ALL together
+          ease: 'power2.out'
+        }
+      );
+    }
+
+    // Social links - ALL TOGETHER
+    const socialLinks = gsap.utils.toArray('.social-link');
+    if (socialLinks.length > 0) {
+      gsap.fromTo(socialLinks,
+        { opacity: 0, y: 45 },
+        {
+          scrollTrigger: {
+            trigger: socialLinks[0],
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          stagger: 0,  // ALL together
+          ease: 'power2.out'
+        }
+      );
+    }
+
+    // Form inputs - ALL TOGETHER
+    const formInputs = gsap.utils.toArray('.form-input, .form-textarea');
+    if (formInputs.length > 0) {
+      gsap.fromTo(formInputs,
+        { opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: formInputs[0],
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0,  // ALL together
+          ease: 'power2.out'
+        }
+      );
+    }
 
     // Scroll progress indicator for projects
     const scrollProgress = document.querySelector('.scroll-progress-projects');
@@ -213,6 +501,9 @@ function initScrollTriggerAnimations() {
         }
       });
     }
+
+    // Force ScrollTrigger to recalculate all positions
+    ScrollTrigger.refresh(true);
 
   });
 
@@ -306,26 +597,7 @@ function initHoverInteractions() {
       });
     }
 
-    // Skill tags hover
-    document.querySelectorAll('.skill-note').forEach(tag => {
-      tag.addEventListener('mouseenter', () => {
-        gsap.to(tag, {
-          scale: 1.1,
-          borderColor: '#2C5F7F',
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      tag.addEventListener('mouseleave', () => {
-        gsap.to(tag, {
-          scale: 1,
-          borderColor: '#E0E0E0',
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-    });
+    // Skill notes hover - using CSS transitions now, no GSAP needed
 
     // Social links hover
     document.querySelectorAll('.social-link').forEach(link => {
@@ -360,6 +632,10 @@ function init() {
     console.group('🚀 Portfolio Initialization');
     console.log('Starting...');
 
+    // Initialize hero Three.js background
+    const heroCleanup = initHeroBackground();
+    console.log('✅ Hero Three.js background initialized');
+
     // Initialize audio sequencer
     audioSequencer = new AudioSequencer();
     console.log('✅ Audio sequencer initialized');
@@ -373,8 +649,21 @@ function init() {
     console.log('✅ Smooth scroll initialized');
 
     // Set initial states for elements that will animate on scroll
-    gsap.set('.section-title', {
-      opacity: 0
+    // This prevents flash of visible content before animation
+    const elementsToHide = [
+      '.section-title', '.about-heading', '.bio-paragraph', '.photo-placeholder',
+      '.photo-caption', '.skills-header', '.category',
+      '.featured-project-card', '.experiment-card', '.contact__heading',
+      '.contact__description', '.contact__email-link', '.stat-card',
+      '.social-link', '.form-input', '.form-textarea'
+    ];
+
+    elementsToHide.forEach(selector => {
+      gsap.set(selector, {
+        opacity: 0,
+        y: selector.includes('card') ? 60 : 50,
+        overwrite: 'auto'
+      });
     });
 
     // Initialize 3D card effects
@@ -384,10 +673,6 @@ function init() {
     // Initialize page load animations
     const pageLoadCtx = initPageLoadAnimations();
     console.log('✅ Page load animations initialized');
-
-    // Initialize scroll animations
-    const scrollCtx = initScrollAnimations();
-    console.log('✅ Scroll animations initialized');
 
     // Initialize GSAP ScrollTrigger animations
     const scrollTriggerCtx = initScrollTriggerAnimations();
@@ -412,57 +697,19 @@ function init() {
       console.log('✅ CTA button scroll enabled');
     }
 
-    // Setup melody button
-    const melodyBtn = document.getElementById('melodyBtn');
-    if (melodyBtn && audioSequencer) {
-      melodyBtn.addEventListener('click', () => {
-        if (audioSequencer.isPlaying) {
-          audioSequencer.stop();
-          melodyBtn.classList.remove('playing');
-          melodyBtn.innerHTML = '<span class="melody-btn-icon">♪</span> Play a hidden melody';
-        } else {
-          // Resume AudioContext if suspended (required by browsers)
-          if (audioSequencer.audioContext && audioSequencer.audioContext.state === 'suspended') {
-            audioSequencer.audioContext.resume();
-          }
-          audioSequencer.start();
-          melodyBtn.classList.add('playing');
-          melodyBtn.innerHTML = '<span class="melody-btn-icon">⏸</span> Pause melody';
-        }
-      });
-      console.log('✅ Melody button connected');
-    }
-
-    // Setup skill note hover - play individual notes
-    const skillNotes = document.querySelectorAll('.skill-note');
-    skillNotes.forEach(noteBtn => {
-      const frequency = noteBtn.getAttribute('data-frequency');
-      if (frequency && audioSequencer) {
-        noteBtn.addEventListener('mouseenter', () => {
-          // Resume AudioContext if suspended
-          if (audioSequencer.audioContext && audioSequencer.audioContext.state === 'suspended') {
-            audioSequencer.audioContext.resume();
-          }
-          // Play the note for 300ms
-          audioSequencer.playNoteByFrequency(parseFloat(frequency), 0.3);
-        });
-      }
-    });
-    console.log('✅ Skill hover audio enabled');
-
     console.groupEnd();
     console.log('🎉 Portfolio loaded successfully!');
 
     // Store contexts for cleanup
     window.__portfolioContexts = {
       pageLoad: pageLoadCtx,
-      scroll: scrollCtx,
       scrollTrigger: scrollTriggerCtx,
       hover: hoverCtx,
       lenis,
       audioSequencer,
       skillSync,
-      card3D
+      card3D,
+      heroCleanup
     };
 
   } catch (error) {

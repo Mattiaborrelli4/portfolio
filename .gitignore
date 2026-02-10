@@ -4,3 +4,12 @@ dist/
 *.log
 .env
 .vscode/
+
+# Test and debug files
+*.png
+*test*.html
+*test*.js
+console-*.txt
+
+# Playwright MCP
+.playwright-mcp/

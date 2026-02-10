@@ -65,7 +65,17 @@ export class AudioSequencer {
       'G4': 392.00,
       'A4': 440.00,
       'B4': 493.88,
-      'C5': 523.25
+      'C5': 523.25,
+      'D5': 587.33,
+      'E5': 659.25,
+      'F5': 698.46,
+      'G5': 783.99,
+      'A5': 880.00,
+      'B5': 987.77,
+      'C6': 1046.50,
+      'D6': 1174.66,
+      'E6': 1318.51,
+      'F6': 1396.91
     };
 
     // Flag per indicare se le note sono state caricate
@@ -808,9 +818,8 @@ export class AudioSequencer {
   }
 
   /**
-   * Suona una nota usando generazione sintetica (oscillatore)
-   * Fallback quando i file audio non sono disponibili
-   * Con error handling robusto
+   * Suona una nota usando generazione sintetica (PIANO ACOUSTICO)
+   * Simula un piano acustico naturale - Solo Sine e Triangle, niente elettronico
    */
   playSyntheticNote(noteName, duration) {
     try {
@@ -824,30 +833,155 @@ export class AudioSequencer {
         return;
       }
 
-      // Crea un oscillatore (onda sinusoidale per un suono puro)
-      const oscillator = this.audioContext.createOscillator();
-      oscillator.type = 'sine'; // Tipo d'onda: sine, square, sawtooth, triangle
-      oscillator.frequency.value = frequency;
-
-      // Crea un nodo gain per l'inviluppo (attack, decay)
-      const envelope = this.audioContext.createGain();
-
-      // Collega: oscillator -> envelope -> masterGain -> destination
-      oscillator.connect(envelope);
-      envelope.connect(this.masterGainNode);
-
-      // Configura l'inviluppo ADSR semplificato
       const now = this.audioContext.currentTime;
-      envelope.gain.setValueAtTime(0, now);
-      envelope.gain.linearRampToValueAtTime(0.5, now + 0.05); // Attack
-      envelope.gain.exponentialRampToValueAtTime(0.01, now + duration); // Decay
 
-      // Avvia e ferma l'oscillatore
-      oscillator.start(now);
-      oscillator.stop(now + duration);
+      // === OSCILLATORE PRINCIPALE (Sine) - Fondamenta pure ===
+      const primaryOsc = this.audioContext.createOscillator();
+      primaryOsc.type = 'sine';
+      primaryOsc.frequency.value = frequency;
+
+      const primaryGain = this.audioContext.createGain();
+      primaryGain.gain.value = 0.30; // Volume principale
+
+      // === OSCILLATORE SECONDARIO (Triangle) - Corpo caldo ===
+      const secondaryOsc = this.audioContext.createOscillator();
+      secondaryOsc.type = 'triangle';
+      secondaryOsc.frequency.value = frequency;
+
+      const secondaryGain = this.audioContext.createGain();
+      secondaryGain.gain.value = 0.20; // Corpo medio
+
+      // === TERZO OSCILLATORE (Sine) - Armonici naturali ===
+      const thirdOsc = this.audioContext.createOscillator();
+      thirdOsc.type = 'sine';
+      thirdOsc.frequency.value = frequency; // Niente detune - suono naturale
+
+      const thirdGain = this.audioContext.createGain();
+      thirdGain.gain.value = 0.12; // Armonici naturali
+
+      // === QUARTO OSCILLATORE (Sine sub-ottava) - Profondità naturale ===
+      const fourthOsc = this.audioContext.createOscillator();
+      fourthOsc.type = 'sine';
+      fourthOsc.frequency.value = frequency * 0.5; // Ottava sotto per profondità
+
+      const fourthGain = this.audioContext.createGain();
+      fourthGain.gain.value = 0.08; // Bassi profondi naturali
+
+      // === QUINTO OSCILLATORE (Sine) - Ottava per brillantezza ===
+      const fifthOsc = this.audioContext.createOscillator();
+      fifthOsc.type = 'sine';
+      fifthOsc.frequency.value = frequency * 2; // Ottava sopra
+
+      const fifthGain = this.audioContext.createGain();
+      fifthGain.gain.value = 0.06; // Brillantezza delicata
+
+      // === SESTO OSCILLATORE (Sine) - Due ottave sopra per armonici ===
+      const sixthOsc = this.audioContext.createOscillator();
+      sixthOsc.type = 'sine';
+      sixthOsc.frequency.value = frequency * 3; // Due ottave sopra
+
+      const sixthGain = this.audioContext.createGain();
+      sixthGain.gain.value = 0.03; // Armonici molto alti
+
+      // === CONVOLVER REVERB (effetto riverbero) ===
+      const convolver = this.audioContext.createConvolver();
+      const reverbBuffer = this.createReverbBuffer();
+      convolver.buffer = reverbBuffer;
+
+      const reverbGain = this.audioContext.createGain();
+      reverbGain.gain.value = 0.25; // Reverb medio
+
+      // DRY/WET mixer
+      const dryGain = this.audioContext.createGain();
+      dryGain.gain.value = 0.75; // Suono diretto
+
+      const wetGain = this.audioContext.createGain();
+      wetGain.gain.value = 0.25; // Suono riverberato
+
+      // === MASTER ENVELOPE per piano orchestrale ===
+      const masterEnvelope = this.audioContext.createGain();
+
+      // Collega tutti gli oscillatori al master envelope
+      primaryOsc.connect(primaryGain);
+      secondaryOsc.connect(secondaryGain);
+      thirdOsc.connect(thirdGain);
+      fourthOsc.connect(fourthGain);
+      fifthOsc.connect(fifthGain);
+      sixthOsc.connect(sixthGain);
+
+      // Collega oscillatori → master envelope → dry/wet → destination
+      primaryGain.connect(masterEnvelope);
+      secondaryGain.connect(masterEnvelope);
+      thirdGain.connect(masterEnvelope);
+      fourthGain.connect(masterEnvelope);
+      fifthGain.connect(masterEnvelope);
+      sixthGain.connect(masterEnvelope);
+
+      // Dry path (suono diretto)
+      masterEnvelope.connect(dryGain);
+      dryGain.connect(this.masterGainNode);
+
+      // Wet path (con reverb)
+      masterEnvelope.connect(convolver);
+      convolver.connect(reverbGain);
+      reverbGain.connect(wetGain);
+      wetGain.connect(this.masterGainNode);
+
+      // === INVILUPPO PIANO ACOUSTICO ===
+      // Attack definito e percussivo (come un piano vero)
+      masterEnvelope.gain.setValueAtTime(0, now);
+      masterEnvelope.gain.linearRampToValueAtTime(0.45, now + 0.015); // 15ms attack - rapido e definito
+
+      // Decay inizale (parte percussiva)
+      masterEnvelope.gain.exponentialRampToValueAtTime(0.30, now + 0.15); // Decay veloce
+
+      // Sustain lungo (come un piano orchestrale)
+      masterEnvelope.gain.exponentialRampToValueAtTime(0.20, now + duration * 0.6);
+
+      // Release naturale
+      masterEnvelope.gain.exponentialRampToValueAtTime(0.001, now + duration + 0.5);
+
+      // Avvia tutti gli oscillatori
+      primaryOsc.start(now);
+      secondaryOsc.start(now);
+      thirdOsc.start(now);
+      fourthOsc.start(now);
+      fifthOsc.start(now);
+      sixthOsc.start(now);
+
+      // Ferma tutti gli oscillatori
+      primaryOsc.stop(now + duration + 0.6);
+      secondaryOsc.stop(now + duration + 0.6);
+      thirdOsc.stop(now + duration + 0.6);
+      fourthOsc.stop(now + duration + 0.6);
+      fifthOsc.stop(now + duration + 0.6);
+      sixthOsc.stop(now + duration + 0.6);
     } catch (error) {
       this.handleError(`Play synthetic note ${noteName} failed`, error);
     }
+  }
+
+  /**
+   * Crea un buffer di reverb per il suono orchestrale
+   * Genera un impulse response per simulare una sala da concerto
+   */
+  createReverbBuffer() {
+    if (!this.audioContext) return null;
+
+    const sampleRate = this.audioContext.sampleRate;
+    const length = sampleRate * 2.5; // 2.5 secondi di reverb
+    const impulse = this.audioContext.createBuffer(2, length, sampleRate);
+
+    for (let channel = 0; channel < 2; channel++) {
+      const channelData = impulse.getChannelData(channel);
+      for (let i = 0; i < length; i++) {
+        // Decay esponenziale con rumore per riverbero naturale
+        const decay = Math.pow(1 - i / length, 2);
+        channelData[i] = (Math.random() * 2 - 1) * decay * 0.5;
+      }
+    }
+
+    return impulse;
   }
 
   /**

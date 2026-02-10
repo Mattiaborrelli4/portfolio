@@ -58,11 +58,17 @@
 .about-grid,
 .projects-grid,
 .experiments-grid,
-.contact__grid,
-.stats-grid {
+.contact__grid {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 auto !important;
+}
+
+.stats-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Project cards grid specific */
