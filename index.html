@@ -109,198 +109,212 @@
             <p class="text-body-lg font-body-regular skills-subtitle">Technologies & Tools I Work With</p>
           </div>
 
-          <div class="skills-layout">
-            <!-- Left: Category Cards -->
-            <div class="skills-description">
-              <p class="skills-intro">
-                I work with a diverse set of technologies spanning frontend, backend, and development tools.
-                My focus is on modern web technologies with a strong foundation in computer science fundamentals.
-              </p>
+          <!-- Intro text - full width -->
+          <p class="skills-intro">
+            I work with a diverse set of technologies spanning frontend, backend, and development tools.
+            My focus is on modern web technologies with a strong foundation in computer science fundamentals.
+          </p>
 
-              <div class="skill-categories">
-                <button class="category active" data-category="web">
-                  <h3 class="category-title">Web Development</h3>
-                  <p class="category-desc">HTML, CSS, JavaScript, TypeScript, Vite</p>
-                </button>
-                <button class="category" data-category="backend">
-                  <h3 class="category-title">Backend & Databases</h3>
-                  <p class="category-desc">Node.js, Python, SQL, PostgreSQL</p>
-                </button>
-                <button class="category" data-category="languages">
-                  <h3 class="category-title">Languages</h3>
-                  <p class="category-desc">Java, C++, C</p>
-                </button>
-                <button class="category" data-category="tools">
-                  <h3 class="category-title">Tools</h3>
-                  <p class="category-desc">Git, npm, pnpm, Maven, CMake</p>
-                </button>
-                <button class="category" data-category="practices">
-                  <h3 class="category-title">Best Practices</h3>
-                  <p class="category-desc">Accessibility, Performance, Security</p>
-                </button>
-              </div>
+          <!-- Two column layout: Categories + Skills -->
+          <div class="skills-layout">
+            <!-- Left: Category Buttons -->
+            <div class="skills-categories">
+              <button class="category active" data-category="languages">
+                <h3 class="category-title">Programming Languages</h3>
+                <p class="category-desc">Java (80%), C (72%), C++ (68%)</p>
+              </button>
+              <button class="category" data-category="backend">
+                <h3 class="category-title">Databases & Backend</h3>
+                <p class="category-desc">SQL, PostgreSQL, Node.js, Python</p>
+              </button>
+              <button class="category" data-category="web">
+                <h3 class="category-title">Web Development</h3>
+                <p class="category-desc">HTML, CSS, JavaScript, TypeScript</p>
+              </button>
+              <button class="category" data-category="tools">
+                <h3 class="category-title">Development Tools</h3>
+                <p class="category-desc">Git, npm, Maven, CMake, pnpm</p>
+              </button>
+              <button class="category" data-category="practices">
+                <h3 class="category-title">Best Practices</h3>
+                <p class="category-desc">Collaboration, Accessibility, Performance, Security</p>
+              </button>
             </div>
 
             <!-- Right: Skills Grid -->
             <div class="skills-wrapper">
               <div class="skills-grid" id="skillsGrid">
-                <!-- Web Fundamentals -->
-                <div class="skill-note" data-category="web" data-skill="HTML" data-percent="90%">
-                  <span class="skill-name">HTML</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 90%"></div>
-                  </div>
-                  <span class="skill-percent">90%</span>
-                </div>
-                <div class="skill-note" data-category="web" data-skill="CSS" data-percent="85%">
-                  <span class="skill-name">CSS</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 85%"></div>
-                  </div>
-                  <span class="skill-percent">85%</span>
-                </div>
-                <div class="skill-note" data-category="web" data-skill="JavaScript" data-percent="80%">
-                  <span class="skill-name">JavaScript</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 80%"></div>
-                  </div>
-                  <span class="skill-percent">80%</span>
-                </div>
-                <div class="skill-note" data-category="web" data-skill="TypeScript" data-percent="75%">
-                  <span class="skill-name">TypeScript</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 75%"></div>
-                  </div>
-                  <span class="skill-percent">75%</span>
-                </div>
-                <div class="skill-note" data-category="web" data-skill="Vite" data-percent="85%">
-                  <span class="skill-name">Vite</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 85%"></div>
-                  </div>
-                  <span class="skill-percent">85%</span>
-                </div>
-
-                <!-- Backend & Databases -->
-                <div class="skill-note" data-category="backend" data-skill="Node.js" data-percent="70%">
-                  <span class="skill-name">Node.js</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 70%"></div>
-                  </div>
-                  <span class="skill-percent">70%</span>
-                </div>
-                <div class="skill-note" data-category="backend" data-skill="Python" data-percent="75%">
-                  <span class="skill-name">Python</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 75%"></div>
-                  </div>
-                  <span class="skill-percent">75%</span>
-                </div>
-                <div class="skill-note" data-category="backend" data-skill="SQL" data-percent="80%">
-                  <span class="skill-name">SQL</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 80%"></div>
-                  </div>
-                  <span class="skill-percent">80%</span>
-                </div>
-                <div class="skill-note" data-category="backend" data-skill="PostgreSQL" data-percent="70%">
-                  <span class="skill-name">PostgreSQL</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 70%"></div>
-                  </div>
-                  <span class="skill-percent">70%</span>
-                </div>
-
-                <!-- Programming Languages -->
-                <div class="skill-note" data-category="languages" data-skill="Java" data-percent="75%">
+                <!-- Main Languages -->
+                <div class="skill-note" data-category="languages" data-skill="Java" data-percent="88%">
                   <span class="skill-name">Java</span>
                   <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 88%"></div>
+                  </div>
+                  <span class="skill-percent">88%</span>
+                </div>
+                <div class="skill-note" data-category="backend" data-skill="Spring Boot" data-percent="85%">
+                  <span class="skill-name">Spring Boot</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 85%"></div>
+                  </div>
+                  <span class="skill-percent">85%</span>
+                </div>
+                <div class="skill-note" data-category="languages" data-skill="C" data-percent="80%">
+                  <span class="skill-name">C</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 80%"></div>
+                  </div>
+                  <span class="skill-percent">80%</span>
+                </div>
+                <div class="skill-note" data-category="languages" data-skill="C++" data-percent="76%">
+                  <span class="skill-name">C++</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 76%"></div>
+                  </div>
+                  <span class="skill-percent">76%</span>
+                </div>
+
+                <!-- Databases -->
+                <div class="skill-note" data-category="backend" data-skill="SQL" data-percent="82%">
+                  <span class="skill-name">SQL</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 82%"></div>
+                  </div>
+                  <span class="skill-percent">82%</span>
+                </div>
+                <div class="skill-note" data-category="backend" data-skill="PostgreSQL" data-percent="75%">
+                  <span class="skill-name">PostgreSQL</span>
+                  <div class="skill-bar">
                     <div class="skill-fill" style="--percent: 75%"></div>
                   </div>
                   <span class="skill-percent">75%</span>
                 </div>
-                <div class="skill-note" data-category="languages" data-skill="C++" data-percent="65%">
-                  <span class="skill-name">C++</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 65%"></div>
-                  </div>
-                  <span class="skill-percent">65%</span>
-                </div>
-                <div class="skill-note" data-category="languages" data-skill="C" data-percent="60%">
-                  <span class="skill-name">C</span>
+                <div class="skill-note" data-category="backend" data-skill="MongoDB" data-percent="60%">
+                  <span class="skill-name">MongoDB</span>
                   <div class="skill-bar">
                     <div class="skill-fill" style="--percent: 60%"></div>
                   </div>
                   <span class="skill-percent">60%</span>
                 </div>
 
-                <!-- Build Tools & Package Managers -->
-                <div class="skill-note" data-category="tools" data-skill="Git" data-percent="85%">
-                  <span class="skill-name">Git</span>
+                <!-- Web Fundamentals -->
+                <div class="skill-note" data-category="web" data-skill="HTML" data-percent="65%">
+                  <span class="skill-name">HTML</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 85%"></div>
+                    <div class="skill-fill" style="--percent: 65%"></div>
                   </div>
-                  <span class="skill-percent">85%</span>
+                  <span class="skill-percent">65%</span>
                 </div>
-                <div class="skill-note" data-category="tools" data-skill="npm" data-percent="90%">
-                  <span class="skill-name">npm</span>
+                <div class="skill-note" data-category="web" data-skill="CSS" data-percent="72%">
+                  <span class="skill-name">CSS</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 90%"></div>
+                    <div class="skill-fill" style="--percent: 72%"></div>
                   </div>
-                  <span class="skill-percent">90%</span>
+                  <span class="skill-percent">72%</span>
                 </div>
-                <div class="skill-note" data-category="tools" data-skill="pnpm" data-percent="80%">
-                  <span class="skill-name">pnpm</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 80%"></div>
-                  </div>
-                  <span class="skill-percent">80%</span>
-                </div>
-                <div class="skill-note" data-category="tools" data-skill="Maven" data-percent="70%">
-                  <span class="skill-name">Maven</span>
-                  <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 70%"></div>
-                  </div>
-                  <span class="skill-percent">70%</span>
-                </div>
-                <div class="skill-note" data-category="tools" data-skill="CMake" data-percent="65%">
-                  <span class="skill-name">CMake</span>
+                <div class="skill-note" data-category="web" data-skill="JavaScript" data-percent="65%">
+                  <span class="skill-name">JavaScript</span>
                   <div class="skill-bar">
                     <div class="skill-fill" style="--percent: 65%"></div>
                   </div>
                   <span class="skill-percent">65%</span>
                 </div>
 
-                <!-- Soft Skills -->
-                <div class="skill-note" data-category="practices" data-skill="Collaboration" data-percent="85%">
-                  <span class="skill-name">Collaboration</span>
+                <!-- Other Technologies -->
+                <div class="skill-note" data-category="web" data-skill="TypeScript" data-percent="28%">
+                  <span class="skill-name">TypeScript</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 85%"></div>
+                    <div class="skill-fill" style="--percent: 28%"></div>
                   </div>
-                  <span class="skill-percent">85%</span>
+                  <span class="skill-percent">28%</span>
+                </div>
+                <div class="skill-note" data-category="web" data-skill="React" data-percent="55%">
+                  <span class="skill-name">React</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 55%"></div>
+                  </div>
+                  <span class="skill-percent">55%</span>
+                </div>
+                <div class="skill-note" data-category="backend" data-skill="Node.js" data-percent="58%">
+                  <span class="skill-name">Node.js</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 58%"></div>
+                  </div>
+                  <span class="skill-percent">58%</span>
+                </div>
+                <div class="skill-note" data-category="backend" data-skill="Python" data-percent="45%">
+                  <span class="skill-name">Python</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 45%"></div>
+                  </div>
+                  <span class="skill-percent">45%</span>
+                </div>
+
+                <!-- Tools -->
+                <div class="skill-note" data-category="tools" data-skill="Git" data-percent="55%">
+                  <span class="skill-name">Git</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 55%"></div>
+                  </div>
+                  <span class="skill-percent">55%</span>
+                </div>
+                <div class="skill-note" data-category="tools" data-skill="npm" data-percent="48%">
+                  <span class="skill-name">npm</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 48%"></div>
+                  </div>
+                  <span class="skill-percent">48%</span>
+                </div>
+                <div class="skill-note" data-category="tools" data-skill="Maven" data-percent="42%">
+                  <span class="skill-name">Maven</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 42%"></div>
+                  </div>
+                  <span class="skill-percent">42%</span>
+                </div>
+                <div class="skill-note" data-category="tools" data-skill="pnpm" data-percent="25%">
+                  <span class="skill-name">pnpm</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 25%"></div>
+                  </div>
+                  <span class="skill-percent">25%</span>
+                </div>
+                <div class="skill-note" data-category="tools" data-skill="CMake" data-percent="32%">
+                  <span class="skill-name">CMake</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 32%"></div>
+                  </div>
+                  <span class="skill-percent">32%</span>
                 </div>
 
                 <!-- Best Practices -->
-                <div class="skill-note" data-category="practices" data-skill="Accessibility" data-percent="75%">
+                <div class="skill-note" data-category="practices" data-skill="Collaboration" data-percent="62%">
+                  <span class="skill-name">Collaboration</span>
+                  <div class="skill-bar">
+                    <div class="skill-fill" style="--percent: 62%"></div>
+                  </div>
+                  <span class="skill-percent">62%</span>
+                </div>
+                <div class="skill-note" data-category="practices" data-skill="Accessibility" data-percent="58%">
                   <span class="skill-name">Accessibility</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 75%"></div>
+                    <div class="skill-fill" style="--percent: 58%"></div>
                   </div>
-                  <span class="skill-percent">75%</span>
+                  <span class="skill-percent">58%</span>
                 </div>
-                <div class="skill-note" data-category="practices" data-skill="Performance" data-percent="70%">
+                <div class="skill-note" data-category="practices" data-skill="Performance" data-percent="50%">
                   <span class="skill-name">Performance</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 70%"></div>
+                    <div class="skill-fill" style="--percent: 50%"></div>
                   </div>
-                  <span class="skill-percent">70%</span>
+                  <span class="skill-percent">50%</span>
                 </div>
-                <div class="skill-note" data-category="practices" data-skill="Security" data-percent="65%">
+                <div class="skill-note" data-category="practices" data-skill="Security" data-percent="48%">
                   <span class="skill-name">Security</span>
                   <div class="skill-bar">
-                    <div class="skill-fill" style="--percent: 65%"></div>
+                    <div class="skill-fill" style="--percent: 48%"></div>
                   </div>
-                  <span class="skill-percent">65%</span>
+                  <span class="skill-percent">48%</span>
                 </div>
               </div>
             </div>
@@ -314,139 +328,75 @@
           <!-- Section Header -->
           <div class="projects-header">
             <h2 class="text-display-md font-display-bold section-title">Featured Projects</h2>
-            <p class="text-body-lg font-body-regular projects-subtitle">Award-Winning Digital Experiences</p>
+            <p class="text-body-lg font-body-regular projects-subtitle">Real-World Applications & Solutions</p>
           </div>
 
           <!-- Projects Grid -->
           <div class="projects-grid">
 
-            <!-- Project 1 -->
+            <!-- Project 1 - SwapUnina 2.0 -->
+            <article class="featured-project-card" data-project-card data-slideshow>
+              <div class="project-featured-badge">
+                <span class="font-mono-sm">Featured</span>
+              </div>
+              <div class="project-image-wrapper">
+                <div class="project-slideshow">
+                  <img src="/images/projects/swapunina-home.jpg" alt="SwapUnina - Home" class="project-image slideshow-slide active" data-slide="0">
+                  <img src="/images/projects/swapunina-accesso.jpg" alt="SwapUnina - Accesso" class="project-image slideshow-slide" data-slide="1">
+                  <img src="/images/projects/swapunina-registrazione.jpg" alt="SwapUnina - Registrazione" class="project-image slideshow-slide" data-slide="2">
+                </div>
+                <div class="slideshow-indicators">
+                  <button class="slideshow-dot active" data-slide="0" aria-label="Slide 1"></button>
+                  <button class="slideshow-dot" data-slide="1" aria-label="Slide 2"></button>
+                  <button class="slideshow-dot" data-slide="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="project-overlay"></div>
+              </div>
+              <div class="project-content">
+                <div class="project-meta">
+                  <span class="project-category font-mono-sm">Marketplace</span>
+                  <span class="project-year font-mono-sm">2024</span>
+                </div>
+                <h3 class="text-h3 font-display-bold project-title">SwapUnina 2.0</h3>
+                <p class="project-description">Piattaforma di e-commerce peer-to-peer per la compravendita di materiali accademici tra studenti universitari. Architettura client-server con interfaccia JavaFX e database PostgreSQL gestito tramite pgAdmin 4.</p>
+                <div class="project-tech-stack">
+                  <span class="tech-tag font-mono-sm">Java</span>
+                  <span class="tech-tag font-mono-sm">JavaFX</span>
+                  <span class="tech-tag font-mono-sm">CSS</span>
+                  <span class="tech-tag font-mono-sm">PostgreSQL</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://github.com/Mattiaborrelli4/swapunina_2.0" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="https://github.com/Mattiaborrelli4/swapunina_2.0" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2 - Face Recognition Auth -->
             <article class="featured-project-card" data-project-card>
               <div class="project-featured-badge">
                 <span class="font-mono-sm">Featured</span>
               </div>
               <div class="project-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="FinTech Dashboard" class="project-image">
+                <img src="/images/projects/face-auth-main.jpg" alt="Face Recognition Auth" class="project-image">
                 <div class="project-overlay"></div>
               </div>
               <div class="project-content">
                 <div class="project-meta">
-                  <span class="project-category font-mono-sm">Web App</span>
+                  <span class="project-category font-mono-sm">Security</span>
                   <span class="project-year font-mono-sm">2024</span>
                 </div>
-                <h3 class="text-h3 font-display-bold project-title">FinTech Analytics Dashboard</h3>
+                <h3 class="text-h3 font-display-bold project-title">Face Recognition Auth</h3>
+                <p class="project-description">Sistema di autenticazione biometrica basato sul riconoscimento facciale. Frontend QML con elaborazione immagini in Python e ottimizzazioni C/Cython per le operazioni critiche.</p>
                 <div class="project-tech-stack">
-                  <span class="tech-tag font-mono-sm">React</span>
-                  <span class="tech-tag font-mono-sm">TypeScript</span>
-                  <span class="tech-tag font-mono-sm">D3.js</span>
-                  <span class="tech-tag font-mono-sm">Node.js</span>
+                  <span class="tech-tag font-mono-sm">Python</span>
+                  <span class="tech-tag font-mono-sm">QML</span>
+                  <span class="tech-tag font-mono-sm">C</span>
+                  <span class="tech-tag font-mono-sm">Cython</span>
                 </div>
                 <div class="project-actions">
-                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
-                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 2 -->
-            <article class="featured-project-card" data-project-card>
-              <div class="project-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop" alt="E-Commerce Platform" class="project-image">
-                <div class="project-overlay"></div>
-              </div>
-              <div class="project-content">
-                <div class="project-meta">
-                  <span class="project-category font-mono-sm">Web App</span>
-                  <span class="project-year font-mono-sm">2024</span>
-                </div>
-                <h3 class="text-h3 font-display-bold project-title">E-Commerce Platform</h3>
-                <div class="project-tech-stack">
-                  <span class="tech-tag font-mono-sm">Next.js</span>
-                  <span class="tech-tag font-mono-sm">Stripe</span>
-                  <span class="tech-tag font-mono-sm">MongoDB</span>
-                  <span class="tech-tag font-mono-sm">Redis</span>
-                </div>
-                <div class="project-actions">
-                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
-                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="featured-project-card" data-project-card>
-              <div class="project-featured-badge">
-                <span class="font-mono-sm">Featured</span>
-              </div>
-              <div class="project-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop" alt="AI Chat Application" class="project-image">
-                <div class="project-overlay"></div>
-              </div>
-              <div class="project-content">
-                <div class="project-meta">
-                  <span class="project-category font-mono-sm">AI/ML</span>
-                  <span class="project-year font-mono-sm">2023</span>
-                </div>
-                <h3 class="text-h3 font-display-bold project-title">AI Chat Application</h3>
-                <div class="project-tech-stack">
-                  <span class="tech-tag font-mono-sm">Vue.js</span>
-                  <span class="tech-tag font-mono-sm">OpenAI API</span>
-                  <span class="tech-tag font-mono-sm">Express</span>
-                  <span class="tech-tag font-mono-sm">Socket.io</span>
-                </div>
-                <div class="project-actions">
-                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
-                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 4 -->
-            <article class="featured-project-card" data-project-card>
-              <div class="project-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" alt="Portfolio Website" class="project-image">
-                <div class="project-overlay"></div>
-              </div>
-              <div class="project-content">
-                <div class="project-meta">
-                  <span class="project-category font-mono-sm">Personal</span>
-                  <span class="project-year font-mono-sm">2023</span>
-                </div>
-                <h3 class="text-h3 font-display-bold project-title">Portfolio Website</h3>
-                <div class="project-tech-stack">
-                  <span class="tech-tag font-mono-sm">GSAP</span>
-                  <span class="tech-tag font-mono-sm">Lenis</span>
-                  <span class="tech-tag font-mono-sm">Vite</span>
-                  <span class="tech-tag font-mono-sm">CSS3</span>
-                </div>
-                <div class="project-actions">
-                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
-                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 5 -->
-            <article class="featured-project-card" data-project-card>
-              <div class="project-image-wrapper">
-                <img src="https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop" alt="Weather Application" class="project-image">
-                <div class="project-overlay"></div>
-              </div>
-              <div class="project-content">
-                <div class="project-meta">
-                  <span class="project-category font-mono-sm">API</span>
-                  <span class="project-year font-mono-sm">2023</span>
-                </div>
-                <h3 class="text-h3 font-display-bold project-title">Weather Forecast App</h3>
-                <div class="project-tech-stack">
-                  <span class="tech-tag font-mono-sm">JavaScript</span>
-                  <span class="tech-tag font-mono-sm">Weather API</span>
-                  <span class="tech-tag font-mono-sm">CSS3</span>
-                  <span class="tech-tag font-mono-sm">Geolocation</span>
-                </div>
-                <div class="project-actions">
-                  <a href="#" class="project-btn project-btn--primary font-mono-medium">View Project</a>
-                  <a href="#" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
+                  <a href="https://github.com/Mattiaborrelli4/face-recognition-auth" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--primary font-mono-medium">View Project</a>
+                  <a href="https://github.com/Mattiaborrelli4/face-recognition-auth" target="_blank" rel="noopener noreferrer" class="project-btn project-btn--secondary font-mono-medium">GitHub</a>
                 </div>
               </div>
             </article>
@@ -456,17 +406,17 @@
           <!-- Stats Counter -->
           <div class="projects-stats">
             <div class="stat-item">
-              <span class="stat-number font-display-bold" data-count="5">0</span>
+              <span class="stat-number font-display-bold" data-count="2">0</span>
               <span class="stat-label font-mono-sm">Projects Completed</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-              <span class="stat-number font-display-bold" data-count="12">0</span>
+              <span class="stat-number font-display-bold" data-count="10">0</span>
               <span class="stat-label font-mono-sm">Technologies Used</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat-item">
-              <span class="stat-number font-display-bold" data-count="3">0</span>
+              <span class="stat-number font-display-bold" data-count="2">0</span>
               <span class="stat-label font-mono-sm">Featured Projects</span>
             </div>
           </div>
