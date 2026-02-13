@@ -323,6 +323,11 @@ function initScrollTriggerAnimations() {
               skill.style.display = 'none';
             }
           });
+
+          // Trigger progress animation for visible skills
+          if (window.skillProgressAnimation) {
+            window.skillProgressAnimation.onCategoryChange();
+          }
         }, 100);
       });
     });
