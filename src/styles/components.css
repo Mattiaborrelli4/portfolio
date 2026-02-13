@@ -1081,7 +1081,7 @@ body {
 .skill-categories {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl) var(--spacing-2xl);
+  gap: var(--spacing-2xl) var(--spacing-3xl);
 }
 
 .category {
