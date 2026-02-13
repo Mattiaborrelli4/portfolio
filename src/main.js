@@ -32,6 +32,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { AudioSequencer } from './audio-sequencer.js';
 import { setupSkillVisualSync } from './skill-visual-sync.js';
+import { skillProgressAnimation } from './skill-progress-animation.js';
+import { projectSlideshow } from './project-slideshow.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -261,13 +263,6 @@ function initScrollTriggerAnimations() {
         0
       );
 
-      // Skills description appears
-      skillsTl.fromTo('.skills-description',
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out' },
-        0.2
-      );
-
       // Category cards - cascade
       const categoryCards = gsap.utils.toArray('.category');
       if (categoryCards.length > 0) {
@@ -284,11 +279,11 @@ function initScrollTriggerAnimations() {
         );
       }
 
-      // Initially show all skills (web category is active by default)
+      // Initially show all skills (languages category is active by default)
       const allSkills = gsap.utils.toArray('.skills-wrapper .skill-note');
       allSkills.forEach(skill => {
         const skillCategory = skill.getAttribute('data-category');
-        if (skillCategory === 'web') {
+        if (skillCategory === 'languages') {
           skill.style.opacity = '1';
           skill.style.display = 'block';
         } else {
@@ -643,6 +638,14 @@ function init() {
     // Initialize skill visual sync system
     const skillSync = setupSkillVisualSync(audioSequencer, 300);
     console.log('✅ Skill visual sync initialized');
+
+    // Initialize skill progress animation
+    skillProgressAnimation.init();
+    console.log('✅ Skill progress animation initialized');
+
+    // Initialize project slideshows
+    projectSlideshow.init();
+    console.log('✅ Project slideshows initialized');
 
     // Initialize smooth scroll
     const lenis = initSmoothScroll();
