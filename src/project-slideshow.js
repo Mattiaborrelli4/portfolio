@@ -128,5 +128,5 @@ export class ProjectSlideshow {
   }
 }
 
-// Auto-initialize
-const projectSlideshow = new ProjectSlideshow();
+// Export instance for use in main.js
+export const projectSlideshow = new ProjectSlideshow();
