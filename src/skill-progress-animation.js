@@ -138,3 +138,6 @@ if (document.readyState === 'loading') {
 } else {
   window.skillProgressAnimation = new SkillProgressAnimation();
 }
+
+// Export instance for use in main.js
+export const skillProgressAnimation = window.skillProgressAnimation;
