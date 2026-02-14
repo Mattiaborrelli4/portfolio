@@ -370,6 +370,7 @@
   line-height: 1.2;
   color: var(--color-text);
   margin: 0 0 1.2rem 0;
+  text-align: center; /* Center headings */
 }
 
 /* About Photo - Square with same height as text */
@@ -449,23 +450,7 @@
   color: var(--color-secondary);
   margin: 0;
   width: 100%;
-}
-
-/* Decorative vertical line for first paragraph */
-.bio-paragraph:first-of-type {
-  position: relative;
-  margin-left: 0;
-}
-
-.bio-paragraph:first-of-type::before {
-  content: "";
-  position: absolute;
-  left: -12px; /* Positioned to the left with spacing */
-  top: 0;
-  width: 8px; /* Much thicker accent line */
-  height: 3.2em; /* Covers approximately 2-3 lines */
-  background: var(--color-accent); /* Matches site palette (#2C5F7F) */
-  border-radius: 3px;
+  text-align: center; /* Center paragraph text */
 }
 
 /* About Content Wrapper - Photo and text same height */
