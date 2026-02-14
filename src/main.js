@@ -279,23 +279,40 @@ function initScrollTriggerAnimations() {
         );
       }
 
-      // Initially show all skills (languages category is active by default)
-      const allSkills = gsap.utils.toArray('.skills-wrapper .skill-note');
+      // Initially load languages category skills into left column
+      loadSkillsForCategory('languages');
+    }
+
+    // Function to load skills for a category into the left column
+    function loadSkillsForCategory(category) {
+      const skillsGrid = document.getElementById('skillsGrid');
+      const skillsList = document.getElementById('skillsList');
+      const allSkills = skillsGrid.querySelectorAll('.skill-note');
+
+      // Clear current skills list
+      skillsList.innerHTML = '';
+
+      // Filter and clone skills for the selected category
       allSkills.forEach(skill => {
         const skillCategory = skill.getAttribute('data-category');
-        if (skillCategory === 'languages') {
-          skill.style.opacity = '1';
-          skill.style.display = 'block';
-        } else {
-          skill.style.opacity = '0';
-          skill.style.display = 'none';
+        if (skillCategory === category) {
+          const clonedSkill = skill.cloneNode(true);
+          clonedSkill.style.opacity = '0';
+          clonedSkill.style.transform = 'translateY(20px)';
+          skillsList.appendChild(clonedSkill);
+
+          // Animate in
+          setTimeout(() => {
+            clonedSkill.style.opacity = '1';
+            clonedSkill.style.transform = 'translateY(0)';
+            clonedSkill.classList.add('visible');
+          }, 100);
         }
       });
     }
 
     // Skills Category Filter
     const categoryCards = document.querySelectorAll('.category');
-    const skillNotes = document.querySelectorAll('.skills-wrapper .skill-note');
 
     categoryCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -306,27 +323,12 @@ function initScrollTriggerAnimations() {
 
         const category = card.getAttribute('data-category');
 
-        // Hide all skills first
-        skillNotes.forEach(skill => {
-          skill.classList.remove('visible');
-          skill.style.opacity = '0';
-        });
+        // Load skills for selected category
+        loadSkillsForCategory(category);
 
-        // Show skills for selected category with delay and animation
-        setTimeout(() => {
-          skillNotes.forEach(skill => {
-            const skillCategory = skill.getAttribute('data-category');
-            if (skillCategory === category) {
-              skill.style.display = 'block';
-              skill.classList.add('visible');
-            } else {
-              skill.style.display = 'none';
-            }
-          });
-
-          // Trigger progress animation for visible skills
-          if (window.skillProgressAnimation) {
-            window.skillProgressAnimation.onCategoryChange();
+        // Trigger progress animation
+        if (window.skillProgressAnimation) {
+          window.skillProgressAnimation.onCategoryChange();
           }
         }, 100);
       });

@@ -116,9 +116,14 @@
             My focus is on modern web technologies with a strong foundation in computer science fundamentals.
           </p>
 
-          <!-- Two column layout: Categories + Skills -->
+          <!-- Three column layout: Skills List + Categories + Empty -->
           <div class="skills-layout">
-            <!-- Left: Category Buttons -->
+            <!-- Left: Skills List with Percentages -->
+            <div class="skills-list" id="skillsList">
+              <!-- Skills will be dynamically loaded here -->
+            </div>
+
+            <!-- Center: Category Buttons -->
             <div class="skills-categories">
               <button class="category active" data-category="languages">
                 <h3 class="category-title">Programming Languages</h3>
@@ -142,9 +147,11 @@
               </button>
             </div>
 
-            <!-- Right: Skills Grid -->
-            <div class="skills-wrapper">
-              <div class="skills-grid" id="skillsGrid">
+            <!-- Right: Empty or other content -->
+            <div class="skills-right"></div>
+
+            <!-- Skills Grid (hidden, used as data source) -->
+            <div class="skills-grid" id="skillsGrid" style="display: none;">
                 <!-- Main Languages -->
                 <div class="skill-note" data-category="languages" data-skill="Java" data-percent="88%">
                   <span class="skill-name">Java</span>
