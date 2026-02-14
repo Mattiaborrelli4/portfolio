@@ -1,4 +1,4 @@
-/* Category Buttons - Updated to be smaller */
+/* Category Buttons - Updated to be smaller and left-aligned */
 
 .category {
   padding: var(--spacing-sm);
@@ -8,12 +8,12 @@
   padding: var(--spacing-md);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  min-height: 70px;
+  min-height: 50px; /* Reduced from 70px */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Left align content */
   justify-content: center;
-  text-align: center;
+  text-align: left;
 }
 
 .category.active {
