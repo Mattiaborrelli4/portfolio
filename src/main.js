@@ -531,7 +531,7 @@ function initHoverInteractions() {
       link.addEventListener('mouseleave', () => {
         gsap.to(link, {
           scale: 1,
-          color: '',
+          clearProps: 'color',
           duration: 0.3,
           ease: 'power2.out'
         });
