@@ -461,11 +461,11 @@
   font-family: var(--font-display);
 }
 
-/* About Grid - Photo and text very close together */
-.about-grid {
-  display: grid !important;
-  grid-template-columns: 1.7fr 1fr !important; /* Photo ~63%, text ~37% */
-  gap: 0.75rem !important; /* Tiny gap - as close as possible */
+/* About Content Wrapper - Photo and text very close together */
+.about-content-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.5rem !important; /* Tiny gap - minimal spacing */
   align-items: center !important; /* Center vertically */
   width: 100% !important;
   max-width: 100% !important;
@@ -473,8 +473,8 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .about-grid {
-    grid-template-columns: 1fr; /* Stack on mobile */
+  .about-content-wrapper {
+    flex-direction: column; /* Stack on mobile */
     gap: 2rem;
   }
 
