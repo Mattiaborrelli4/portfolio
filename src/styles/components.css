@@ -39,3 +39,523 @@
   line-height: 1.5;
   font-weight: var(--font-weight-normal);
 }
+
+/* ============================================
+   HERO SECTION STYLES - Professional & Refined
+   ============================================ */
+
+/* Hero Name - Large but single-line with Archivio font */
+.hero-name {
+  font-family: 'Archivo', var(--font-display), sans-serif;
+  /* Large but fits on one line */
+  font-size: clamp(4.5rem, 11vw, 7rem); /* Smaller size */
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin: 0 auto 1.5rem auto; /* Reduced spacing below name */
+  letter-spacing: -0.02em;
+  position: relative;
+  display: block;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Refined glow behind name - subtle luxury, centered */
+.hero-name:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(44, 95, 127, 0.12) 0%, transparent 65%);
+  opacity: 0.6;
+  z-index: -1;
+  filter: blur(60px);
+  pointer-events: none;
+  left: 50%; /* Center the glow */
+  margin-left: auto; /* Auto margin for centering */
+  margin-right: auto;
+}
+
+/* Subtle text shadow for depth */
+.hero-name {
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Hero Subtitle Wrapper - Reduced spacing */
+.hero-subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto 0.25rem auto; /* Even more reduced spacing */
+  text-align: center;
+}
+
+/* Hero Slashes - Code comment aesthetic */
+.hero-slashes {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+
+/* Hero Subtitle - Clean and professional */
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 2.2vw, 1.4rem); /* Slightly larger */
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  color: var(--color-secondary);
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+/* Hero Description - Refined typography and centered */
+.hero-description {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.15rem); /* Slightly larger */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.7;
+  color: var(--color-secondary);
+  margin: 0 auto 0.4rem auto; /* Even more reduced spacing */
+  max-width: 680px;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+
+/* Hero CTA Button - Better font and size, positioned higher */
+.hero-cta {
+  position: relative;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  /* Better padding */
+  padding: 0.95rem 1.9rem; /* Slightly larger padding */
+  font-family: var(--font-body); /* Changed from mono to body font */
+  /* Better font size */
+  font-size: 1.05rem; /* Slightly larger size */
+  font-weight: var(--font-weight-semibold);
+  color: var(--bg-primary);
+  background-color: var(--color-text);
+  border: 2px solid var(--color-text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.15s ease;
+  /* Center button with less space above (higher position) */
+  margin: 1.5rem auto var(--spacing-md) auto;
+  letter-spacing: 0.01em;
+}
+
+/* Subtle hover state */
+.hero-cta:hover {
+  background-color: transparent;
+  color: var(--color-text);
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Active state feedback */
+.hero-cta:active {
+  transform: translateY(0) scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Focus visible for accessibility */
+.hero-cta:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Arrow icon - compact and refined */
+.hero-cta .cta-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+/* Arrow slide on hover */
+.hero-cta:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+/* Active arrow state */
+.hero-cta:active .cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: clamp(3rem, 10vw, 5rem); /* Smaller mobile size */
+    letter-spacing: -0.015em;
+  }
+
+  .hero-subtitle-wrapper {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .hero-slashes {
+    font-size: 1rem;
+  }
+
+  .hero-cta {
+    padding: 0.9rem 1.8rem; /* Increased mobile padding */
+    font-size: 1rem; /* Increased mobile font size */
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: clamp(2.2rem, 8vw, 4rem); /* Smaller mobile size */
+    letter-spacing: -0.01em;
+    white-space: normal; /* Allow wrap on very small screens */
+  }
+
+  .hero-subtitle-wrapper {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .hero-slashes {
+    display: none;
+  }
+}
+
+/* ============================================
+   HERO ANIMATIONS - CSS-Only Elegance
+   ============================================ */
+
+/* Staggered fade-in up animation for hero content */
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply animation with staggered delays */
+.hero-name {
+  animation: heroFadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.1s;
+}
+
+.hero-subtitle-wrapper {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.4s;
+}
+
+.hero-description {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.6s;
+}
+
+.hero-cta {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+  animation-delay: 0.8s;
+}
+
+/* Subtle pulse for the glow effect */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.03);
+  }
+}
+
+.hero-name:before {
+  animation: subtlePulse 6s ease-in-out infinite;
+}
+
+/* Smooth slide for slashes */
+@keyframes slashPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hero-slashes {
+  animation: slashPulse 3s ease-in-out infinite;
+}
+
+/* Subtle shimmer effect on button */
+@keyframes buttonShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.hero-cta:hover {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(44, 95, 127, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: buttonShimmer 2s linear;
+}
+
+/* ============================================
+   PREFERS REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-name,
+  .hero-subtitle-wrapper,
+  .hero-description,
+  .hero-cta {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-name:before,
+  .hero-slashes {
+    animation: none;
+  }
+
+  .scroll-indicator,
+  .scroll-line {
+    animation: none;
+  }
+}
+
+/* ============================================
+   ABOUT SECTION STYLES
+   ============================================ */
+
+/* About Heading - Matching reference */
+.about-heading {
+  font-size: clamp(2rem, 4.5vw, 3.2rem); /* Larger like reference */
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0 0 1.2rem 0;
+}
+
+/* About Photo - Much larger (65/35 split) */
+.about-photo {
+  width: 65%; /* Takes even more space */
+  max-width: 750px;
+  flex-shrink: 0;
+  align-self: stretch; /* Stretch to full height */
+}
+
+/* Photo frame - matching reference */
+.photo-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Photo placeholder - Square, crop bottom */
+.photo-placeholder {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Force square ratio */
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Crop bottom */
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  min-height: 500px;
+}
+
+/* Profile image - Crop bottom, show top */
+.profile-image {
+  width: 100%;
+  height: 100%; /* Fill container */
+  object-fit: cover; /* Crop to fit square */
+  object-position: center top; /* Focus on top/center */
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+/* Photo caption - smaller text */
+.photo-caption {
+  font-size: 0.85rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-secondary);
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+/* About Content - Right side (smaller space) */
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* About Bio - Adjusted font sizes for better balance */
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+}
+
+/* Bio Paragraphs - Larger like reference */
+.bio-paragraph {
+  font-size: clamp(1.1rem, 2vw, 1.25rem); /* Larger size */
+  line-height: 1.65;
+  color: var(--color-secondary);
+  margin: 0;
+  width: 100%;
+}
+
+/* First letter drop cap - subtle */
+.bio-paragraph:first-of-type::first-letter {
+  font-size: 2.8rem;
+  font-weight: var(--font-weight-bold);
+  float: left;
+  line-height: 1;
+  margin-right: 0.75rem;
+  margin-bottom: -0.2rem;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+}
+
+/* About Grid - Photo and text very close together */
+.about-grid {
+  display: grid !important;
+  grid-template-columns: 1.7fr 1fr !important; /* Photo ~63%, text ~37% */
+  gap: 0.75rem !important; /* Tiny gap - as close as possible */
+  align-items: center !important; /* Center vertically */
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr; /* Stack on mobile */
+    gap: 2rem;
+  }
+
+  .about-photo {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .about-content {
+    width: 100%;
+  }
+
+  .about-heading {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+}
+
+/* ============================================
+   SCROLL INDICATOR - Transparent with Animated Line
+   ============================================ */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.scroll-text {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; /* Increased size */
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+  opacity: 0.5;
+}
+
+/* Small animated line pointing down */
+.scroll-line {
+  width: 1px;
+  height: 50px; /* Increased height */
+  background: linear-gradient(to bottom, var(--color-accent) 0%, transparent 100%);
+  position: relative;
+  overflow: hidden;
+  opacity: 0.4;
+}
+
+/* Animated line moving down */
+.scroll-line:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: scrollLineDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollLineDown {
+  0% {
+    top: -30%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}

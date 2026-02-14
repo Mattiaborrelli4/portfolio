@@ -54,6 +54,12 @@ export class SkillProgressAnimation {
 
     if (!percentElement || !skillFill) return;
 
+    // Check if element exists in DOM
+    if (!document.body.contains(skill)) {
+      console.warn('Skill not in DOM, skipping animation:', skill);
+      return;
+    }
+
     // Get target percent from data attribute
     const targetPercent = parseInt(skill.getAttribute('data-percent'), 10);
     const currentPercent = 0;
@@ -67,7 +73,9 @@ export class SkillProgressAnimation {
 
     // Add visible class for any additional styling
     setTimeout(() => {
-      skill.classList.add('visible');
+      if (document.body.contains(skill)) {
+        skill.classList.add('visible');
+      }
     }, 100);
   }
 
