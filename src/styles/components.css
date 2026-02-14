@@ -471,6 +471,7 @@
   align-items: stretch !important; /* Same height for both children */
   width: 100% !important;
   max-width: 100% !important;
+  padding-left: 3rem !important; /* Move photo away from left edge */
 }
 
 /* Responsive adjustments */
