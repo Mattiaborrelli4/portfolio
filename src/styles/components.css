@@ -5,16 +5,17 @@
   background: var(--bg-secondary);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--spacing-md);
+  padding: 0.75rem; /* Reduced padding */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
-  max-width: 280px; /* Limit width to make buttons narrower */
-  min-height: 50px; /* Reduced from 70px */
+  max-width: 380px; /* Wider buttons */
+  min-height: 40px; /* Shorter height */
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Left align content */
   justify-content: center;
   text-align: left;
+  margin-bottom: 1rem; /* Space between buttons */
 }
 
 .category.active {
