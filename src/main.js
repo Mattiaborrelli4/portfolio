@@ -604,7 +604,6 @@ function initHoverInteractions() {
       link.addEventListener('mouseenter', () => {
         gsap.to(link, {
           x: 5,
-          color: '#2C5F7F',
           duration: 0.3,
           ease: 'power2.out'
         });
@@ -613,7 +612,6 @@ function initHoverInteractions() {
       link.addEventListener('mouseleave', () => {
         gsap.to(link, {
           x: 0,
-          color: '',
           duration: 0.3,
           ease: 'power2.out'
         });
