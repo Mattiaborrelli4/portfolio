@@ -467,7 +467,7 @@
 .about-content-wrapper {
   display: flex !important;
   flex-direction: row !important;
-  gap: 4rem !important; /* Balanced spacing */
+  gap: 6rem !important; /* Generous spacing between photo and text */
   align-items: stretch !important; /* Same height for both children */
   width: 100% !important;
   max-width: 100% !important;
