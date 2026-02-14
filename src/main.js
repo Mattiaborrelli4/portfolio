@@ -522,7 +522,6 @@ function initHoverInteractions() {
       link.addEventListener('mouseenter', () => {
         gsap.to(link, {
           scale: 1.05,
-          color: '#2C5F7F',
           duration: 0.3,
           ease: 'power2.out'
         });
@@ -531,7 +530,6 @@ function initHoverInteractions() {
       link.addEventListener('mouseleave', () => {
         gsap.to(link, {
           scale: 1,
-          color: 'inherit',
           duration: 0.3,
           ease: 'power2.out'
         });
