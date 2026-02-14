@@ -372,12 +372,12 @@
   margin: 0 0 1.2rem 0;
 }
 
-/* About Photo - Balanced size matching text height */
+/* About Photo - Square with same height as text */
 .about-photo {
-  width: 48%; /* Balanced with text - not too dominant */
-  max-width: 500px; /* Reduced max-width for professional proportion */
+  width: auto; /* Let aspect-ratio determine width */
+  max-width: 600px; /* Prevent too large */
   flex-shrink: 0;
-  align-self: center; /* Center vertically, don't stretch */
+  align-self: auto; /* Inherit stretch from wrapper */
 }
 
 /* Photo frame - matching reference */
@@ -463,12 +463,12 @@
   font-family: var(--font-display);
 }
 
-/* About Content Wrapper - Photo and text very close together */
+/* About Content Wrapper - Photo and text same height */
 .about-content-wrapper {
   display: flex !important;
   flex-direction: row !important;
   gap: 0.5rem !important; /* Tiny gap - minimal spacing */
-  align-items: center !important; /* Center vertically */
+  align-items: stretch !important; /* Same height for both children */
   width: 100% !important;
   max-width: 100% !important;
 }
