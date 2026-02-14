@@ -462,9 +462,9 @@
   position: absolute;
   left: -12px; /* Positioned to the left with spacing */
   top: 0;
-  width: 3px; /* Thin accent line */
+  width: 5px; /* Thicker accent line */
   height: 4.2em; /* Covers 3-4 lines */
-  background: #4aa3df; /* Soft tech blue */
+  background: var(--color-accent); /* Matches site palette (#2C5F7F) */
   border-radius: 2px;
 }
 
