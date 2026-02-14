@@ -505,8 +505,11 @@ function initScrollTriggerAnimations() {
     }
 
     // Force ScrollTrigger to recalculate all positions
-    ScrollTrigger.refresh(true);
+    // (refresh called after context returns)
   });
+
+  // Force ScrollTrigger to recalculate all positions
+  ScrollTrigger.refresh(true);
 
   return ctx;
 }
