@@ -115,7 +115,7 @@ function initPageLoadAnimations() {
       '-=0.4'
     );
 
-    console.log('🎬 Hero animations timeline created and playing');
+    console.log(' Hero animations timeline created and playing');
   });
 
   return ctx;
@@ -507,7 +507,6 @@ function initScrollTriggerAnimations() {
     // Force ScrollTrigger to recalculate all positions
     ScrollTrigger.refresh(true);
   });
-  });
 
   return ctx;
 }
@@ -627,32 +626,32 @@ function initHoverInteractions() {
  */
 function init() {
   try {
-    console.group('🚀 Portfolio Initialization');
+    console.group(' Portfolio Initialization');
     console.log('Starting...');
 
     // Initialize hero Three.js background
     const heroCleanup = initHeroBackground();
-    console.log('✅ Hero Three.js background initialized');
+    console.log(' Hero Three.js background initialized');
 
     // Initialize audio sequencer
     audioSequencer = new AudioSequencer();
-    console.log('✅ Audio sequencer initialized');
+    console.log(' Audio sequencer initialized');
 
     // Initialize skill visual sync system
     const skillSync = setupSkillVisualSync(audioSequencer, 300);
-    console.log('✅ Skill visual sync initialized');
+    console.log(' Skill visual sync initialized');
 
     // Initialize skill progress animation
     skillProgressAnimation.init();
-    console.log('✅ Skill progress animation initialized');
+    console.log(' Skill progress animation initialized');
 
     // Initialize project slideshows
     projectSlideshow.init();
-    console.log('✅ Project slideshows initialized');
+    console.log(' Project slideshows initialized');
 
     // Initialize smooth scroll
     const lenis = initSmoothScroll();
-    console.log('✅ Smooth scroll initialized');
+    console.log(' Smooth scroll initialized');
 
     // Set initial states for elements that will animate on scroll
     // This prevents flash of visible content before animation
@@ -674,19 +673,19 @@ function init() {
 
     // Initialize 3D card effects
     const card3D = new Card3DEffect();
-    console.log('✅ 3D card effects initialized');
+    console.log(' 3D card effects initialized');
 
     // Initialize page load animations
     const pageLoadCtx = initPageLoadAnimations();
-    console.log('✅ Page load animations initialized');
+    console.log(' Page load animations initialized');
 
     // Initialize GSAP ScrollTrigger animations
     const scrollTriggerCtx = initScrollTriggerAnimations();
-    console.log('✅ GSAP ScrollTrigger animations initialized');
+    console.log(' GSAP ScrollTrigger animations initialized');
 
     // Initialize hover interactions
     const hoverCtx = initHoverInteractions();
-    console.log('✅ Hover interactions initialized');
+    console.log(' Hover interactions initialized');
 
     // Setup CTA button scroll functionality
     const ctaBtn = document.querySelector('.hero-cta');
@@ -700,11 +699,11 @@ function init() {
           });
         }
       });
-      console.log('✅ CTA button scroll enabled');
+      console.log(' CTA button scroll enabled');
     }
 
     console.groupEnd();
-    console.log('🎉 Portfolio loaded successfully!');
+    console.log(' Portfolio loaded successfully!');
 
     // Store contexts for cleanup
     window.__portfolioContexts = {
@@ -719,7 +718,7 @@ function init() {
     };
 
   } catch (error) {
-    console.error('❌ Initialization error:', error);
+    console.error(' Initialization error:', error);
   }
 }
 
