@@ -372,12 +372,12 @@
   margin: 0 0 1.2rem 0;
 }
 
-/* About Photo - Much larger (65/35 split) */
+/* About Photo - Balanced size matching text height */
 .about-photo {
-  width: 65%; /* Takes even more space */
-  max-width: 750px;
+  width: 48%; /* Balanced with text - not too dominant */
+  max-width: 500px; /* Reduced max-width for professional proportion */
   flex-shrink: 0;
-  align-self: stretch; /* Stretch to full height */
+  align-self: center; /* Center vertically, don't stretch */
 }
 
 /* Photo frame - matching reference */
@@ -421,13 +421,15 @@
   font-family: var(--font-mono);
 }
 
-/* About Content - Right side (smaller space) */
+/* About Content - Right side (balanced with photo) */
 .about-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
   flex-grow: 1;
+  flex-basis: 0; /* Equal height distribution with photo */
+  min-height: 0; /* Allow flex child to shrink */
 }
 
 /* About Bio - Adjusted font sizes for better balance */
