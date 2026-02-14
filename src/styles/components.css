@@ -454,7 +454,9 @@
 /* Decorative vertical line for first paragraph */
 .bio-paragraph:first-of-type {
   position: relative;
+  text-indent: -1.5rem; /* First line starts at left edge */
   padding-left: 1.5rem; /* Space for the line */
+  hanging-punctuation: first; /* Better punctuation handling */
 }
 
 .bio-paragraph:first-of-type::before {
@@ -462,10 +464,10 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 3px;
-  height: 3.5em; /* Covers approximately two lines of text */
+  width: 5px; /* Thicker line */
+  height: 2.3em; /* Covers exactly two lines */
   background: var(--color-accent);
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 /* About Content Wrapper - Photo and text same height */
