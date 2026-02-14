@@ -448,8 +448,9 @@
   font-size: clamp(1.1rem, 2vw, 1.25rem); /* Larger size */
   line-height: 1.65;
   color: var(--color-secondary);
-  margin: 0;
+  margin: 0 auto; /* Center with auto margins */
   width: 100%;
+  max-width: 800px; /* Limit width for better readability */
   text-align: center; /* Center paragraph text */
 }
 
