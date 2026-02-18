@@ -13,10 +13,21 @@
   --color-text: #2D3436;            /* Dark gray, almost black but softer */
   --color-border: #E0E0E0;          /* Medium gray for lines/dividers */
 
-  /* Accent Colors */
-  --color-accent: #2C5F7F;          /* Navy/teal dark - for highlights */
-  --color-accent-light: #4A7C9E;    /* Lighter version for hover states */
-  --color-secondary: #6B7B8C;       /* Gray-blue desaturated for secondary text */
+  /* Accent Colors - EXACT Apple colors from apple.com */
+  --color-accent: rgba(0, 122, 255, 0.8);  /* Apple link blue */
+  --color-accent-hover: rgba(0, 122, 255, 1);  /* Apple blue hover */
+  --color-accent-active: rgba(0, 122, 255, 0.6);  /* Apple blue active */
+  --color-accent-subtle: rgba(0, 122, 255, 0.05);  /* Very light tint */
+  --color-secondary: rgb(110, 110, 115); /* Apple secondary gray */
+  --color-text-soft: #4a5568;       /* Softer text for body */
+
+  /* Apple-specific colors - EXACT RGB values */
+  --apple-bg: rgb(255, 255, 255);   /* Pure white - Apple primary */
+  --apple-bg-alt: #F5F5F7;          /* Off-white for sections */
+  --apple-text: rgb(29, 29, 31);    /* Apple near-black - EXACT */
+  --apple-gray: rgb(110, 110, 115); /* Apple secondary text - EXACT */
+  --apple-gray-light: rgb(199, 199, 204); /* Apple light gray */
+  --apple-border: rgb(232, 232, 237); /* Apple border gray */
 
   /* Semantic Colors */
   --color-primary: #000000;
@@ -74,17 +85,19 @@
   --letter-spacing-widest: 0.1em;
 
   /* ============================================
-     SPACING SYSTEM - 8px base unit
+     SPACING SYSTEM - Apple 8-point grid EXACT
      ============================================ */
 
-  --spacing-xs: 0.5rem;     /* 8px */
-  --spacing-sm: 1rem;       /* 16px */
-  --spacing-md: 1.5rem;     /* 24px */
-  --spacing-lg: 2rem;       /* 32px */
-  --spacing-xl: 3rem;       /* 48px */
-  --spacing-2xl: 4rem;      /* 64px */
-  --spacing-3xl: 6rem;      /* 96px */
-  --spacing-4xl: 8rem;      /* 128px */
+  /* Apple spacing scale - based on 8px grid */
+  --spacing-xs: 0.5rem;     /* 8px - Tight spacing */
+  --spacing-sm: 1rem;       /* 16px - Base spacing */
+  --spacing-md: 1.5rem;     /* 24px - Medium spacing */
+  --spacing-lg: 2rem;       /* 32px - Large spacing */
+  --spacing-xl: 3rem;       /* 48px - Extra large spacing */
+  --spacing-2xl: 4rem;      /* 64px - Maximum spacing */
+  --spacing-3xl: 5rem;      /* 80px - Section spacing */
+  --spacing-4xl: 6rem;      /* 96px - Large section spacing */
+  --spacing-5xl: 7.5rem;    /* 120px - Hero spacing */
 
   /* ============================================
      LAYOUT
@@ -126,6 +139,11 @@
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Apple easing functions - EXACT VALUES from apple.com */
+  --ease-apple: cubic-bezier(0.4, 0, 0.6, 1); /* Apple standard ease-in-out */
+  --ease-apple-fast: cubic-bezier(0, 0, 0.2, 1); /* Apple quick ease-out */
+  --ease-apple-slow: cubic-bezier(0.4, 0, 1, 1); /* Apple slow ease-out */
 
   /* ============================================
      BORDER RADIUS

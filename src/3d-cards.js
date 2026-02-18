@@ -4,6 +4,104 @@
  * Professional implementation with enhanced responsiveness
  */
 
+/**
+ * Photo 3D Effect - Apple EXACT interaction
+ * Creates the subtle, premium 3D effect used on Apple product pages
+ * Indistinguishable from apple.com interactions
+ */
+class Photo3DEffect {
+  constructor() {
+    this.photoContainer = document.querySelector('.photo-placeholder');
+    this.isMobile = window.innerWidth < 1024;
+
+    if (!this.photoContainer) {
+      console.warn('⚠️ No photo container found with .photo-placeholder class');
+      return;
+    }
+
+    console.log('📸 Initializing Photo 3D effect (Apple EXACT)...');
+    this.init();
+    this.setupResizeListener();
+  }
+
+  init() {
+    const container = this.photoContainer;
+
+    // Set initial 3D state
+    container.style.transformStyle = 'preserve-3d';
+
+    // Add event listeners
+    container.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+    container.addEventListener('mouseleave', (e) => this.handleMouseLeave(e));
+    container.addEventListener('mouseenter', (e) => this.handleMouseEnter(e));
+
+    console.log('✅ Photo 3D effect initialized!');
+  }
+
+  handleMouseMove(e) {
+    if (this.isMobile) return;
+
+    const container = this.photoContainer;
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Apple EXACT rotation - extremely subtle
+    const rotateX = (y - centerY) / 32; // Ultra reduced
+    const rotateY = (centerX - x) / 32; // Ultra reduced
+
+    // Apply minimal 3D transform - Apple style
+    container.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      translateY(-2px)
+    `;
+
+    // Apple shadow - neutral gray EXACT
+    container.style.boxShadow = `
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      0 2px 8px rgba(0, 0, 0, 0.06)
+    `;
+  }
+
+  handleMouseLeave() {
+    const container = this.photoContainer;
+
+    // Smooth return to default - Apple easing
+    container.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+      translateY(0)
+    `;
+
+    // Apple default shadow
+    container.style.boxShadow = `0 4px 12px rgba(0, 0, 0, 0.08)`;
+
+    // Apple timing - 0.32s with ease
+    container.style.transition = 'transform 0.32s cubic-bezier(0.4, 0, 0.6, 1), box-shadow 0.32s cubic-bezier(0.4, 0, 0.6, 1)';
+  }
+
+  handleMouseEnter() {
+    // Remove transition for instant tracking - Apple behavior
+    this.photoContainer.style.transition = 'none';
+  }
+
+  setupResizeListener() {
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        this.isMobile = window.innerWidth < 1024;
+      }, 250);
+    });
+  }
+}
+
 class Card3DEffect {
   constructor() {
     this.cards = document.querySelectorAll('.featured-project-card');
@@ -110,4 +208,6 @@ class Card3DEffect {
   }
 }
 
+// Export both classes
+export { Photo3DEffect };
 export default Card3DEffect;

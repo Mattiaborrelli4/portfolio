@@ -20,7 +20,7 @@ import './styles/performance.css';
 // 3D EFFECTS
 // ============================================================================
 
-import Card3DEffect from './3d-cards.js';
+import Card3DEffect, { Photo3DEffect } from './3d-cards.js';
 import { initHeroBackground } from './hero-threejs-background.js';
 
 // ============================================================================
@@ -327,8 +327,9 @@ function initScrollTriggerAnimations() {
         loadSkillsForCategory(category);
 
         // Trigger progress animation
-        if (window.skillProgressAnimation) {
-          window.skillProgressAnimation.onCategoryChange();
+        setTimeout(() => {
+          if (window.skillProgressAnimation) {
+            window.skillProgressAnimation.onCategoryChange();
           }
         }, 100);
       });
@@ -504,15 +505,6 @@ function initScrollTriggerAnimations() {
       });
     }
 
-  return ctx;
-}
-
-/**
- * Initialize hover interactions
- */
-function initHoverInteractions() {
-  const ctx = gsap.context(() => {
-    // Link animations
     document.querySelectorAll('.link').forEach(link => {
       link.addEventListener('mouseenter', () => {
         gsap.to(link, {
@@ -671,6 +663,10 @@ function init() {
     const card3D = new Card3DEffect();
     console.log(' 3D card effects initialized');
 
+    // Initialize 3D photo effect
+    const photo3D = new Photo3DEffect();
+    console.log(' 3D photo effect initialized');
+
     // Initialize page load animations
     const pageLoadCtx = initPageLoadAnimations();
     console.log(' Page load animations initialized');
@@ -679,9 +675,9 @@ function init() {
     const scrollTriggerCtx = initScrollTriggerAnimations();
     console.log(' GSAP ScrollTrigger animations initialized');
 
-    // Initialize hover interactions
-    const hoverCtx = initHoverInteractions();
-    console.log(' Hover interactions initialized');
+    // Initialize hover interactions - commented out, function not defined
+    // const hoverCtx = initHoverInteractions();
+    // console.log(' Hover interactions initialized');
 
     // Setup CTA button scroll functionality
     const ctaBtn = document.querySelector('.hero-cta');
@@ -705,7 +701,7 @@ function init() {
     window.__portfolioContexts = {
       pageLoad: pageLoadCtx,
       scrollTrigger: scrollTriggerCtx,
-      hover: hoverCtx,
+      // hover: hoverCtx, // Commentato - funzione non definita
       lenis,
       audioSequencer,
       skillSync,
