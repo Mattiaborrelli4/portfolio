@@ -5,6 +5,7 @@
 .skills-section .section-title {
   color: #ffffff !important; /* Bianco puro */
   text-shadow: 0 0 30px rgba(0, 255, 150, 0.3); /* Glow verde */
+  opacity: 1 !important; /* Ensure visibility */
 }
 
 .section-number {
@@ -92,7 +93,7 @@
   margin-bottom: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding-left: 0.75rem;
+  padding-left: 2.75rem;
   position: relative;
   z-index: 1;
 }
@@ -598,7 +599,7 @@
   text-align: left;
   letter-spacing: -0.01em;
   position: relative;
-  padding-left: 0;
+  padding-left: 1rem;
   overflow: hidden;
 }
 
@@ -803,6 +804,7 @@
   flex-direction: column; /* Verticale */
   gap: 0.8rem;
   width: 100%;
+  margin-top: 2.5rem; /* Allineato con skills-list */
 }
 
 /* Category buttons - Allungati verso il margine destro */
@@ -829,7 +831,7 @@
   flex-direction: column;
   gap: 0.8rem;
   width: 100%;
-  margin-top: 1.2rem; /* Allineato con le category */
+  margin-top: 2.5rem; /* Allineato con le category */
 }
 
 /* Skill Card - Più equilibrata e compatta */

@@ -128,6 +128,9 @@ function initScrollTriggerAnimations() {
   const ctx = gsap.context(() => {
     // Section titles - fade + slide from left
     gsap.utils.toArray('.section-title').forEach((title) => {
+      // Skip project section title to ensure visibility
+      if (title.closest('.projects-section')) return;
+
       gsap.from(title, {
         scrollTrigger: {
           trigger: title,
@@ -200,46 +203,52 @@ function initScrollTriggerAnimations() {
       );
     });
 
-    // About section - UNIFIED TIMELINE
-    // Everything appears together when section enters viewport
+    // About section - APPLE-STYLE PRECISE SCROLL TRIGGER
+    // Elements hidden initially, animate when entering viewport
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
+      // Set initial hidden state
+      gsap.set(['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'], {
+        opacity: 0
+      });
+
       const aboutTl = gsap.timeline({
         scrollTrigger: {
           trigger: aboutSection,
-          start: 'top 75%',
+          start: 'top 65%',  // Trigger when section is more visible
+          end: 'bottom 80%',
           toggleActions: 'play none none reverse',
         }
       });
 
-      // About heading appears first
-      aboutTl.fromTo('.about-heading',
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' },
+      // Photo: main element entrance
+      aboutTl.fromTo('.photo-placeholder',
+        { opacity: 0, y: 60, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power4.out' },
         0
       );
 
-      // Photo appears with header
-      aboutTl.fromTo('.photo-placeholder',
-        { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' },
-        0  // Same time as header
+      // Heading: synchronized with photo
+      aboutTl.fromTo('.about-heading',
+        { opacity: 0, y: 45 },
+        { opacity: 1, y: 0, duration: 1.1, ease: 'power4.out' },
+        0  // Perfectly synchronized
       );
 
-      // Photo caption appears after photo
+      // Caption: follows immediately
       aboutTl.fromTo('.photo-caption',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-        0.3  // 0.3s after header
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
+        0.3  // Small delay after main elements
       );
 
-      // Bio paragraphs appear immediately after
+      // Bio paragraphs: elegant cascade
       const bioParagraphs = gsap.utils.toArray('.bio-paragraph');
       if (bioParagraphs.length > 0) {
         aboutTl.fromTo(bioParagraphs,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.7, stagger: 0.05, ease: 'power2.out' },
-          0.2  // Starts 0.2s after header
+          { opacity: 0, y: 35 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
+          0.35  // Overlaps slightly with caption
         );
       }
 
