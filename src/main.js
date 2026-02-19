@@ -552,7 +552,8 @@ function init() {
     elementsToHide.forEach(selector => {
       gsap.set(selector, {
         opacity: 0,
-        y: selector.includes('card') ? 60 : 50,
+        y: selector.includes('card') ? 60 :
+           selector.includes('contact') ? 15 : 50,  // Contact elements: only 15px down
         overwrite: 'auto'
       });
     });
