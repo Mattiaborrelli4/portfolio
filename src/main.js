@@ -328,6 +328,70 @@ function initScrollTriggerAnimations() {
       });
     }
 
+    // Stats counter animation - Two phases: central first, then sides
+    const statNumbers = document.querySelectorAll('.stat-number');
+    statNumbers.forEach((stat) => {
+      const targetValue = parseInt(stat.getAttribute('data-count'));
+
+      // Create a proxy object to animate the value
+      const counterObj = { value: 0 };
+
+      gsap.fromTo(counterObj,
+        { value: 0 },
+        {
+          scrollTrigger: {
+            trigger: stat,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          value: targetValue,
+          duration: 2,
+          ease: smoothEase,
+          onUpdate: function() {
+            stat.textContent = Math.round(this.targets()[0].value);
+          }
+        }
+      );
+    });
+
+    // Phase 1: Central stat (Featured Projects) appears first
+    const statItems = document.querySelectorAll('.stat-item');
+    if (statItems.length >= 3) {
+      // Central stat (index 1)
+      gsap.fromTo(statItems[1],
+        { opacity: 0, scale: 0.8 },
+        {
+          scrollTrigger: {
+            trigger: '.projects-stats',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          ease: smoothEase
+        }
+      );
+
+      // Phase 2: Side stats (index 0 and 2) appear after
+      gsap.fromTo([statItems[0], statItems[2]],
+        { opacity: 0, scale: 0.8 },
+        {
+          scrollTrigger: {
+            trigger: '.projects-stats',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          delay: 0.3,  // Appears after central stat
+          stagger: 0.1,  // Slight stagger between sides
+          ease: smoothEase
+        }
+      );
+    }
+
     // Scroll progress indicator for projects
     const scrollProgress = document.querySelector('.scroll-progress-projects');
     if (scrollProgress) {
