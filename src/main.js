@@ -286,7 +286,7 @@ function initScrollTriggerAnimations() {
     // Contact section - ENTIRE FORM as ONE unified block
     const contactSection = document.querySelector('.contact-section');
     if (contactSection) {
-      // Left side (heading, description, email, social)
+      // Left side (heading, description, email, social) - NOT form inputs
       gsap.fromTo(['.contact-heading', '.contact-description', '.contact-email', '.social-link'],
         { opacity: 0, x: -15 },
         {
@@ -302,9 +302,9 @@ function initScrollTriggerAnimations() {
         }
       );
 
-      // Right side (ENTIRE form wrapper as ONE block)
+      // Right side (ENTIRE form wrapper as ONE block - includes all inputs inside)
       gsap.fromTo('.contact-form-wrapper',
-        { opacity: 0, x: 15 },
+        { opacity: 0, x: 15, y: 0 },
         {
           scrollTrigger: {
             trigger: contactSection,
@@ -313,6 +313,7 @@ function initScrollTriggerAnimations() {
           },
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 0.75,
           ease: smoothEase
         }
@@ -543,7 +544,9 @@ function init() {
       '.photo-caption', '.skills-header', '.category',
       '.featured-project-card', '.contact-heading',
       '.contact-description', '.contact-email',
-      '.social-link', '.form-input', '.form-textarea'
+      '.social-link'
+      // Note: .form-input and .form-textarea removed - they're inside .contact-form-wrapper
+      // Note: .contact-form-wrapper is animated directly, not here
     ];
 
     elementsToHide.forEach(selector => {
