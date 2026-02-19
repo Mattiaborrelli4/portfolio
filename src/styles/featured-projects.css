@@ -346,6 +346,107 @@
   }
 }
 
+/* =========================================
+   EXPERIENCE MOBILE OPTIMIZATIONS
+   ========================================= */
+@media (max-width: 768px) {
+  .experiences-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experiences-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.8rem;
+  }
+
+  .experience-card {
+    min-height: 130px; /* Slightly shorter on mobile */
+  }
+
+  .experience-type {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .experience-title {
+    font-size: 0.95rem;
+  }
+
+  .experience-meta {
+    font-size: 0.8rem;
+  }
+}
+
+/* =========================================
+   FEATURED PROJECTS MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+  .featured-project-card {
+    max-width: 100%; /* Full width on mobile */
+  }
+
+  .project-image-wrapper {
+    height: 180px; /* Slightly shorter on tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .project-image-wrapper {
+    height: 150px; /* Even shorter on mobile */
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+  }
+
+  .tech-tags {
+    flex-wrap: wrap; /* Ensure tags wrap properly */
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+  }
+}
+
+/* =========================================
+   HERO MOBILE ENHANCEMENTS
+   ========================================= */
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0 1rem; /* Better padding on mobile */
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .hero-cta {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* Scroll indicator adjust for mobile */
+  .scroll-indicator {
+    bottom: 2rem;
+  }
+
+  .scroll-text {
+    font-size: 0.75rem;
+  }
+}
+
 /* Project image wrapper needs overflow:hidden separately */
 .project-image-wrapper {
   overflow: hidden;

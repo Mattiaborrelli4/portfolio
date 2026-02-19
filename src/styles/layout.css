@@ -114,6 +114,59 @@
 @media (max-width: 480px) {
   :root {
     --container-padding: var(--spacing-sm);
+    --grid-gap: var(--spacing-sm);
+  }
+
+  /* Section spacing for mobile */
+  .section {
+    padding: var(--spacing-lg) 0; /* Reduced padding on mobile */
+  }
+
+  .section--hero {
+    padding: var(--spacing-lg) 0;
+    min-height: 90vh; /* Slightly shorter on mobile */
+  }
+
+  .section--about,
+  .section--projects,
+  .section--skills,
+  .section--contact {
+    padding: var(--spacing-md) var(--spacing-sm); /* Better mobile padding */
+  }
+}
+
+/* =========================================
+   TABLET OPTIMIZATIONS (768px - 1024px)
+   ========================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+
+  .about-content-wrapper {
+    max-width: 100%;
+    gap: 2.5rem !important;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr; /* Stack on tablet */
+    gap: 2rem !important;
+  }
+
+  .contact-left {
+    max-width: 100%;
+  }
+
+  .contact-form-wrapper {
+    max-width: 100%;
+  }
+
+  .skills-container {
+    flex-direction: column;
+  }
+
+  .experiences-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 

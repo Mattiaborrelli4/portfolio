@@ -1326,5 +1326,96 @@
     gap: 1rem;
     text-align: center;
   }
+
+  /* =========================================
+     CONTACT MOBILE FIX
+     ========================================= */
+  .contact-wrapper {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 2rem !important; /* Reasonable gap for mobile */
+  }
+
+  .contact-left {
+    max-width: 100%;
+  }
+
+  .contact-form-wrapper {
+    max-width: 100%; /* Full width on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form-wrapper {
+    padding: 1.2rem; /* Slightly less padding on very small screens */
+  }
+
+  .form-input,
+  .form-textarea {
+    font-size: 0.85rem; /* Smaller font for small screens */
+    padding: 0.6rem 0.9rem;
+  }
+}
+
+/* =========================================
+   SKILLS MOBILE FIX
+   ========================================= */
+@media (max-width: 768px) {
+  .skills-container {
+    flex-direction: column; /* Stack vertically */
+    gap: 1.5rem;
+  }
+
+  .skills-left,
+  .skills-right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ensure progress bars are visible */
+  .skill-progress-bar {
+    width: 100%;
+    min-width: 120px; /* Minimum width for visibility */
+  }
+
+  .skill-percentage {
+    font-size: 0.9rem;
+    min-width: 45px; /* Ensure percentage text is visible */
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-percentage {
+    font-size: 0.85rem;
+    min-width: 40px;
+  }
+
+  .skill-name {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================
+   ABOUT MOBILE FIX
+   ========================================= */
+@media (max-width: 480px) {
+  .bio-paragraph {
+    font-size: 0.95rem; /* Slightly smaller for readability */
+    line-height: 1.7; /* Better readability */
+    max-width: 100%; /* Prevent overflow */
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word;
+  }
+
+  .about-heading {
+    font-size: clamp(28px, 8vw, 36px) !important; /* Better mobile sizing */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .photo-caption {
+    font-size: 0.85rem;
+    text-align: center;
+  }
 }
 
