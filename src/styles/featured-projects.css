@@ -236,6 +236,116 @@
   margin: 0 auto;
 }
 
+/* Experience Card - Apple Style */
+.experience-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.32s var(--ease-apple);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.experience-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 255, 150, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 255, 150, 0.1);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.experience-type {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+  color: #000;
+}
+
+.experience-year {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+}
+
+.experience-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.experience-location {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.experience-description {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.experience-grade {
+  font-size: 0.75rem;
+  color: #00ff96;
+  font-weight: 600;
+  margin: 0;
+}
+
+.experience-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #00ff96;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s var(--ease-apple);
+}
+
+.experience-link:hover {
+  color: #00d4ff;
+  transform: translateX(3px);
+}
+
+.experience-link svg {
+  transition: transform 0.2s var(--ease-apple);
+}
+
+.experiences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  align-items: stretch;
+}
+
+.experience-card {
+  height: 100%;
+  min-height: 150px;
+}
+
+@media (min-width: 768px) {
+  .experiences-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* Project image wrapper needs overflow:hidden separately */
 .project-image-wrapper {
   overflow: hidden;
