@@ -20,7 +20,7 @@
 
 /* Skills section - aggiungi margine top per abbassare */
 .skills-section {
-  padding-top: 1rem !important;
+  padding-top: 8rem !important;
 }
 
 /* Skills bio paragraph - margine top ridotto */
@@ -1077,7 +1077,7 @@
 .contact-info {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.8rem;
 }
 
 .contact-heading {
