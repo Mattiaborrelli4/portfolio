@@ -1339,14 +1339,14 @@
     max-width: 100%;
   }
 
-  /* IMPORTANT: Form appears BEFORE social buttons on mobile */
+  /* IMPORTANT: Form appears AFTER social buttons on mobile */
   .contact-form-wrapper {
     max-width: 100%; /* Full width on mobile */
-    order: 1; /* Form appears first */
+    order: 2; /* Form appears AFTER social buttons */
   }
 
   .contact-socials {
-    order: 2; /* Social buttons appear after form */
+    order: 1; /* Social buttons appear FIRST */
   }
 }
 
