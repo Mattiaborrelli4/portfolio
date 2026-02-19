@@ -149,17 +149,17 @@ class Card3DEffect {
     const centerY = rect.height / 2;
 
     // Calculate rotation angles - Professional 3D effect
-    // Reduced sensitivity: /8 instead of /4 for more subtle effect
-    const rotateX = (y - centerY) / 8;
-    const rotateY = (centerX - x) / 8;
+    // Reduced sensitivity: /20 for very subtle effect
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
 
     // Apply 3D transform with slight lift effect
     card.style.transform = `
       perspective(1200px)
       rotateX(${rotateX}deg)
       rotateY(${rotateY}deg)
-      scale3d(1.01, 1.01, 1.01)
-      translateZ(20px)
+      scale3d(1.003, 1.003, 1.003)
+      translateZ(5px)
     `;
     
     // Add shadow based on rotation for depth
