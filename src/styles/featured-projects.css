@@ -250,9 +250,9 @@
 
 .experience-card:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(0, 255, 150, 0.3);
+  border-color: rgba(0, 136, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 255, 150, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 136, 255, 0.1);
 }
 
 .experience-header {
@@ -269,7 +269,7 @@
   letter-spacing: 0.08em;
   padding: 0.25rem 0.6rem;
   border-radius: 6px;
-  background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, #0088ff 0%, #00b4ff 100%);
   color: #000;
 }
 
@@ -302,7 +302,7 @@
 
 .experience-grade {
   font-size: 0.75rem;
-  color: #00ff96;
+  color: #0088ff;
   font-weight: 600;
   margin: 0;
 }
@@ -312,14 +312,14 @@
   align-items: center;
   gap: 0.4rem;
   font-size: 0.75rem;
-  color: #00ff96;
+  color: #0088ff;
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s var(--ease-apple);
 }
 
 .experience-link:hover {
-  color: #00d4ff;
+  color: #00b4ff;
   transform: translateX(3px);
 }
 
@@ -353,8 +353,8 @@
 
 .featured-project-card:hover {
   background-color: rgba(255, 255, 255, 0.06);
-  border-color: rgba(0, 255, 150, 0.3);
-  box-shadow: 0 8px 32px rgba(0, 255, 150, 0.12);
+  border-color: rgba(0, 136, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 136, 255, 0.12);
   will-change: transform, box-shadow, border-color;
 }
 
@@ -692,7 +692,7 @@
 }
 
 .project-category {
-  color: #00ff96;
+  color: #0088ff;
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -781,14 +781,14 @@
 }
 
 .project-btn--primary {
-  background: linear-gradient(135deg, #00ff96 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, #0088ff 0%, #00b4ff 100%);
   color: #000;
   border: none;
 }
 
 .project-btn--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 255, 150, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.3);
 }
 
 .project-btn--secondary {
@@ -798,9 +798,9 @@
 }
 
 .project-btn--secondary:hover {
-  border-color: #00ff96;
-  color: #00ff96;
-  background-color: rgba(0, 255, 150, 0.05);
+  border-color: #0088ff;
+  color: #0088ff;
+  background-color: rgba(0, 136, 255, 0.05);
 }
 
 /* Projects Stats */

@@ -126,25 +126,6 @@ function initPageLoadAnimations() {
  */
 function initScrollTriggerAnimations() {
   const ctx = gsap.context(() => {
-    // Section titles - fade + slide from left
-    gsap.utils.toArray('.section-title').forEach((title) => {
-      // Skip project section title to ensure visibility
-      if (title.closest('.projects-section')) return;
-
-      gsap.from(title, {
-        scrollTrigger: {
-          trigger: title,
-          start: 'top 75%',  // More aggressive trigger
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse',
-        },
-        opacity: 0,
-        x: -30,
-        duration: 0.6,
-        ease: 'power2.out'
-      });
-    });
-
     // Project cards - fade + slide up, ONE BY ONE
     gsap.utils.toArray('.project-card').forEach((card, i) => {
       gsap.from(card, {
@@ -364,28 +345,8 @@ function initScrollTriggerAnimations() {
       );
     }
 
-    // Experiment cards - ALL TOGETHER
-    const experimentCards = gsap.utils.toArray('.experiment-card');
-    if (experimentCards.length > 0) {
-      gsap.fromTo(experimentCards,
-        { opacity: 0, y: 60 },
-        {
-          scrollTrigger: {
-            trigger: experimentCards[0],
-            start: 'top 75%',  // Aggressive trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          stagger: 0,  // ALL together
-          ease: 'power2.out'
-        }
-      );
-    }
-
     // Contact heading
-    gsap.utils.toArray('.contact__heading').forEach((heading) => {
+    gsap.utils.toArray('.contact-heading').forEach((heading) => {
       gsap.fromTo(heading,
         { opacity: 0, y: 60 },
         {
@@ -403,7 +364,7 @@ function initScrollTriggerAnimations() {
     });
 
     // Contact description
-    gsap.utils.toArray('.contact__description').forEach((desc) => {
+    gsap.utils.toArray('.contact-description').forEach((desc) => {
       gsap.fromTo(desc,
         { opacity: 0, y: 50 },
         {
@@ -421,7 +382,7 @@ function initScrollTriggerAnimations() {
     });
 
     // Contact email link
-    gsap.utils.toArray('.contact__email-link').forEach((link) => {
+    gsap.utils.toArray('.contact-email').forEach((link) => {
       gsap.fromTo(link,
         { opacity: 0, y: 50 },
         {
@@ -437,26 +398,6 @@ function initScrollTriggerAnimations() {
         }
       );
     });
-
-    // Stat cards - ALL TOGETHER
-    const statCards = gsap.utils.toArray('.stat-card');
-    if (statCards.length > 0) {
-      gsap.fromTo(statCards,
-        { opacity: 0, y: 60 },
-        {
-          scrollTrigger: {
-            trigger: statCards[0],
-            start: 'top 75%',  // Aggressive trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          stagger: 0,  // ALL together
-          ease: 'power2.out'
-        }
-      );
-    }
 
     // Social links - ALL TOGETHER
     const socialLinks = gsap.utils.toArray('.social-link');
@@ -653,10 +594,10 @@ function init() {
     // Set initial states for elements that will animate on scroll
     // This prevents flash of visible content before animation
     const elementsToHide = [
-      '.section-title', '.about-heading', '.bio-paragraph', '.photo-placeholder',
+      '.about-heading', '.bio-paragraph', '.photo-placeholder',
       '.photo-caption', '.skills-header', '.category',
-      '.featured-project-card', '.experiment-card', '.contact__heading',
-      '.contact__description', '.contact__email-link', '.stat-card',
+      '.featured-project-card', '.contact-heading',
+      '.contact-description', '.contact-email',
       '.social-link', '.form-input', '.form-textarea'
     ];
 
