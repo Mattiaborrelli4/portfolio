@@ -123,154 +123,92 @@ function initPageLoadAnimations() {
 
 /**
  * Initialize scroll-triggered GSAP animations
+ * Optimized for smooth, professional transitions
  */
 function initScrollTriggerAnimations() {
   const ctx = gsap.context(() => {
-    // Project cards - fade + slide up, ONE BY ONE
-    gsap.utils.toArray('.project-card').forEach((card, i) => {
-      gsap.from(card, {
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',  // More aggressive trigger
-          end: 'bottom 15%',
-          toggleActions: 'play none none reverse',
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.5,
-        ease: 'power2.out'
-      });
-    });
+    // Custom easing for premium feel - inspired by Apple/Linear
+    const smoothEase = 'cubic-bezier(0.16, 1, 0.3, 1)'; // iOS-like smooth
+    const premiumEase = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'; // Ease-out-quint
 
-    // Stats counter animation
-    const statNumbers = document.querySelectorAll('.stat-number');
-    statNumbers.forEach((stat) => {
-      const targetValue = parseInt(stat.getAttribute('data-count'));
-
-      // Create a proxy object to animate the value
-      const counterObj = { value: 0 };
-
-      gsap.fromTo(counterObj,
-        { value: 0 },
+    // Project cards - TOGETHER, smooth fade-up
+    gsap.utils.toArray('.project-card').forEach((card) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 30 },
         {
           scrollTrigger: {
-            trigger: stat,
-            start: 'top 80%',  // More aggressive trigger
-            toggleActions: 'play none none reverse',
-          },
-          value: targetValue,
-          duration: 2,
-          ease: 'power2.out',
-          onUpdate: function() {
-            stat.textContent = Math.round(this.targets()[0].value);
-          }
-        }
-      );
-
-      // Separate animation for fade and position
-      gsap.fromTo(stat,
-        { opacity: 0, y: 20 },
-        {
-          scrollTrigger: {
-            trigger: stat,
-            start: 'top 80%',  // More aggressive trigger
+            trigger: card,
+            start: 'top 85%',  // Earlier trigger for smoother experience
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          ease: 'power2.out'
+          duration: 0.7,
+          ease: smoothEase
         }
       );
     });
 
-    // About section - APPLE-STYLE PRECISE SCROLL TRIGGER
-    // Elements hidden initially, animate when entering viewport
+    // About section - OPTIMIZED, fluid entrance
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
-      // Set initial hidden state
-      gsap.set(['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'], {
-        opacity: 0
-      });
+      // All elements animate together for smoother feel
+      const aboutElements = ['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'];
 
-      const aboutTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: aboutSection,
-          start: 'top 65%',  // Trigger when section is more visible
-          end: 'bottom 80%',
-          toggleActions: 'play none none reverse',
-        }
-      });
-
-      // Photo: main element entrance
-      aboutTl.fromTo('.photo-placeholder',
-        { opacity: 0, y: 60, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power4.out' },
-        0
-      );
-
-      // Heading: synchronized with photo
-      aboutTl.fromTo('.about-heading',
-        { opacity: 0, y: 45 },
-        { opacity: 1, y: 0, duration: 1.1, ease: 'power4.out' },
-        0  // Perfectly synchronized
-      );
-
-      // Caption: follows immediately
-      aboutTl.fromTo('.photo-caption',
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' },
-        0.3  // Small delay after main elements
-      );
-
-      // Bio paragraphs: elegant cascade
-      const bioParagraphs = gsap.utils.toArray('.bio-paragraph');
-      if (bioParagraphs.length > 0) {
-        aboutTl.fromTo(bioParagraphs,
-          { opacity: 0, y: 35 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
-          0.35  // Overlaps slightly with caption
-        );
-      }
-
-    }
-
-    // Skills section - UNIFIED TIMELINE
-    const skillsSection = document.querySelector('.skills-section');
-    if (skillsSection) {
-      const skillsTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: skillsSection,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse'
-        }
-      });
-
-      // Skills section header appears
-      skillsTl.fromTo('.skills-header',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
-        0
-      );
-
-      // Category cards - cascade
-      const categoryCards = gsap.utils.toArray('.category');
-      if (categoryCards.length > 0) {
-        skillsTl.fromTo(categoryCards,
-          { opacity: 0, y: 20 },
+      aboutElements.forEach((selector) => {
+        gsap.fromTo(selector,
+          { opacity: 0, y: 25 },
           {
+            scrollTrigger: {
+              trigger: aboutSection,
+              start: 'top 75%',  // Earlier trigger
+              toggleActions: 'play none none reverse',
+            },
             opacity: 1,
             y: 0,
-            duration: 0.5,
-            stagger: 0.05,
-            ease: 'power2.out'
-          },
-          0.4
+            duration: 0.8,
+            ease: smoothEase,
+            stagger: 0.08  // Subtle cascade
+          }
         );
-      }
+      });
+    }
 
-      // Initially load languages category skills into left column
-      loadSkillsForCategory('languages');
+    // Skills section - smooth, coordinated
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      // Skills header
+      gsap.fromTo('.skills-header',
+        { opacity: 0, y: 20 },
+        {
+          scrollTrigger: {
+            trigger: skillsSection,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: smoothEase
+        }
+      );
+
+      // Category cards - together
+      gsap.fromTo('.category',
+        { opacity: 0, y: 15 },
+        {
+          scrollTrigger: {
+            trigger: skillsSection,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.04,
+          ease: smoothEase
+        }
+      );
     }
 
     // Function to load skills for a category into the left column
@@ -325,85 +263,70 @@ function initScrollTriggerAnimations() {
       });
     });
 
-    // Featured project cards - ALL TOGETHER
+    // Featured project cards - smooth, staggered
     const featuredProjectCards = gsap.utils.toArray('.featured-project-card');
     if (featuredProjectCards.length > 0) {
       gsap.fromTo(featuredProjectCards,
-        { opacity: 0, y: 70 },
+        { opacity: 0, y: 30 },
         {
           scrollTrigger: {
             trigger: featuredProjectCards[0],
-            start: 'top 78%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          stagger: 0.03,  // Subtle stagger
-          ease: 'power2.out'
-        }
-      );
-    }
-
-    // Contact heading
-    gsap.utils.toArray('.contact-heading').forEach((heading) => {
-      gsap.fromTo(heading,
-        { opacity: 0, y: 60 },
-        {
-          scrollTrigger: {
-            trigger: heading,
-            start: 'top 78%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: 'power2.out'
-        }
-      );
-    });
-
-    // Contact description
-    gsap.utils.toArray('.contact-description').forEach((desc) => {
-      gsap.fromTo(desc,
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: {
-            trigger: desc,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.85,
-          ease: 'power2.out'
-        }
-      );
-    });
-
-    // Contact email link
-    gsap.utils.toArray('.contact-email').forEach((link) => {
-      gsap.fromTo(link,
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: {
-            trigger: link,
             start: 'top 85%',
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          ease: 'power2.out'
+          duration: 0.75,
+          stagger: 0.06,
+          ease: smoothEase
         }
       );
-    });
+    }
 
-    // Social links - ALL TOGETHER
-    const socialLinks = gsap.utils.toArray('.social-link');
-    if (socialLinks.length > 0) {
-      gsap.fromTo(socialLinks,
-        { opacity: 0, y: 45 },
+    // Experience cards - smooth entrance
+    const experienceCards = gsap.utils.toArray('.experience-card');
+    if (experienceCards.length > 0) {
+      gsap.fromTo(experienceCards,
+        { opacity: 0, y: 25 },
+        {
+          scrollTrigger: {
+            trigger: experienceCards[0],
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.05,
+          ease: smoothEase
+        }
+      );
+    }
+
+    // Contact section - unified, smooth
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+      // All contact elements together
+      const contactElements = ['.contact-heading', '.contact-description', '.contact-email', '.social-link', '.form-input', '.form-textarea', '.form-submit'];
+
+      contactElements.forEach((selector) => {
+        gsap.fromTo(selector,
+          { opacity: 0, y: 20 },
+          {
+            scrollTrigger: {
+              trigger: contactSection,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: smoothEase,
+            stagger: 0.06
+          }
+        );
+      });
+    }
         {
           scrollTrigger: {
             trigger: socialLinks[0],
