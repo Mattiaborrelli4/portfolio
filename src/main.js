@@ -327,40 +327,6 @@ function initScrollTriggerAnimations() {
         );
       });
     }
-        {
-          scrollTrigger: {
-            trigger: socialLinks[0],
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          stagger: 0,  // ALL together
-          ease: 'power2.out'
-        }
-      );
-    }
-
-    // Form inputs - ALL TOGETHER
-    const formInputs = gsap.utils.toArray('.form-input, .form-textarea');
-    if (formInputs.length > 0) {
-      gsap.fromTo(formInputs,
-        { opacity: 0, y: 50 },
-        {
-          scrollTrigger: {
-            trigger: formInputs[0],
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0,  // ALL together
-          ease: 'power2.out'
-        }
-      );
-    }
 
     // Scroll progress indicator for projects
     const scrollProgress = document.querySelector('.scroll-progress-projects');
@@ -378,6 +344,7 @@ function initScrollTriggerAnimations() {
       });
     }
 
+    // Hover interactions
     document.querySelectorAll('.link').forEach(link => {
       link.addEventListener('mouseenter', () => {
         gsap.to(link, {
