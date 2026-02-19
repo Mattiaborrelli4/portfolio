@@ -243,6 +243,23 @@ function initScrollTriggerAnimations() {
       });
     });
 
+    // Initialize with "Programming Languages" category on page load
+    const languagesCard = document.querySelector('.category[data-category="languages"]');
+    if (languagesCard) {
+      // Set active class on languages card
+      languagesCard.classList.add('active');
+
+      // Load programming languages skills
+      loadSkillsForCategory('languages');
+
+      // Trigger progress animation
+      setTimeout(() => {
+        if (window.skillProgressAnimation) {
+          window.skillProgressAnimation.onCategoryChange();
+        }
+      }, 100);
+    }
+
     // Featured project cards - ALL TOGETHER, NO stagger
     const featuredProjectCards = gsap.utils.toArray('.featured-project-card');
     if (featuredProjectCards.length > 0) {
