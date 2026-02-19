@@ -123,7 +123,7 @@ function initPageLoadAnimations() {
 
 /**
  * Initialize scroll-triggered GSAP animations
- * Optimized for smooth, professional transitions
+ * Optimized for smooth, professional transitions with NO delays
  */
 function initScrollTriggerAnimations() {
   const ctx = gsap.context(() => {
@@ -131,82 +131,62 @@ function initScrollTriggerAnimations() {
     const smoothEase = 'cubic-bezier(0.16, 1, 0.3, 1)'; // iOS-like smooth
     const premiumEase = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'; // Ease-out-quint
 
-    // Project cards - TOGETHER, smooth fade-up
+    // Project cards - TOGETHER, smooth fade-up, EARLY trigger
     gsap.utils.toArray('.project-card').forEach((card) => {
       gsap.fromTo(card,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 25 },
         {
           scrollTrigger: {
             trigger: card,
-            start: 'top 85%',  // Earlier trigger for smoother experience
+            start: 'top 92%',  // VERY EARLY trigger - NO delay
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.8,
           ease: smoothEase
         }
       );
     });
 
-    // About section - OPTIMIZED, fluid entrance
+    // About section - OPTIMIZED, NO delay, all together
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
-      // All elements animate together for smoother feel
-      const aboutElements = ['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'];
-
-      aboutElements.forEach((selector) => {
-        gsap.fromTo(selector,
-          { opacity: 0, y: 25 },
-          {
-            scrollTrigger: {
-              trigger: aboutSection,
-              start: 'top 75%',  // Earlier trigger
-              toggleActions: 'play none none reverse',
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: smoothEase,
-            stagger: 0.08  // Subtle cascade
-          }
-        );
-      });
-    }
-
-    // Skills section - smooth, coordinated
-    const skillsSection = document.querySelector('.skills-section');
-    if (skillsSection) {
-      // Skills header
-      gsap.fromTo('.skills-header',
+      // All elements animate TOGETHER for instant feel
+      gsap.fromTo(['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'],
         { opacity: 0, y: 20 },
         {
           scrollTrigger: {
-            trigger: skillsSection,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
+            trigger: aboutSection,
+            start: 'top 88%',  // EARLY trigger
+            toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.8,
           ease: smoothEase
+          // NO stagger - all together
         }
       );
+    }
 
-      // Category cards - together
-      gsap.fromTo('.category',
+    // Skills section - NO delay, together
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      // Skills header + category cards ALL TOGETHER
+      gsap.fromTo(['.skills-header', '.category'],
         { opacity: 0, y: 15 },
         {
           scrollTrigger: {
             trigger: skillsSection,
-            start: 'top 80%',
+            start: 'top 90%',  // EARLY trigger
             toggleActions: 'play none none reverse'
           },
           opacity: 1,
           y: 0,
-          duration: 0.6,
-          stagger: 0.04,
+          duration: 0.75,
           ease: smoothEase
+          // NO stagger
         }
       );
     }
@@ -263,72 +243,83 @@ function initScrollTriggerAnimations() {
       });
     });
 
-    // Featured project cards - smooth, staggered
+    // Featured project cards - ALL TOGETHER, NO stagger
     const featuredProjectCards = gsap.utils.toArray('.featured-project-card');
     if (featuredProjectCards.length > 0) {
       gsap.fromTo(featuredProjectCards,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 20 },
         {
           scrollTrigger: {
             trigger: featuredProjectCards[0],
-            start: 'top 85%',
+            start: 'top 90%',  // EARLY trigger
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: smoothEase
+          // NO stagger - all cards appear together
+        }
+      );
+    }
+
+    // Experience cards - ALL TOGETHER
+    const experienceCards = gsap.utils.toArray('.experience-card');
+    if (experienceCards.length > 0) {
+      gsap.fromTo(experienceCards,
+        { opacity: 0, y: 18 },
+        {
+          scrollTrigger: {
+            trigger: experienceCards[0],
+            start: 'top 90%',  // EARLY trigger
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
           duration: 0.75,
-          stagger: 0.06,
           ease: smoothEase
+          // NO stagger
         }
       );
     }
 
-    // Experience cards - smooth entrance
-    const experienceCards = gsap.utils.toArray('.experience-card');
-    if (experienceCards.length > 0) {
-      gsap.fromTo(experienceCards,
-        { opacity: 0, y: 25 },
+    // Contact section - ENTIRE FORM as ONE unified block
+    const contactSection = document.querySelector('.contact-section');
+    if (contactSection) {
+      // Left side (heading, description, email, social)
+      gsap.fromTo(['.contact-heading', '.contact-description', '.contact-email', '.social-link'],
+        { opacity: 0, x: -15 },
         {
           scrollTrigger: {
-            trigger: experienceCards[0],
-            start: 'top 85%',
+            trigger: contactSection,
+            start: 'top 88%',  // EARLY trigger
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.05,
+          x: 0,
+          duration: 0.75,
+          ease: smoothEase
+        }
+      );
+
+      // Right side (ENTIRE form wrapper as ONE block)
+      gsap.fromTo('.contact-form-wrapper',
+        { opacity: 0, x: 15 },
+        {
+          scrollTrigger: {
+            trigger: contactSection,
+            start: 'top 88%',  // EARLY trigger
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.75,
           ease: smoothEase
         }
       );
     }
 
-    // Contact section - unified, smooth
-    const contactSection = document.querySelector('.contact-section');
-    if (contactSection) {
-      // All contact elements together
-      const contactElements = ['.contact-heading', '.contact-description', '.contact-email', '.social-link', '.form-input', '.form-textarea', '.form-submit'];
-
-      contactElements.forEach((selector) => {
-        gsap.fromTo(selector,
-          { opacity: 0, y: 20 },
-          {
-            scrollTrigger: {
-              trigger: contactSection,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: smoothEase,
-            stagger: 0.06
-          }
-        );
-      });
-    }
-
-    // Stats counter animation - Two phases: central first, then sides
+    // Stats counter animation - Two phases: central first, then sides - NO delay
     const statNumbers = document.querySelectorAll('.stat-number');
     statNumbers.forEach((stat) => {
       const targetValue = parseInt(stat.getAttribute('data-count'));
@@ -341,11 +332,11 @@ function initScrollTriggerAnimations() {
         {
           scrollTrigger: {
             trigger: stat,
-            start: 'top 85%',
+            start: 'top 92%',  // EARLY trigger
             toggleActions: 'play none none reverse',
           },
           value: targetValue,
-          duration: 2,
+          duration: 1.8,
           ease: smoothEase,
           onUpdate: function() {
             stat.textContent = Math.round(this.targets()[0].value);
@@ -354,39 +345,39 @@ function initScrollTriggerAnimations() {
       );
     });
 
-    // Phase 1: Central stat (Featured Projects) appears first
+    // Phase 1: Central stat (Featured Projects) appears first - QUICK
     const statItems = document.querySelectorAll('.stat-item');
     if (statItems.length >= 3) {
       // Central stat (index 1)
       gsap.fromTo(statItems[1],
-        { opacity: 0, scale: 0.8 },
+        { opacity: 0, scale: 0.9 },
         {
           scrollTrigger: {
             trigger: '.projects-stats',
-            start: 'top 80%',
+            start: 'top 90%',  // EARLY trigger
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           scale: 1,
-          duration: 0.6,
+          duration: 0.5,
           ease: smoothEase
         }
       );
 
-      // Phase 2: Side stats (index 0 and 2) appear after
+      // Phase 2: Side stats (index 0 and 2) appear after - QUICK
       gsap.fromTo([statItems[0], statItems[2]],
-        { opacity: 0, scale: 0.8 },
+        { opacity: 0, scale: 0.9 },
         {
           scrollTrigger: {
             trigger: '.projects-stats',
-            start: 'top 80%',
+            start: 'top 90%',  // EARLY trigger
             toggleActions: 'play none none reverse',
           },
           opacity: 1,
           scale: 1,
-          duration: 0.6,
-          delay: 0.3,  // Appears after central stat
-          stagger: 0.1,  // Slight stagger between sides
+          duration: 0.5,
+          delay: 0.15,  // Reduced from 0.3s
+          stagger: 0.05,  // Reduced stagger
           ease: smoothEase
         }
       );
