@@ -1113,6 +1113,8 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 0.75rem;
+  width: 100%;
+  max-width: 450px;
 }
 
 .social-link {
@@ -1347,14 +1349,22 @@
 
   .contact-socials {
     order: 1; /* Social buttons appear FIRST */
-    flex-wrap: wrap; /* Allow wrapping on very small screens */
-    justify-content: flex-start;
+    flex-wrap: nowrap; /* Keep buttons on same row */
+    width: 100%;
+    max-width: 100%;
+    gap: 0.5rem; /* Smaller gap on mobile */
   }
 
   .social-link {
-    min-width: auto; /* Remove fixed min-width on mobile */
-    padding: 0.6rem 0.9rem; /* Slightly smaller padding */
-    font-size: 0.9rem; /* Slightly smaller font */
+    flex: 1; /* Each button takes equal space */
+    min-width: 0; /* Allow buttons to shrink */
+    padding: 0.6rem 0.5rem; /* Smaller padding */
+    font-size: 0.8rem; /* Smaller font */
+  }
+
+  .social-link svg {
+    width: 18px;
+    height: 18px;
   }
 }
 
