@@ -303,8 +303,8 @@ function initScrollTriggerAnimations() {
     // Contact section - ENTIRE FORM as ONE unified block
     const contactSection = document.querySelector('.contact-section');
     if (contactSection) {
-      // Left side (heading, description, email, social) - NOT form inputs
-      gsap.fromTo(['.contact-heading', '.contact-description', '.contact-email', '.social-link'],
+      // Left side (heading, description, email) - NOT form inputs or social buttons
+      gsap.fromTo(['.contact-heading', '.contact-description', '.contact-email'],
         { opacity: 0, x: -15 },
         {
           scrollTrigger: {
@@ -314,6 +314,21 @@ function initScrollTriggerAnimations() {
           },
           opacity: 1,
           x: 0,
+          duration: 0.75,
+          ease: smoothEase
+        }
+      );
+
+      // Social buttons - NO horizontal movement, only fade
+      gsap.fromTo('.social-link',
+        { opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: contactSection,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
           duration: 0.75,
           ease: smoothEase
         }
