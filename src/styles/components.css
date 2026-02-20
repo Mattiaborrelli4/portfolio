@@ -1347,6 +1347,14 @@
 
   .contact-socials {
     order: 1; /* Social buttons appear FIRST */
+    flex-wrap: wrap; /* Allow wrapping on very small screens */
+    justify-content: flex-start;
+  }
+
+  .social-link {
+    min-width: auto; /* Remove fixed min-width on mobile */
+    padding: 0.6rem 0.9rem; /* Slightly smaller padding */
+    font-size: 0.9rem; /* Slightly smaller font */
   }
 }
 
