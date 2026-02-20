@@ -1117,19 +1117,13 @@
   max-width: 450px;
 }
 
-.social-button-wrapper {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-}
-
 .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-width: 130px;
+  flex: 1; /* Each button takes equal space */
+  min-width: 0; /* Allow shrinking */
   padding: 0.7rem 1rem;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -1362,13 +1356,9 @@
     gap: 0.5rem; /* Smaller gap on mobile */
   }
 
-  .social-button-wrapper {
-    flex: 1; /* Each wrapper takes equal space */
-    min-width: 0; /* Allow shrinking */
-  }
-
   .social-link {
-    width: 100%; /* Fill the wrapper */
+    flex: 1; /* Each button takes equal space */
+    min-width: 0; /* Allow shrinking */
     padding: 0.6rem 0.5rem; /* Smaller padding */
     font-size: 0.8rem; /* Smaller font */
   }
