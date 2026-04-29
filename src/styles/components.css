@@ -1,3 +1,23 @@
+/* ============================================
+   PROFESSIONAL TIMING SYSTEM
+   Standardized durations and easing curves
+   ============================================ */
+
+:root {
+  /* Duration Scale - From micro-interactions to complex sequences */
+  --duration-instant: 150ms;   /* Button clicks, toggle switches */
+  --duration-fast: 250ms;      /* Card hover, link hover */
+  --duration-base: 350ms;      /* Standard UI transitions */
+  --duration-slow: 500ms;      /* Section reveals, modals */
+  --duration-slower: 800ms;    /* Complex sequences, hero entrance */
+
+  /* Easing Curves - Professional feel */
+  --ease-snappy: cubic-bezier(0.25, 0.1, 0.25, 1);      /* Interactive elements */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);          /* Natural motion */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);        /* Scroll reveals */
+  --ease-apple: cubic-bezier(0.4, 0, 0.6, 1);           /* Apple-style */
+}
+
 /* Category Buttons - Dark mode professionale */
 
 /* Section Title - Dark mode */
@@ -33,7 +53,10 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
-  transition: all 0.32s var(--ease-apple);
+  transition: transform var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth),
+              border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
   width: 100%;
   min-height: 52px;
   display: flex;
@@ -58,7 +81,8 @@
   background: linear-gradient(to bottom, #0088ff, #00b4ff);
   opacity: 0.7;
   border-radius: 14px 0 0 14px;
-  transition: all 0.32s ease;
+  transition: opacity var(--duration-fast) var(--ease-smooth),
+              width var(--duration-fast) var(--ease-smooth);
 }
 
 .category:hover::before {
@@ -220,9 +244,10 @@
   border: 2px solid var(--color-text);
   border-radius: 8px;
   cursor: pointer;
-  transition:
-    all 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.15s ease;
+  transition: background-color var(--duration-fast) var(--ease-smooth),
+              color var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-instant) var(--ease-snappy),
+              box-shadow var(--duration-fast) var(--ease-smooth);
   /* Center button with less space above (higher position) */
   margin: 1.5rem auto var(--spacing-md) auto;
   letter-spacing: 0.01em;
@@ -254,7 +279,7 @@
 .hero-cta .cta-arrow {
   width: 18px;
   height: 18px;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-fast) var(--ease-smooth);
   flex-shrink: 0;
 }
 
@@ -312,45 +337,11 @@
 }
 
 /* ============================================
-   HERO ANIMATIONS - CSS-Only Elegance
+   HERO ANIMATIONS - GSAP ONLY (No CSS conflicts)
    ============================================ */
 
-/* Staggered fade-in up animation for hero content */
-@keyframes heroFadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Apply animation with staggered delays */
-.hero-name {
-  animation: heroFadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  opacity: 0;
-  animation-delay: 0.1s;
-}
-
-.hero-subtitle-wrapper {
-  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  opacity: 0;
-  animation-delay: 0.4s;
-}
-
-.hero-description {
-  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  opacity: 0;
-  animation-delay: 0.6s;
-}
-
-.hero-cta {
-  animation: heroFadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  opacity: 0;
-  animation-delay: 0.8s;
-}
+/* NOTE: Hero animations now handled by GSAP in main.js
+   CSS keyframes removed to prevent conflicts */
 
 /* Subtle pulse for the glow effect */
 @keyframes subtlePulse {
@@ -511,39 +502,64 @@
   position: relative;
 }
 
-/* Photo placeholder - Dark theme */
+/* Photo placeholder - Dark theme with DYNAMIC SHADOW effect */
 .photo-placeholder {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%); /* Dark gradient */
+  aspect-ratio: 1 / 0.7 !important; /* MUCH SHORTER - forced with !important */
+  background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
   border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible; /* Allow glow to extend outside */
   position: relative;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Dark shadow profonda */
-  transition: all 0.32s var(--ease-apple);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: transform var(--duration-base) var(--ease-premium),
+              border-color var(--duration-base) var(--ease-premium);
   transform-style: preserve-3d;
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Sottile bordo light */
+  border: 2px solid rgba(0, 136, 255, 0.3);
 }
 
-/* Hover - Glow effect */
+/* MASSIVE Dynamic blue glow BEHIND photo - always visible */
+.photo-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: -35px; /* EXTREME extension for huge glow */
+  background: radial-gradient(
+    circle 400px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 136, 255, 1) 0%,
+    rgba(0, 136, 255, 0.75) 15%,
+    rgba(0, 180, 255, 0.5) 35%,
+    transparent 55%
+  );
+  border-radius: 59px;
+  pointer-events: none;
+  filter: blur(50px);
+  transition: all 0.06s ease-out;
+  z-index: -1;
+}
+
+/* Hover - Even stronger effect */
 .photo-placeholder:hover {
-  box-shadow: 0 12px 48px rgba(0, 122, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5);
   transform: translateY(-4px);
-  border-color: rgba(0, 122, 255, 0.3); /* Blue glow bordo */
+  border-color: rgba(0, 136, 255, 0.5);
+}
+
+.photo-placeholder:hover::before {
+  filter: blur(60px);
+  inset: -45px;
 }
 
 /* Profile image */
 .profile-image {
   width: 100%;
-  height: 100%;
+  height: auto !important; /* Auto height instead of 100% */
+  max-height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center top; /* Original - correct crop for your photo */
   display: block;
   border-radius: 24px;
-  transition: transform 0.32s var(--ease-apple);
+  transition: transform var(--duration-base) var(--ease-apple);
 }
 
 .photo-placeholder:hover .profile-image {
@@ -1100,7 +1116,8 @@
   font-weight: 500;
   color: #0088ff;
   text-decoration: none;
-  transition: all 0.3s var(--ease-apple);
+  transition: color var(--duration-fast) var(--ease-apple),
+              transform var(--duration-fast) var(--ease-apple);
   display: inline-block;
 }
 
@@ -1115,6 +1132,7 @@
   gap: 0.75rem;
   width: 100%;
   max-width: 450px;
+  padding: 0.5rem 0; /* Add padding for transform space */
 }
 
 .social-link {
@@ -1132,15 +1150,45 @@
   text-decoration: none;
   font-size: 0.8rem;
   font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-base) var(--ease-premium),
+              background-color var(--duration-base) var(--ease-premium),
+              border-color var(--duration-base) var(--ease-premium),
+              color var(--duration-base) var(--ease-premium),
+              box-shadow var(--duration-base) var(--ease-premium),
+              flex var(--duration-base) var(--ease-premium),
+              opacity var(--duration-base) var(--ease-premium);
+  transform-origin: center; /* Scale from center */
 }
 
 .social-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(0, 136, 255, 0.4);
+  background: rgba(0, 136, 255, 0.15); /* Blue tint on hover */
+  border-color: rgba(0, 136, 255, 0.5); /* Blue border */
   color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 136, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 136, 255, 0.3); /* Blue glow */
+}
+
+/* Expanded state - when hovered */
+.social-link.expanded {
+  transform: scale(1.12); /* Slightly larger */
+  flex: 1.3; /* Take more space */
+  z-index: 2;
+}
+
+/* Contracted state - when another is hovered */
+.social-link.contracted {
+  transform: scale(0.88); /* Slightly smaller */
+  flex: 0.85; /* Take less space */
+  opacity: 0.7;
+}
+
+/* Move left - for left button when center is hovered */
+.social-link.move-left {
+  transform: scale(0.88) translateX(-8px);
+}
+
+/* Move right - for right button when center is hovered */
+.social-link.move-right {
+  transform: scale(0.88) translateX(8px);
 }
 
 .social-link svg {
@@ -1225,7 +1273,10 @@
   color: #ffffff;
   font-size: 0.9rem;
   font-family: var(--font-body);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              background-color var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
 }
 
 .form-input:focus,
@@ -1263,7 +1314,8 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
   margin-top: 0.5rem;
   letter-spacing: 0.03em;
   box-shadow: 0 2px 8px rgba(0, 136, 255, 0.2);
@@ -1309,7 +1361,7 @@
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
-  transition: color 0.2s var(--ease-apple);
+  transition: color var(--duration-instant) var(--ease-apple);
 }
 
 .footer-link:hover {

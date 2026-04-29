@@ -53,17 +53,18 @@ let audioSequencer = null;
  * Initialize Lenis smooth scroll
  */
 function initSmoothScroll() {
-  // Initialize Lenis with new API
+  // Initialize Lenis with professional snappy configuration
   const lenis = new Lenis({
-    duration: 1.2,
+    duration: 1.2,           // Snappier feel (reduced from 1.8)
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: 'vertical',
     gestureDirection: 'vertical',
     smooth: true,
-    mouseMultiplier: 1,
+    mouseMultiplier: 0.8,    // More responsive (increased from 0.6)
     smoothTouch: false,
     touchMultiplier: 2,
     infinite: false,
+    lerp: 0.15,             // Balanced snappiness (increased from 0.1)
   });
 
   // Sync Lenis with GSAP ScrollTrigger
@@ -81,41 +82,64 @@ function initSmoothScroll() {
 }
 
 /**
- * Initialize page load animations
+ * Initialize page load animations - Unified Hero Timeline
  */
 function initPageLoadAnimations() {
   const ctx = gsap.context(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const tl = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      delay: 0.2  // Slight delay for page load
+    });
 
-    // Hero name: fade-in + slide-up
-    tl.fromTo('.hero-name',
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power4.out' },
+    // 1. Photo placeholder with glow - appears FIRST
+    tl.fromTo('.photo-placeholder',
+      { scale: 0.9, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.8, ease: 'power3.out' },
       0
     );
 
-    // Hero subtitle wrapper: fade-in
-    tl.fromTo('.hero-subtitle-wrapper',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8 },
-      '-=0.6'
-    );
-
-    // Hero description: fade-in
-    tl.fromTo('.hero-description',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.7 },
+    // 2. Hero name - reveal from slide up
+    tl.fromTo('.hero-name',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
       '-=0.5'
     );
 
-    // Hero CTA: fade-in + scale
-    tl.fromTo('.hero-cta',
-      { opacity: 0, y: 20, scale: 0.9 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.7)' },
+    // 3. Hero subtitle wrapper - cascade
+    tl.fromTo('.hero-subtitle-wrapper',
+      { opacity: 0, y: 25 },
+      { opacity: 1, y: 0, duration: 0.5 },
       '-=0.4'
     );
 
-    console.log(' Hero animations timeline created and playing');
+    // 4. Hero description - smooth cascade
+    tl.fromTo('.hero-description',
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.5 },
+      '-=0.3'
+    );
+
+    // 5. Hero CTA - subtle bounce
+    tl.fromTo('.hero-cta',
+      { opacity: 0, y: 15, scale: 0.95 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(1.7)' },
+      '-=0.3'
+    );
+
+    // 6. Social links stagger - AFTER CTA
+    tl.fromTo('.social-link',
+      { opacity: 0, x: -15 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.35,
+        ease: 'power2.out',
+        stagger: 0.06  // Quick cascade
+      },
+      '-=0.2'
+    );
+
+    console.log(' Unified hero timeline created and playing');
   });
 
   return ctx;
@@ -131,64 +155,243 @@ function initScrollTriggerAnimations() {
     const smoothEase = 'cubic-bezier(0.16, 1, 0.3, 1)'; // iOS-like smooth
     const premiumEase = 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'; // Ease-out-quint
 
-    // Project cards - TOGETHER, smooth fade-up, EARLY trigger
-    gsap.utils.toArray('.project-card').forEach((card) => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 25 },
-        {
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 92%',  // VERY EARLY trigger - NO delay
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: smoothEase
-        }
-      );
-    });
+    // Project cards - DRAMATIC staggered entrance
+    const projectCards = gsap.utils.toArray('.project-card');
+    if (projectCards.length > 0) {
+      gsap.set(projectCards, {
+        opacity: 0,
+        y: 100,  // Much more dramatic
+        scale: 0.9,
+        force3D: true
+      });
 
-    // About section - OPTIMIZED, NO delay, all together
-    const aboutSection = document.querySelector('.about-section');
-    if (aboutSection) {
-      // All elements animate TOGETHER for instant feel
-      gsap.fromTo(['.photo-placeholder', '.about-heading', '.photo-caption', '.bio-paragraph'],
-        { opacity: 0, y: 20 },
-        {
-          scrollTrigger: {
-            trigger: aboutSection,
-            start: 'top 88%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: smoothEase
-          // NO stagger - all together
-        }
-      );
+      gsap.to(projectCards, {
+        scrollTrigger: {
+          trigger: projectCards[0],
+          start: 'top 85%',  // Earlier trigger for more visibility
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,  // Longer
+        ease: 'power3.out',
+        stagger: 0.15,  // More pronounced
+        force3D: true
+      });
     }
 
-    // Skills section - NO delay, together
-    const skillsSection = document.querySelector('.skills-section');
-    if (skillsSection) {
-      // Skills header + category cards ALL TOGETHER
-      gsap.fromTo(['.skills-header', '.category'],
-        { opacity: 0, y: 15 },
-        {
+    // About section - EACH ELEMENT with SEPARATE ScrollTrigger
+    const aboutSection = document.querySelector('.about-section');
+    if (aboutSection) {
+      console.log('About section found, setting up SEPARATE triggers...');
+
+      // Set initial states
+      gsap.set('.photo-placeholder', {
+        opacity: 0,
+        y: 120,
+        scale: 0.85,
+        rotationX: 5,
+        force3D: true
+      });
+
+      gsap.set('.about-heading', {
+        opacity: 0,
+        y: 100,
+        scale: 0.95,
+        force3D: true
+      });
+
+      const bioParagraphs = document.querySelectorAll('.bio-paragraph');
+      if (bioParagraphs.length >= 3) {
+        gsap.set(bioParagraphs[0], { opacity: 0, y: 90, scale: 0.96, force3D: true });
+        gsap.set(bioParagraphs[1], { opacity: 0, y: 90, scale: 0.96, force3D: true });
+        gsap.set(bioParagraphs[2], { opacity: 0, y: 90, scale: 0.96, force3D: true });
+      }
+
+      gsap.set('.photo-caption', { opacity: 0, y: 60, force3D: true });
+
+      // Photo - SEPARATE trigger
+      gsap.to('.photo-placeholder', {
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotationX: 0,
+        duration: 1.0,
+        ease: 'power3.out',
+        force3D: true
+      });
+
+      // Heading - starts 0.3s AFTER scroll trigger
+      gsap.to('.about-heading', {
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.9,
+        delay: 0.3,  // This delay IS from scroll trigger!
+        ease: 'power3.out',
+        force3D: true
+      });
+
+      // Paragraph 1 - starts 0.6s AFTER scroll trigger
+      if (bioParagraphs.length >= 3) {
+        gsap.to(bioParagraphs[0], {
           scrollTrigger: {
-            trigger: skillsSection,
-            start: 'top 90%',  // EARLY trigger
-            toggleActions: 'play none none reverse'
+            trigger: aboutSection,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
           },
           opacity: 1,
           y: 0,
-          duration: 0.75,
-          ease: smoothEase
-          // NO stagger
+          scale: 1,
+          duration: 0.8,
+          delay: 0.6,
+          ease: 'power2.out',
+          force3D: true
+        });
+
+        // Paragraph 2 - starts 1.1s AFTER scroll trigger
+        gsap.to(bioParagraphs[1], {
+          scrollTrigger: {
+            trigger: aboutSection,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          delay: 1.1,
+          ease: 'power2.out',
+          force3D: true
+        });
+
+        // Paragraph 3 - starts 1.6s AFTER scroll trigger
+        gsap.to(bioParagraphs[2], {
+          scrollTrigger: {
+            trigger: aboutSection,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+          },
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          delay: 1.6,
+          ease: 'power2.out',
+          force3D: true
+        });
+      }
+
+      // Caption - starts 2.1s AFTER scroll trigger
+      gsap.to('.photo-caption', {
+        scrollTrigger: {
+          trigger: aboutSection,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: 2.1,
+        ease: 'power2.out',
+        force3D: true
+      });
+    }
+
+    // Skills section - DRAMATIC cascade
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      // Set initial hidden states
+      gsap.set('.skills-header', {
+        opacity: 0,
+        y: 80,
+        scale: 0.95,
+        force3D: true
+      });
+
+      gsap.set('.category', {
+        opacity: 0,
+        y: 60,
+        scale: 0.92,
+        force3D: true
+      });
+
+      gsap.set('.skill-note', {
+        opacity: 0,
+        y: 70,
+        scale: 0.9,
+        force3D: true
+      });
+
+      // Header appears first with DRAMA
+      gsap.to('.skills-header', {
+        scrollTrigger: {
+          trigger: skillsSection,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        force3D: true
+      });
+
+      // Category buttons cascade with DRAMA
+      gsap.to('.category', {
+        scrollTrigger: {
+          trigger: skillsSection,
+          start: 'top 78%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: {
+          amount: 0.5,
+          from: "start"
+        },
+        force3D: true
+      });
+
+      // Skill cards with progress bars - DRAMATIC entrance
+      gsap.to('.skill-note', {
+        scrollTrigger: {
+          trigger: skillsSection,
+          start: 'top 75%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power2.out',
+        stagger: 0.1,  // More pronounced
+        force3D: true,
+        onStart: () => {
+          // Progress bars fill dramatically
+          gsap.to('.skill-fill', {
+            width: 'var(--percent)',
+            duration: 1.0,  // Longer
+            ease: 'power3.out',
+            stagger: 0.08  // More dramatic
+          });
         }
-      );
+      });
     }
 
     // Function to load skills for a category into the left column
@@ -260,160 +463,205 @@ function initScrollTriggerAnimations() {
       }, 100);
     }
 
-    // Featured project cards - ALL TOGETHER, NO stagger
+    // Featured project cards - DRAMATIC grid stagger
     const featuredProjectCards = gsap.utils.toArray('.featured-project-card');
     if (featuredProjectCards.length > 0) {
-      gsap.fromTo(featuredProjectCards,
-        { opacity: 0, y: 20 },
-        {
-          scrollTrigger: {
-            trigger: featuredProjectCards[0],
-            start: 'top 90%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: smoothEase
-          // NO stagger - all cards appear together
-        }
-      );
+      gsap.set(featuredProjectCards, {
+        opacity: 0,
+        y: 90,  // Much more dramatic
+        scale: 0.88,
+        force3D: true
+      });
+
+      gsap.to(featuredProjectCards, {
+        scrollTrigger: {
+          trigger: featuredProjectCards[0],
+          start: 'top 82%',  // Earlier trigger
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.75,
+        ease: 'power3.out',
+        stagger: {
+          amount: 0.6,  // More dramatic stagger
+          grid: [3, 2],
+          from: "start"
+        },
+        force3D: true
+      });
     }
 
-    // Experience cards - ALL TOGETHER
+    // Experience cards - CINEMATIC scale + blur dissolve (NEW!)
     const experienceCards = gsap.utils.toArray('.experience-card');
     if (experienceCards.length > 0) {
-      gsap.fromTo(experienceCards,
-        { opacity: 0, y: 18 },
-        {
-          scrollTrigger: {
-            trigger: experienceCards[0],
-            start: 'top 90%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          ease: smoothEase
-          // NO stagger
-        }
-      );
+      gsap.set(experienceCards, {
+        opacity: 0,
+        scale: 0.7,  // Start much smaller
+        filter: 'blur(10px)',  // Start blurred
+        y: 40,  // Slightly below
+        force3D: true
+      });
+
+      gsap.to(experienceCards, {
+        scrollTrigger: {
+          trigger: experienceCards[0],
+          start: 'top 82%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        scale: 1,
+        filter: 'blur(0px)',  // Blur disappears
+        y: 0,
+        duration: 0.85,
+        ease: 'power2.out',
+        stagger: 0.2,
+        force3D: true
+      });
     }
 
-    // Contact section - ENTIRE FORM as ONE unified block
+    // Contact section - DRAMATIC unified entrance
     const contactSection = document.querySelector('.contact-section');
     if (contactSection) {
-      // Left side (heading, description, email) - NOT form inputs or social buttons
-      gsap.fromTo(['.contact-heading', '.contact-description', '.contact-email'],
-        { opacity: 0, x: -15 },
-        {
-          scrollTrigger: {
-            trigger: contactSection,
-            start: 'top 88%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          x: 0,
-          duration: 0.75,
-          ease: smoothEase
-        }
-      );
+      // Set initial dramatic states
+      gsap.set(['.contact-heading', '.contact-description', '.contact-email'], {
+        opacity: 0,
+        x: -60,  // More dramatic slide from left
+        force3D: true
+      });
 
-      // Social buttons - NO horizontal movement, only fade
-      gsap.fromTo('.social-link',
-        { opacity: 0 },
-        {
-          scrollTrigger: {
-            trigger: contactSection,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          duration: 0.75,
-          ease: smoothEase
-        }
-      );
+      gsap.set('.social-link', {
+        opacity: 0,
+        y: 40,
+        scale: 0.85,
+        force3D: true
+      });
 
-      // Right side (ENTIRE form wrapper as ONE block - includes all inputs inside)
-      gsap.fromTo('.contact-form-wrapper',
-        { opacity: 0, x: 15, y: 0 },
-        {
-          scrollTrigger: {
-            trigger: contactSection,
-            start: 'top 88%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration: 0.75,
-          ease: smoothEase
-        }
-      );
+      gsap.set('.contact-form-wrapper', {
+        opacity: 0,
+        x: 60,  // More dramatic slide from right
+        scale: 0.95,
+        force3D: true
+      });
+
+      // Left side - slide from left DRAMATIC
+      gsap.to(['.contact-heading', '.contact-description', '.contact-email'], {
+        scrollTrigger: {
+          trigger: contactSection,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        x: 0,
+        duration: 0.85,
+        ease: 'power3.out',
+        stagger: 0.12,
+        force3D: true
+      });
+
+      // Social buttons - bounce from below
+      gsap.to('.social-link', {
+        scrollTrigger: {
+          trigger: contactSection,
+          start: 'top 78%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.5)',  // Bouncy effect
+        stagger: 0.08,
+        force3D: true
+      });
+
+      // Right side form - slide from right DRAMATIC
+      gsap.to('.contact-form-wrapper', {
+        scrollTrigger: {
+          trigger: contactSection,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        duration: 0.85,
+        ease: 'power3.out',
+        force3D: true
+      });
     }
 
-    // Stats counter animation - Two phases: central first, then sides - NO delay
+    // Stats counter animation - DRAMATIC scale and count
     const statNumbers = document.querySelectorAll('.stat-number');
     statNumbers.forEach((stat) => {
       const targetValue = parseInt(stat.getAttribute('data-count'));
-
-      // Create a proxy object to animate the value
       const counterObj = { value: 0 };
 
-      gsap.fromTo(counterObj,
-        { value: 0 },
-        {
-          scrollTrigger: {
-            trigger: stat,
-            start: 'top 92%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          value: targetValue,
-          duration: 1.8,
-          ease: smoothEase,
-          onUpdate: function() {
-            stat.textContent = Math.round(this.targets()[0].value);
-          }
+      gsap.to(counterObj, {
+        scrollTrigger: {
+          trigger: stat,
+          start: 'top 85%',  // Earlier trigger
+          toggleActions: 'play none none reverse',
+        },
+        value: targetValue,
+        duration: 2.2,  // Longer for drama
+        ease: 'power3.out',
+        onUpdate: function() {
+          stat.textContent = Math.round(this.targets()[0].value);
         }
-      );
+      });
     });
 
-    // Phase 1: Central stat (Featured Projects) appears first - QUICK
+    // Stat items - DRAMATIC scale entrance
     const statItems = document.querySelectorAll('.stat-item');
     if (statItems.length >= 3) {
-      // Central stat (index 1)
-      gsap.fromTo(statItems[1],
-        { opacity: 0, scale: 0.9 },
-        {
-          scrollTrigger: {
-            trigger: '.projects-stats',
-            start: 'top 90%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          ease: smoothEase
-        }
-      );
+      // Set initial dramatic states
+      gsap.set(statItems[1], {
+        opacity: 0,
+        scale: 0.7,  // Much smaller
+        y: 50,
+        force3D: true
+      });
 
-      // Phase 2: Side stats (index 0 and 2) appear after - QUICK
-      gsap.fromTo([statItems[0], statItems[2]],
-        { opacity: 0, scale: 0.9 },
-        {
-          scrollTrigger: {
-            trigger: '.projects-stats',
-            start: 'top 90%',  // EARLY trigger
-            toggleActions: 'play none none reverse',
-          },
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          delay: 0.15,  // Reduced from 0.3s
-          stagger: 0.05,  // Reduced stagger
-          ease: smoothEase
-        }
-      );
+      gsap.set([statItems[0], statItems[2]], {
+        opacity: 0,
+        scale: 0.65,
+        y: 60,
+        force3D: true
+      });
+
+      // Central stat explodes in
+      gsap.to(statItems[1], {
+        scrollTrigger: {
+          trigger: '.projects-stats',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'back.out(1.7)',  // Bouncy
+        force3D: true
+      });
+
+      // Side stats follow
+      gsap.to([statItems[0], statItems[2]], {
+        scrollTrigger: {
+          trigger: '.projects-stats',
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.7,
+        delay: 0.2,
+        stagger: 0.1,
+        ease: 'back.out(1.5)',
+        force3D: true
+      });
     }
 
     // Scroll progress indicator for projects
@@ -514,24 +762,73 @@ function initScrollTriggerAnimations() {
 
     // Skill notes hover - using CSS transitions now, no GSAP needed
 
-    // Social links hover
-    document.querySelectorAll('.social-link').forEach(link => {
+    // Social links hover - DYNAMIC EXPANSION/CONTRACTION EFFECT
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach((link, index) => {
       link.addEventListener('mouseenter', () => {
-        gsap.to(link, {
-          x: 5,
-          duration: 0.3,
-          ease: 'power2.out'
+        // Remove all classes first
+        socialLinks.forEach(l => {
+          l.classList.remove('expanded', 'contracted', 'move-left', 'move-right');
+        });
+
+        // Add expanded class to hovered button
+        link.classList.add('expanded');
+
+        // Add contracted classes to other buttons based on position
+        socialLinks.forEach((otherLink, otherIndex) => {
+          if (otherIndex !== index) {
+            otherLink.classList.add('contracted');
+
+            // If hovered is center (index 1)
+            if (index === 1) {
+              if (otherIndex === 0) otherLink.classList.add('move-left');
+              if (otherIndex === 2) otherLink.classList.add('move-right');
+            }
+            // If hovered is left (index 0)
+            else if (index === 0) {
+              otherLink.classList.add('move-right');
+            }
+            // If hovered is right (index 2)
+            else if (index === 2) {
+              otherLink.classList.add('move-left');
+            }
+          }
         });
       });
 
       link.addEventListener('mouseleave', () => {
-        gsap.to(link, {
-          x: 0,
-          duration: 0.3,
-          ease: 'power2.out'
+        // Remove all classes when mouse leaves
+        socialLinks.forEach(l => {
+          l.classList.remove('expanded', 'contracted', 'move-left', 'move-right');
         });
       });
     });
+
+    // CURSOR-FOLLOWING EFFECT - Profile photo (shadow) and Project cards (spotlight)
+    const initCursorEffect = (elements, isSpotlight = true) => {
+      elements.forEach(element => {
+        element.addEventListener('mousemove', (e) => {
+          const rect = element.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+          element.style.setProperty('--mouse-x', `${x}%`);
+          element.style.setProperty('--mouse-y', `${y}%`);
+        });
+      });
+    };
+
+    // Apply DYNAMIC SHADOW to profile photo
+    const profilePhoto = document.querySelector('.photo-placeholder');
+    if (profilePhoto) {
+      initCursorEffect([profilePhoto], false);
+    }
+
+    // Apply SPOTLIGHT to featured project cards only
+    const featuredProjectCardsCursor = document.querySelectorAll('.featured-project-card');
+    if (featuredProjectCardsCursor.length > 0) {
+      initCursorEffect(featuredProjectCardsCursor, true);
+    }
   });
 
   return ctx;
@@ -572,13 +869,14 @@ function init() {
     // Set initial states for elements that will animate on scroll
     // This prevents flash of visible content before animation
     const elementsToHide = [
-      '.about-heading', '.bio-paragraph', '.photo-placeholder',
-      '.photo-caption', '.skills-header', '.category',
+      // About section elements REMOVED - now handled by staggered animation
+      // '.about-heading', '.bio-paragraph', '.photo-placeholder', '.photo-caption',
+      '.skills-header', '.category',
       '.featured-project-card', '.contact-heading',
       '.contact-description', '.contact-email',
       '.social-link'
-      // Note: .form-input and .form-textarea removed - they're inside .contact-form-wrapper
-      // Note: .contact-form-wrapper is animated directly, not here
+      // Note: About section now animated with stagger in initScrollTriggerAnimations
+      // Note: Skill cards will be animated separately
     ];
 
     elementsToHide.forEach(selector => {
